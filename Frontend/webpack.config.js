@@ -17,11 +17,11 @@ module.exports = {
       },
     ],
   },
-  mode: 'development',
+  mode: 'none',
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[chunkhash].js',
     publicPath: '/',
   },
   plugins: [
@@ -41,5 +41,8 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
 };
