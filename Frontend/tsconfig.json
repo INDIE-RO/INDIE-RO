@@ -40,5 +40,5 @@
     "outDir": "dist"
   },
   "include": ["src", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "./src/**/*.stories.tsx"]
+  "exclude": ["node_modules", "dist"]
 }

@@ -7,6 +7,8 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { router } from '@/router/router';
 
+import { SvgSprite } from './components/@common';
+
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('@/mocks/browser');
   worker.start();
@@ -33,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Suspense fallback={<div>Loading...</div>}>
+        <SvgSprite />
         <RouterProvider router={router} />
         <ReactQueryDevtools initialIsOpen={false} />
       </Suspense>
