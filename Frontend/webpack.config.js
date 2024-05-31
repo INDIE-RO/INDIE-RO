@@ -17,8 +17,17 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        issuer: /\.tsx$/,
-        use: [{ loader: '@svgr/webpack' }],
+        oneOf: [
+          {
+            use: [{ loader: '@svgr/webpack' }], // svg를 컴포넌트로 사용
+            issuer: /\.[jt]sx$/,
+            resourceQuery: { not: [/url/] },
+          },
+          {
+            type: 'asset', // svg를 url로 사용
+            resourceQuery: /url/, // *.svg?url
+          },
+        ],
       },
     ],
   },
