@@ -1,0 +1,15 @@
+name: 'PR Auto Assign'
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: hkusu/review-assign-action@v1
+        with:
+          assignees: ${{ github.actor }} # PR 요청자를 Assignees로 할당
+          max-num-of-reviewers: 1 # 리뷰어가 랜덤으로 선택되어 할당
+          ready-comment: 'Ready for review :ok: `<reviewers>`' # if there are reviewers, posted when opened or draft is released
+          merged-comment: 'It was merged. Thanks for your review :wink: `<reviewers>`' # if reviewed, posted when merged
