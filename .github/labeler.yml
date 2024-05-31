@@ -1,15 +1,15 @@
 🍳 Frontend:
-- changed-files:
-	- any-glob-to-any-file: 'Frontend/**/*'
+  - changed-files:
+      - any-glob-to-any-file: 'Frontend/**/*'
 🚀 Backend:
-- changed-files:
-	- any-glob-to-any-file: 'Backend/**/*'
+  - changed-files:
+      - any-glob-to-any-file: 'Backend/**/*'
 🧢 Data:
-- changed-files:
-	- any-glob-to-any-file: 'Data/**/*'
+  - changed-files:
+      - any-glob-to-any-file: 'Data/**/*'
 ✨ Feature:
-	- head-branch: ['^feat', 'feat']
+  - head-branch: ['^feat', 'feat']
 🐛 Bug Report:
-	- head-branch: ['^hotfix', 'hotfix', '^fix', 'fix']
+  - head-branch: ['^hotfix', 'hotfix', '^fix', 'fix']
 🛫 Release:
-	- base-branch: 'main'
+  - base-branch: 'main'
