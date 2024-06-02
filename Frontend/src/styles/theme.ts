@@ -42,12 +42,12 @@ const tagColors = {
 };
 
 const fontSizes = {
-  xxs: '11px',
-  xs: '12px',
-  sm: '14px',
-  md: '16px',
-  lg: '18px',
-  xl: '24px',
+  xxs: '0.688rem',
+  xs: '0.75rem',
+  sm: '0.875rem',
+  md: '1rem',
+  lg: '1.125rem',
+  xl: '1.5rem',
 } as const;
 
 const fontWeights = {
