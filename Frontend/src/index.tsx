@@ -2,12 +2,15 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 
+import { ThemeProvider } from '@emotion/react';
 import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { router } from '@/router/router';
 
 import { SvgSprite } from './components/@common';
+import GlobalStyle from './styles/GlobalStyle';
+import theme from './styles/theme';
 
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('@/mocks/browser');
@@ -34,11 +37,14 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <SvgSprite />
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </Suspense>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Suspense fallback={<div>Loading...</div>}>
+          <SvgSprite />
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
+        </Suspense>
+      </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
 );
