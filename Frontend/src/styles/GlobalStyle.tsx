@@ -30,6 +30,7 @@ const baseStyle = css`
 
   body {
     background-color: ${theme.backgroundColors.deep};
+    color: ${theme.textColors.default};
   }
 
   html,
