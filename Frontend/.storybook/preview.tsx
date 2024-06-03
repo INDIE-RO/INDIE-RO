@@ -56,6 +56,7 @@ const preview: Preview = {
     ],
   },
   loaders: [mswLoader], // Add the MSW loader to all stories
+  tags: ['autodocs'],
 };
 
 export default preview;
