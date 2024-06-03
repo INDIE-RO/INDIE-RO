@@ -1,8 +1,11 @@
 import { Global, css } from '@emotion/react';
 
+import fonts from './font';
 import theme from './theme';
 
 const baseStyle = css`
+  ${fonts}
+
   * {
     margin: 0;
     padding: 0;
@@ -28,9 +31,14 @@ const baseStyle = css`
     word-break: break-word;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
     background-color: ${theme.backgroundColors.deep};
-    color: ${theme.textColors.default};
+    color: ${theme.textColors.white};
+    font-size: ${theme.fontSizes.md};
   }
 
   html,
