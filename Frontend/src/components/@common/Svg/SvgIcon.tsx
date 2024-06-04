@@ -2,7 +2,14 @@ import { CSSProperties, ComponentPropsWithoutRef } from 'react';
 
 import theme from '@/styles/theme';
 
-export const SVG_ICON_VARIANTS = ['home', 'allInfo', 'user', 'modify', 'arrowLeft'] as const;
+export const SVG_ICON_VARIANTS = [
+  'home',
+  'allInfo',
+  'user',
+  'modify',
+  'arrowLeft',
+  'check',
+] as const;
 export type SvgIconVariant = (typeof SVG_ICON_VARIANTS)[number];
 
 interface SvgIconProps extends ComponentPropsWithoutRef<'svg'> {
