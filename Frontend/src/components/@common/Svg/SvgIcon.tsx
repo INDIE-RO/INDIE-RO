@@ -9,6 +9,7 @@ export const SVG_ICON_VARIANTS = [
   'modify',
   'arrowLeft',
   'check',
+  'close',
 ] as const;
 export type SvgIconVariant = (typeof SVG_ICON_VARIANTS)[number];
 
