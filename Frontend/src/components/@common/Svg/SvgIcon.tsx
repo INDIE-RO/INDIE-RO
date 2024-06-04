@@ -1,6 +1,8 @@
 import { CSSProperties, ComponentPropsWithoutRef } from 'react';
 
-export const SVG_ICON_VARIANTS = ['allInfo'] as const;
+import theme from '@/styles/theme';
+
+export const SVG_ICON_VARIANTS = ['home', 'allInfo', 'user', 'modify'] as const;
 export type SvgIconVariant = (typeof SVG_ICON_VARIANTS)[number];
 
 interface SvgIconProps extends ComponentPropsWithoutRef<'svg'> {
@@ -12,7 +14,14 @@ interface SvgIconProps extends ComponentPropsWithoutRef<'svg'> {
 }
 
 function SvgIcon(svgIconProps: SvgIconProps) {
-  const { variant, width = 20, height = 20, fill = 'red', stroke = 'red', ...props } = svgIconProps;
+  const {
+    variant,
+    width = 20,
+    height = 20,
+    fill = 'none',
+    stroke = theme.colors.white,
+    ...props
+  } = svgIconProps;
 
   return (
     <svg width={width} height={height} fill={fill} stroke={stroke} {...props}>

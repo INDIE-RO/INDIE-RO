@@ -47,7 +47,7 @@ const baseStyle = css`
   }
 
   a {
-    color: ${theme.colors.black};
+    color: ${theme.textColors.white};
     text-decoration: none;
     outline: none;
   }
