@@ -43,18 +43,18 @@ const preview: Preview = {
     msw: {
       handlers: [...handlers],
     },
-    decorators: [
-      Story => (
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Story />
-          </ThemeProvider>
-        </QueryClientProvider>
-      ),
-      withRouter,
-    ],
   },
+  decorators: [
+    Story => (
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Story />
+        </ThemeProvider>
+      </QueryClientProvider>
+    ),
+    withRouter,
+  ],
   loaders: [mswLoader], // Add the MSW loader to all stories
   tags: ['autodocs'],
 };
