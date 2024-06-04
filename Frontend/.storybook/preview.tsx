@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeProvider } from '@emotion/react';
 import type { Preview } from '@storybook/react';
@@ -49,10 +48,8 @@ const preview: Preview = {
     Story => (
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          {/* <BrowserRouter> */}
           <GlobalStyle />
           <Story />
-          {/* </BrowserRouter> */}
         </ThemeProvider>
       </QueryClientProvider>
     ),
