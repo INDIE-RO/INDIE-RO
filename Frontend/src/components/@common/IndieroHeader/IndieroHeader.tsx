@@ -3,15 +3,17 @@ import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import Logo from '@/assets/logo.svg';
+import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 
 function IndieroHeader() {
+  const { goHome } = useEasyNavigate();
+
   return (
     <Container>
-      {/* TODO: 네비게이션 바 PR 머지 후 주석 해제 */}
-      {/* <Link to={PATH.HOME}> */}
-      <Logo />
-      {/* </Link> */}
+      <Link to='#' onClick={goHome}>
+        <Logo />
+      </Link>
     </Container>
   );
 }
