@@ -37,8 +37,8 @@ const Container = styled.nav`
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 73px;
-  max-width: 430px;
+  height: 7.3rem;
+  max-width: 43rem;
   background: ${theme.backgroundColors.deep};
 `;
 
@@ -53,13 +53,13 @@ const Item = styled.li`
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  height: 60px;
+  height: 6rem;
 `;
 
 const Link = styled(NavLink)`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.8rem;
   justify-content: center;
   align-items: center;
 `;
