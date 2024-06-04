@@ -42,6 +42,7 @@ const tagColors = {
 };
 
 const fontSizes = {
+  xxxs: '0.8rem',
   xxs: '1.1rem',
   xs: '1.2rem',
   sm: '1.4rem',
@@ -66,5 +67,18 @@ const theme = {
   fontSizes,
   fontWeights,
 };
+
+export type Colors = typeof colors;
+export type TextColors = typeof textColors;
+export type DividerColors = typeof dividerColors;
+export type BackgroundColors = typeof backgroundColors;
+
+export type FontSizes = typeof fontSizes;
+export type FontWeights = typeof fontWeights;
+
+export type ColorKeys = keyof typeof colors;
+export type TextColorKeys = keyof typeof textColors;
+
+export type Theme = typeof theme;
 
 export default theme;
