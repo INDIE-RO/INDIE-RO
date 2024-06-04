@@ -71,9 +71,7 @@ const baseStyle = css`
   }
 
   button:disabled {
-    background-color: ${theme.colors.gray3};
     cursor: not-allowed;
-    pointer-events: none;
   }
 
   select {
