@@ -1,14 +1,18 @@
-import { PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 
+import { SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import theme from '@/styles/theme';
 
+type ChipVariant = 'standard' | 'outline' | 'rounded';
+type ChipSize = 'sm' | 'md' | 'lg';
+
 export interface ChipProps extends PropsWithChildren {
-  design: 'standard' | 'outline' | 'rounded';
-  size: 'sm' | 'md' | 'lg';
+  variant: ChipVariant;
+  size: ChipSize;
   color: string;
-  backgroundColor: string;
+  backgroundColor: CSSProperties['backgroundColor'];
   disabled: boolean;
 }
 
@@ -19,47 +23,75 @@ function Chip(chipProps: Partial<ChipProps>) {
 
 export default Chip;
 
+type ChipSizeStyles = Record<ChipSize, SerializedStyles>;
+
+type ChipVariantStyles = Record<
+  ChipVariant,
+  (chipVariantStylesProps: ChipVariantStylesProps) => SerializedStyles
+>;
+
+type ChipVariantStylesProps = Partial<Pick<ChipProps, 'color' | 'backgroundColor' | 'disabled'>>;
+
+const chipSizeStyles: ChipSizeStyles = {
+  sm: css`
+    width: 16.3rem;
+    font-size: ${theme.fontSizes.md};
+  `,
+  md: css`
+    width: 27.7rem;
+    font-size: ${theme.fontSizes.lg};
+  `,
+  lg: css`
+    width: 33.5rem;
+    font-size: ${theme.fontSizes.lg};
+  `,
+};
+
+const chipVariantStyles: ChipVariantStyles = {
+  standard: ({ color, backgroundColor, disabled }) =>
+    css`
+      border-radius: 12px;
+
+      background-color: ${disabled
+        ? theme.colors.gray3
+        : backgroundColor
+        ? backgroundColor
+        : theme.colors.primary};
+
+      color: ${disabled ? theme.colors.gray4 : color ? color : theme.textColors.default};
+    `,
+
+  outline: ({ color, backgroundColor, disabled }) =>
+    css`
+      border: 2px solid
+        ${disabled ? theme.colors.gray4 : backgroundColor ? backgroundColor : theme.colors.primary};
+      border-radius: 12px;
+      background-color: transparent;
+      color: ${disabled ? theme.colors.gray4 : color ? color : theme.colors.primary};
+    `,
+
+  rounded: ({ color, backgroundColor, disabled }) =>
+    css`
+      border-radius: 20px;
+
+      background-color: ${disabled
+        ? theme.colors.gray3
+        : backgroundColor
+        ? backgroundColor
+        : theme.colors.primary};
+
+      color: ${disabled ? theme.colors.gray4 : color ? color : theme.textColors.default};
+    `,
+};
+
 const Wrapper = styled.div<Partial<ChipProps>>`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  width: ${({ size }) => {
-    if (size === 'sm') return '16.3rem';
-    if (size === 'lg') return '33.5rem';
-
-    return '27.7rem';
-  }};
-
   height: 5.4rem;
-
-  ${({ design, disabled }) => {
-    if (design === 'outline' && disabled) return `border: 2px solid ${theme.colors.gray4}`;
-    if (design === 'outline' && !disabled) return `border: 2px solid ${theme.colors.primary}`;
-  }};
-
-  border-radius: ${({ design }) => (design === 'rounded' ? '20px' : '12px')};
-
-  background-color: ${({ design, disabled, backgroundColor }) => {
-    if (design === 'outline') return 'transparent';
-    if (disabled) return theme.colors.gray3;
-    if (backgroundColor) return backgroundColor;
-
-    return theme.colors.primary;
-  }};
-
-  color: ${({ design, disabled, color }) => {
-    if (disabled) return theme.colors.gray4;
-    if (color) return color;
-    if (design === 'outline') return theme.colors.primary;
-
-    return theme.textColors.default;
-  }};
-
   font-weight: ${theme.fontWeights.bold};
-  font-size: ${({ size }) => {
-    if (size === 'sm') return theme.fontSizes.md;
 
-    return theme.fontSizes.lg;
-  }};
+  ${({ size }) => chipSizeStyles[size ?? 'md']};
+  ${({ variant, color, backgroundColor, disabled }) =>
+    chipVariantStyles[variant ?? 'standard']({ color, backgroundColor, disabled })};
 `;

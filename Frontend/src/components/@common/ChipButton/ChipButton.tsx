@@ -7,12 +7,12 @@ interface ChipButtonProps
     Partial<ChipProps> {}
 
 function ChipButton(chipButtonProps: ChipButtonProps) {
-  const { design, size, color, backgroundColor, children, ...restProps } = chipButtonProps;
+  const { variant, size, color, backgroundColor, children, ...restProps } = chipButtonProps;
 
   return (
     <button {...restProps}>
       <Chip
-        design={design}
+        variant={variant}
         size={size}
         color={color}
         backgroundColor={backgroundColor}
