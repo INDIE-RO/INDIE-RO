@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import { ThemeProvider } from '@emotion/react';
 import type { Preview } from '@storybook/react';
@@ -43,18 +44,20 @@ const preview: Preview = {
     msw: {
       handlers: [...handlers],
     },
-    decorators: [
-      Story => (
-        <QueryClientProvider client={queryClient}>
-          <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <Story />
-          </ThemeProvider>
-        </QueryClientProvider>
-      ),
-      withRouter,
-    ],
   },
+  decorators: [
+    Story => (
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          {/* <BrowserRouter> */}
+          <GlobalStyle />
+          <Story />
+          {/* </BrowserRouter> */}
+        </ThemeProvider>
+      </QueryClientProvider>
+    ),
+    withRouter,
+  ],
   loaders: [mswLoader], // Add the MSW loader to all stories
 };
 
