@@ -88,8 +88,10 @@ const Wrapper = styled.div<Partial<ChipProps>>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   height: 5.4rem;
   font-weight: ${theme.fontWeights.bold};
+  transition: background-color 0.3s ease, 0.3s;
 
   ${({ size }) => chipSizeStyles[size ?? 'md']};
   ${({ variant, color, backgroundColor, disabled }) =>
