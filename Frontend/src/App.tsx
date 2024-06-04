@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import { DesktopLayout } from '@/components/@common/DesktopLayout';
-import { MobileLayout } from '@/components/@common/MobileLayout';
+import { DesktopLayout, MobileLayout } from '@/components/@common';
 
 export default function App() {
   return (
