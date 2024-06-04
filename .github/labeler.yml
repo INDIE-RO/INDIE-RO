@@ -9,6 +9,8 @@
       - any-glob-to-any-file: 'Data/**/*'
 ✨ Feature:
   - head-branch: ['^feat', 'feat']
+🧹 Refactor:
+  - head-branch: ['^refactor', 'refactor']
 🐛 Bug Report:
   - head-branch: ['^hotfix', 'hotfix', '^fix', 'fix']
 🛫 Release:
