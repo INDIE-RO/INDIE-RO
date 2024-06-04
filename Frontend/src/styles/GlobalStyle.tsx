@@ -47,7 +47,7 @@ const baseStyle = css`
   }
 
   a {
-    color: ${theme.colors.black};
+    color: ${theme.textColors.white};
     text-decoration: none;
     outline: none;
   }
@@ -71,9 +71,7 @@ const baseStyle = css`
   }
 
   button:disabled {
-    background-color: ${theme.colors.gray3};
     cursor: not-allowed;
-    pointer-events: none;
   }
 
   select {
