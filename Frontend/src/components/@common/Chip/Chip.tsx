@@ -11,7 +11,7 @@ type ChipSize = 'sm' | 'md' | 'lg';
 export interface ChipProps extends PropsWithChildren {
   variant: ChipVariant;
   size: ChipSize;
-  color: string;
+  color: CSSProperties['color'];
   backgroundColor: CSSProperties['backgroundColor'];
   disabled: boolean;
 }
