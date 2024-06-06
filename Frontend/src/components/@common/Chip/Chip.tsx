@@ -1,4 +1,4 @@
-import { CSSProperties, Fragment, PropsWithChildren } from 'react';
+import { CSSProperties, PropsWithChildren } from 'react';
 
 import { SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -25,7 +25,7 @@ function Chip(chipProps: Partial<ChipProps>) {
     <Wrapper {...restProps}>
       <TextBox>{children}</TextBox>
       {restProps.variant === 'tag' && (
-        <Fragment>
+        <>
           {' '}
           <SvgIcon
             variant='close'
@@ -34,7 +34,7 @@ function Chip(chipProps: Partial<ChipProps>) {
             width={11}
             height={11}
           />
-        </Fragment>
+        </>
       )}
     </Wrapper>
   );
