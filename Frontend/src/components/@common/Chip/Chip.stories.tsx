@@ -1,18 +1,19 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import Chip from '@/components/@common/Chip/Chip';
 import theme from '@/styles/theme';
-
-import Chip from './Chip';
 
 const meta = {
   title: '@common/Chip',
   component: Chip,
   argTypes: {
-    variant: { control: 'select', options: ['standard', 'rounded', 'outline'] },
+    variant: { control: 'select', options: ['standard', 'rounded', 'outline', 'tag'] },
     size: { control: 'inline-radio', options: ['sm', 'md', 'lg'] },
     color: { control: 'color' },
     backgroundColor: { control: 'color' },
     disabled: { control: 'boolean' },
+    width: { control: 'number' },
+    height: { control: 'number' },
   },
   args: {
     children: 'Chip',
@@ -34,6 +35,7 @@ export const Standard: Story = {
 export const Outline: Story = {
   args: {
     variant: 'outline',
+    color: theme.colors.primary,
   },
 };
 
@@ -41,6 +43,12 @@ export const Rounded: Story = {
   args: {
     variant: 'rounded',
     size: 'lg',
+  },
+};
+
+export const Tag: Story = {
+  args: {
+    variant: 'tag',
   },
 };
 

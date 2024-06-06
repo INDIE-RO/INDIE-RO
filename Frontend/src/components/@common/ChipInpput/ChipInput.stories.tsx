@@ -14,6 +14,8 @@ const meta = {
     backgroundColor: { control: 'color' },
     disabled: { control: 'boolean' },
     checked: { control: 'boolean' },
+    width: { control: 'number' },
+    height: { control: 'number' },
   },
   args: {
     children: 'ChipInput',

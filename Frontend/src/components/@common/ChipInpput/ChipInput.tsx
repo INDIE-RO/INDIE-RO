@@ -7,7 +7,7 @@ import SvgIcon from '@/components/@common/Svg/SvgIcon';
 import theme from '@/styles/theme';
 
 interface ChipInputProps
-  extends Omit<ComponentPropsWithoutRef<'input'>, 'color' | 'size'>,
+  extends Omit<ComponentPropsWithoutRef<'input'>, 'color' | 'size' | 'width' | 'height'>,
     Partial<ChipProps> {}
 
 function ChipInput(chipInputProps: ChipInputProps) {
@@ -16,6 +16,8 @@ function ChipInput(chipInputProps: ChipInputProps) {
     size,
     color,
     backgroundColor,
+    width,
+    height,
     children,
     ...restProps
   } = chipInputProps;
@@ -27,6 +29,8 @@ function ChipInput(chipInputProps: ChipInputProps) {
       color={restProps.checked ? color : theme.textColors.white}
       backgroundColor={restProps.checked ? backgroundColor : theme.colors.gray6}
       disabled={restProps.disabled}
+      width={width}
+      height={height}
     >
       <InputWrapper {...restProps} />
       <FlexBox>
@@ -48,6 +52,8 @@ const InputWrapper = styled.input`
   cursor: pointer;
 
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 1000;
 
   width: 100%;
@@ -63,7 +69,6 @@ const FlexBox = styled.div`
 
   width: 100%;
   height: 100%;
-  padding: 0 2.4rem;
 
   text-align: left;
   line-height: 24px;
