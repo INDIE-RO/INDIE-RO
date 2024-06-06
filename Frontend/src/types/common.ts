@@ -6,3 +6,5 @@ export interface NavigationMenu {
   name: '홈' | '모든정보' | '맞춤정보' | '설문수정';
   path: (typeof PATH)[keyof typeof PATH];
 }
+
+export type CategoryVariant = 'job' | 'housing' | 'education' | 'welfare';
