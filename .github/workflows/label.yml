@@ -30,4 +30,4 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: payload.issue ? payload.issue.number : payload.pull_request.number,
-              labels: [labelsToAdd[context.repo.owner]]
+              labels: [labelsToAdd[payload.issue.user.login]]
