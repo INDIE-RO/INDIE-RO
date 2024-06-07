@@ -8,6 +8,7 @@ export const SVG_ICON_VARIANTS = [
   'user',
   'modify',
   'arrowLeft',
+  'arrowUp',
   'check',
   'close',
 ] as const;
