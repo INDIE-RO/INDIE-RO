@@ -20,7 +20,7 @@ jobs:
           sync-labels: true
 
       - name: Apply Labels based on Author
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
