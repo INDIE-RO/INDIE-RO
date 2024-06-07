@@ -2,34 +2,35 @@ name: 'Labeler'
 on:
   issues:
     types: [opened, edited]
-  pull_request_target: # PR이 open(reopen) 되거나 새로운 commit push된 경우
+  pull_request_target:
     types: [opened, reopened, synchronize]
 
 jobs:
   triage:
-    permissions: # workflows 권한 지정
-      contents: read # 레포 읽기 권한
-      pull-requests: write # PR 쓰기 권한
-      issues: write # 이슈 쓰기 권한
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
     runs-on: ubuntu-latest
     steps:
       - name: Check Labels
-        uses: actions/labeler@v5 # actions/labeler@v5 사용
+        uses: actions/labeler@v5
         with:
           repo-token: '${{ secrets.GITHUB_TOKEN }}'
-          sync-labels: true # 규칙에 맞지 않는 라벨 제거
+          sync-labels: true
 
       - name: Apply Labels based on Author
-        uses: actions/github-script@v6
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const payload = context.payload;
-            const issueAuthor = payload.issue ? payload.issue.user.login : (payload.pull_request ? payload.pull_request.user.login : null);
+            const applyLabels = async () => {
+              const payload = context.payload;
+              const issueAuthor = payload.issue ? payload.issue.user.login : (payload.pull_request ? payload.pull_request.user.login : null);
 
-            if (!issueAuthor) {
-              return;
-            }
+              if (!issueAuthor) {
+                return;
+              }
 
             const labelsToAdd = {
               'HASEUNGHEEE': 'Backend',
@@ -38,19 +39,14 @@ jobs:
               'hae-on': 'Frontend'
             };
 
-            if (labelsToAdd[issueAuthor]) {
-              github.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: payload.issue ? payload.issue.number : payload.pull_request.number,
-                labels: [labelsToAdd[issueAuthor]]
-              });
-            }
+              if (labelsToAdd[issueAuthor]) {
+                await github.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: payload.issue ? payload.issue.number : payload.pull_request.number,
+                  labels: [labelsToAdd[issueAuthor]]
+                });
+              }
+            };
 
-            if (payload.issue) {
-              github.issues.addAssignees({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: payload.issue.number,
-                assignees: [issueAuthor]
-              });
+            applyLabels();
