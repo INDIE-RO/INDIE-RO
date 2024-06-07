@@ -24,10 +24,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const labelsToAdd = {'HASEUNGHEEE': 'Backend','enxxo': 'Data','HyeryongChoi': 'Frontend','hae-on': 'Frontend'};
-
-            github.issues.addLabels({
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: payload.issue ? payload.issue.number : payload.pull_request.number,
-              labels: [labelsToAdd[payload.issue.user.login]]
+              labels: ['Frontend']
+            })
