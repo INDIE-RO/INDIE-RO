@@ -2,9 +2,9 @@ import { RefObject } from 'react';
 
 import styled from '@emotion/styled';
 
+import { SvgIcon } from '@/components/@common';
 import theme from '@/styles/theme';
 
-import SvgIcon from '../Svg/SvgIcon';
 import useScroll from './useScroll';
 
 interface ScrollButtonProps {
