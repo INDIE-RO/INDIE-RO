@@ -1,9 +1,10 @@
-export { default as NavigationBar } from './NavigationBar/NavigationBar';
 export { default as Chip } from './Chip/Chip';
 export { default as ChipButton } from './ChipButton/ChipButton';
 export { default as DesktopLayout } from './DesktopLayout/DesktopLayout';
+export { default as Dialog } from './Dialog/Dialog';
+export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
 export { default as MobileLayout } from './MobileLayout/MobileLayout';
+export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
+export { default as NavigationBar } from './NavigationBar/NavigationBar';
 export { default as SvgIcon } from './Svg/SvgIcon';
 export { default as SvgSprite } from './Svg/SvgSprite';
-export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
-export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
