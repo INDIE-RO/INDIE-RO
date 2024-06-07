@@ -24,9 +24,17 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const creator = context.payload.sender.login
+            const labelsToAdd = {
+                'HASEUNGHEEE': '🚀 Backend',
+                'enxxo': '🧢 Data',
+                'HyeryongChoi': '🍳 Frontend',
+                'hae-on': '🍳 Frontend'
+            };
+
             github.rest.issues.addLabels({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              labels: ['🍳 Frontend']
+              labels: [labelsToAdd[creator]
             })
