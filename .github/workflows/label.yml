@@ -32,10 +32,10 @@ jobs:
             }
 
             const labelsToAdd = {
-              HASEUNGHEEE: 'Backend',
-              enxxo: 'Data',
-              HyeryongChoi: 'Frontend',
-              hae-on: 'Frontend'
+              'HASEUNGHEEE': 'Backend',
+              'enxxo': 'Data',
+              'HyeryongChoi': 'Frontend',
+              'hae-on': 'Frontend'
             };
 
             if (labelsToAdd[issueAuthor]) {
