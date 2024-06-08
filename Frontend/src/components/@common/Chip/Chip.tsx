@@ -10,13 +10,14 @@ type ChipVariant = 'standard' | 'outline' | 'rounded' | 'tag';
 type ChipSize = 'sm' | 'md' | 'lg';
 
 export interface ChipProps extends PropsWithChildren {
+  as: keyof JSX.IntrinsicElements;
   variant: ChipVariant;
   size: ChipSize;
   color: CSSProperties['color'];
   backgroundColor: CSSProperties['backgroundColor'];
   disabled: boolean;
-  width: number;
-  height: number;
+  width: CSSProperties['width'];
+  height: CSSProperties['height'];
 }
 
 function Chip(chipProps: Partial<ChipProps>) {
@@ -135,8 +136,8 @@ const Wrapper = styled.div<Partial<ChipProps>>`
   ${({ variant, color, backgroundColor, disabled }) =>
     chipVariantStyles[variant ?? 'standard']({ color, backgroundColor, disabled })};
 
-  ${({ width }) => width && `width: ${width}rem`};
-  ${({ height }) => height && `height: ${height}rem`};
+  ${({ width }) => width && `width: ${width}`};
+  ${({ height }) => height && `height: ${height}`};
 `;
 
 const TextBox = styled.p`
