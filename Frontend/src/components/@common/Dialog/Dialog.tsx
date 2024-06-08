@@ -75,7 +75,7 @@ function Content(contentProps: ContentProps) {
 
   return (
     <Wrapper ref={dialogRef} onClick={handleBackdropClick} location={location} {...restProps}>
-      {children}
+      <BoxForMobile>{children}</BoxForMobile>
     </Wrapper>
   );
 }
@@ -146,6 +146,7 @@ const dialogLocationStyles: DialogLocationStyles = {
 const Wrapper = styled.dialog<{ location: DialogLocation }>`
   max-width: 100vw;
 
+  background-color: transparent;
   border-radius: 20px;
   border: none;
 
@@ -174,4 +175,19 @@ const Wrapper = styled.dialog<{ location: DialogLocation }>`
   }
 
   ${({ location }) => dialogLocationStyles[location ?? 'center']}
+`;
+
+const BoxForMobile = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+
+  @media screen and (min-width: 768px) {
+    width: 430px;
+    left: 55%;
+  }
 `;
