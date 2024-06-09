@@ -89,32 +89,9 @@ const Wrapper = styled.div<Pick<ToastProps, 'variant'> & { open: boolean }>`
   ${({ open }) =>
     open
       ? css`
-          animation: toast-fade-in 0.35s ease-in-out 0s 1 normal forwards;
+          animation: ${theme.animations.toastFadeIn} 0.35s ease-in-out 0s 1 normal forwards;
         `
       : css`
-          animation: toast-fade-out 0.5s ease-in-out 0s 1 normal forwards;
+          animation: ${theme.animations.toastFadeOut} 0.5s ease-in-out 0s 1 normal forwards;
         `};
-
-  @keyframes toast-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(200%);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0%);
-    }
-  }
-
-  @keyframes toast-fade-out {
-    from {
-      opacity: 1;
-      transform: translateY(-0%);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(200%);
-      display: none;
-    }
-  }
 `;
