@@ -12,8 +12,8 @@ const meta = {
     color: { control: 'color' },
     backgroundColor: { control: 'color' },
     disabled: { control: 'boolean' },
-    width: { control: 'number' },
-    height: { control: 'number' },
+    width: { control: 'text' },
+    height: { control: 'text' },
   },
   args: {
     children: 'Chip',
