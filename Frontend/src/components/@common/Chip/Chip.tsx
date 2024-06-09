@@ -31,7 +31,7 @@ function Chip(chipProps: Partial<ChipProps>) {
           <SvgIcon
             variant='close'
             fill={restProps.color ? restProps.color : theme.colors.white}
-            stroke={'none'}
+            stroke='none'
             width={11}
             height={11}
           />

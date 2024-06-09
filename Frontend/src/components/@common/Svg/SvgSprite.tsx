@@ -23,7 +23,7 @@ function SvgSprite() {
         <path strokeLinecap='round' strokeLinejoin='round' d='M11.1 10.918L1 21' />
       </symbol>
       <symbol id='modify' viewBox='0 0 14 14'>
-        <g stroke-linecap='round' stroke-linejoin='round' clip-path='url(#clip0_143_582)'>
+        <g strokeLinecap='round' strokeLinejoin='round' clipPath='url(#clip0_143_582)'>
           <path d='M13.18 13.5a6.49 6.49 0 0 0-12.36 0h12.36z' />
           <path d='M7 9A4.232 4.232 0 1 0 7 .536 4.232 4.232 0 0 0 7 9z' />
           <path d='M8.382 6.405s-.351.691-1.382.691c-1.03 0-1.382-.69-1.382-.69m5.537-2.444h-.028a4.117 4.117 0 0 1-3.09-1.391 4.117 4.117 0 0 1-3.091 1.392 4.109 4.109 0 0 1-1.973-.501 4.234 4.234 0 0 1 8.182.5z' />
@@ -45,9 +45,9 @@ function SvgSprite() {
       </symbol>
       <symbol id='close' viewBox='0 0 10 11'>
         <path
-          fill-rule='evenodd'
+          fillRule='evenodd'
           d='M5 6.384l2.21 2.21a.625.625 0 0 0 .884-.884L5.884 5.5l2.21-2.21a.625.625 0 1 0-.885-.883L5 4.617l-2.21-2.21a.625.625 0 1 0-.884.883l2.21 2.21-2.21 2.21a.625.625 0 1 0 .885.884L5 6.384z'
-          clip-rule='evenodd'
+          clipRule='evenodd'
         />
       </symbol>
     </svg>
