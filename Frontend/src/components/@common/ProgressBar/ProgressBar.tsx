@@ -2,14 +2,13 @@ import styled from '@emotion/styled';
 
 import theme from '@/styles/theme';
 
-const TOTAL_STEP = 3;
-
 interface ProgressBarProps {
+  totalStep: number;
   step: number;
 }
 
-function ProgressBar({ step }: ProgressBarProps) {
-  const progress = (step / TOTAL_STEP) * 100;
+function ProgressBar({ totalStep = 3, step }: ProgressBarProps) {
+  const progress = (step / totalStep) * 100;
 
   return (
     <Container>
