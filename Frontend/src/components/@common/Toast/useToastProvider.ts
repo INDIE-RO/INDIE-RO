@@ -4,16 +4,15 @@ import { useLocation } from 'react-router-dom';
 import { TOAST_VARIANT, ToastVariant } from './Toast';
 import { ToastItem } from './ToastContext';
 
-const TOAST_DISPLAY_DURATION = 4500;
-const TOAST_REMOVAL_DELAY = 500;
+const TOAST_NUM_LIMIT = 3;
+const TOAST_REMOVAL_DELAY = 4500;
+const TOAST_REMOVAL_DELAY_SHORT = 500;
 
 export const useToastProvider = () => {
   const [toastList, setToastList] = useState<ToastItem[]>([]);
   const currentToastList = useRef<ToastItem[]>([]);
 
   const newToastId = useRef(0);
-  const toastTimers = useRef<Map<number, NodeJS.Timeout>>(new Map<number, NodeJS.Timeout>());
-
   const generateToastId = (): number => newToastId.current;
 
   const createToastByVariant = useCallback(
@@ -23,13 +22,14 @@ export const useToastProvider = () => {
 
         appendToast({ variant, content, id: newToastId });
 
-        if (currentToastList.current.length >= 5) {
-          currentToastList.current[0].deleted = true; // 가장 오래된 Toast 즉시 제거
+        if (currentToastList.current.length > TOAST_NUM_LIMIT) {
+          currentToastList.current[0].deleted = true;
           setToastList(currentToastList.current);
 
+          // 사라지는 애니메이션 동작 후 제거
           setTimeout(() => {
             removeToast(currentToastList.current[0].id);
-          }, TOAST_REMOVAL_DELAY);
+          }, TOAST_REMOVAL_DELAY_SHORT);
         }
 
         return { id: newToastId, variant, content };
@@ -38,11 +38,9 @@ export const useToastProvider = () => {
   );
 
   const appendToast = (toast: ToastItem) => {
-    const toastTimerId = setTimeout(() => {
+    setTimeout(() => {
       removeToast(toast.id);
-    }, TOAST_DISPLAY_DURATION);
-
-    toastTimers.current.set(toast.id, toastTimerId);
+    }, TOAST_REMOVAL_DELAY);
 
     currentToastList.current = [...currentToastList.current, toast];
     setToastList(currentToastList.current);
@@ -53,15 +51,11 @@ export const useToastProvider = () => {
   const removeToast = (toastId: number) => {
     currentToastList.current = currentToastList.current.filter(toast => toast.id !== toastId);
     setToastList(currentToastList.current);
-
-    toastTimers.current.delete(toastId);
   };
 
   const deleteAllToast = () => {
     currentToastList.current = [];
     setToastList(currentToastList.current);
-
-    toastTimers.current = new Map<number, NodeJS.Timeout>();
   };
 
   const toast = useMemo(
