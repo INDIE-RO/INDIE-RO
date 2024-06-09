@@ -185,6 +185,11 @@ const BoxForMobile = styled.div`
   width: 100%;
   height: 100%;
   background-color: transparent;
+  pointer-events: none; // 배경 뒤 클릭 가능하도록 설정
+
+  & * {
+    pointer-events: auto;
+  }
 
   @media screen and (min-width: 768px) {
     width: 430px;
