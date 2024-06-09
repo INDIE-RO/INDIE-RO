@@ -10,7 +10,7 @@ const TOAST_REMOVAL_DELAY_SHORT = 500;
 
 export const useToastProvider = () => {
   const [toastList, setToastList] = useState<ToastItem[]>([]);
-  const currentToastList = useRef<ToastItem[]>([]);
+  const currentToastList = useRef<ToastItem[]>([]); // 현재 Toast의 개수를 정확하게 관리하기 위해 사용
 
   const newToastId = useRef(0);
   const generateToastId = (): number => newToastId.current;
@@ -53,7 +53,7 @@ export const useToastProvider = () => {
     setToastList(currentToastList.current);
   };
 
-  const deleteAllToast = () => {
+  const removeAllToast = () => {
     currentToastList.current = [];
     setToastList(currentToastList.current);
   };
@@ -69,7 +69,7 @@ export const useToastProvider = () => {
 
   const location = useLocation();
 
-  useEffect(deleteAllToast, [location.key]); // 페이지 이동 시 Toast 정리
+  useEffect(removeAllToast, [location.key]); // 페이지 이동 시 Toast 정리
 
   return { toast, toastList };
 };
