@@ -1,7 +1,13 @@
 import { CATEGORY_TYPE } from '@/constants/common';
-import { CategoryVariant, DetailPolicyTabVariant } from '@/types/common';
+import { CategoryVariant } from '@/types/common';
 
-import { Tab } from './type';
+import { DetailPolicyTabVariant, Tab } from './type';
+
+export const DETAIL_POLICY_TAB_TYPE = {
+  DESCRIPTION: 'description',
+  QUALIFICATION: 'qualification',
+  OTHER_INFO: 'otherInfo',
+} as const;
 
 export const TOTAL_POLICY_TAB_MENUS: Tab<CategoryVariant>[] = [
   { value: CATEGORY_TYPE.JOB, label: '일자리' },
@@ -11,7 +17,7 @@ export const TOTAL_POLICY_TAB_MENUS: Tab<CategoryVariant>[] = [
 ];
 
 export const DETAIL_POLICY_TAB_MENUS: Tab<DetailPolicyTabVariant>[] = [
-  { value: 'description', label: '상세내용' },
-  { value: 'qualification', label: '신청자격' },
-  { value: 'otherInfo', label: '기타사항' },
+  { value: DETAIL_POLICY_TAB_TYPE.DESCRIPTION, label: '상세내용' },
+  { value: DETAIL_POLICY_TAB_TYPE.QUALIFICATION, label: '신청자격' },
+  { value: DETAIL_POLICY_TAB_TYPE.OTHER_INFO, label: '기타사항' },
 ];

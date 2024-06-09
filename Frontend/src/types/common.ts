@@ -8,5 +8,3 @@ export interface NavigationMenu {
 }
 
 export type CategoryVariant = 'job' | 'housing' | 'education' | 'welfare';
-
-export type DetailPolicyTabVariant = 'description' | 'qualification' | 'otherInfo';
