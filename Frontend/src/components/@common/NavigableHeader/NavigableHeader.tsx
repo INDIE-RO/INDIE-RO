@@ -2,10 +2,9 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import { SvgIcon } from '@/components/@common';
 import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
-
-import SvgIcon from '../Svg/SvgIcon';
 
 function NavigableHeader() {
   const { goBack, goHome } = useEasyNavigate();

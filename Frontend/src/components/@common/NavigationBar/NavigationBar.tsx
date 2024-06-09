@@ -2,10 +2,9 @@ import { NavLink } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
+import { SvgIcon } from '@/components/@common';
 import { NAVIGATION_MENU } from '@/constants/path';
 import theme from '@/styles/theme';
-
-import SvgIcon from '../Svg/SvgIcon';
 
 function NavigationBar() {
   return (
