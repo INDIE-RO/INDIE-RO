@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -18,25 +18,25 @@ const TOAST_DISPLAY_DURATION = 4000;
 
 function Toast(toastProps: ToastProps) {
   const { variant, content, deleted } = toastProps;
-  const [timer, setTimer] = useState<NodeJS.Timeout>();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
+  const timer = useRef<NodeJS.Timeout>();
 
-  useLayoutEffect(() => {
-    setOpen(true);
-
-    const toastTimerId = setTimeout(() => {
+  useEffect(() => {
+    timer.current = setTimeout(() => {
       setOpen(false);
     }, TOAST_DISPLAY_DURATION);
 
-    setTimer(toastTimerId);
+    return () => {
+      clearTimeout(timer.current);
+    };
   }, []);
 
   useEffect(() => {
     if (deleted) {
-      clearTimeout(timer);
       setOpen(false);
+      clearTimeout(timer.current);
     }
-  }, [deleted, timer]);
+  }, [deleted, timer.current]);
 
   return (
     <Wrapper variant={variant} open={open}>
@@ -89,13 +89,13 @@ const Wrapper = styled.div<Pick<ToastProps, 'variant'> & { open: boolean }>`
   ${({ open }) =>
     open
       ? css`
-          animation: fade-in 0.35s ease-in-out 0s 1 normal forwards;
+          animation: toast-fade-in 0.35s ease-in-out 0s 1 normal forwards;
         `
       : css`
-          animation: fade-out 0.5s ease-in-out 0s 1 normal forwards;
+          animation: toast-fade-out 0.5s ease-in-out 0s 1 normal forwards;
         `};
 
-  @keyframes fade-in {
+  @keyframes toast-fade-in {
     from {
       opacity: 0;
       transform: translateY(200%);
@@ -106,7 +106,7 @@ const Wrapper = styled.div<Pick<ToastProps, 'variant'> & { open: boolean }>`
     }
   }
 
-  @keyframes fade-out {
+  @keyframes toast-fade-out {
     from {
       opacity: 1;
       transform: translateY(-0%);
