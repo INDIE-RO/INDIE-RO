@@ -94,7 +94,6 @@ const Container = styled.div`
   align-items: center;
 
   width: 100%;
-  max-width: 430px;
 
   transition: all 0.5s ease;
   pointer-events: none; // 배경 뒤 클릭 가능하도록 설정
