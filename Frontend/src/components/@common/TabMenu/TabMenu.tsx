@@ -1,32 +1,23 @@
-import { MouseEventHandler } from 'react';
+import { MouseEvent } from 'react';
 
 import styled from '@emotion/styled';
 
-import { CATEGORY_TYPE } from '@/constants/common';
-import { CategoryVariant } from '@/types/common';
-
-import { Tab } from './type';
-
-const TAB_MENUS: Tab<CategoryVariant>[] = [
-  { value: CATEGORY_TYPE.JOB, label: '일자리' },
-  { value: CATEGORY_TYPE.HOUSING, label: '주거' },
-  { value: CATEGORY_TYPE.EDUCATION, label: '교육' },
-  { value: CATEGORY_TYPE.WELFARE, label: '복지/문화' },
-];
+import { Tab, TabVariant } from './type';
 
 interface TabMenuProps {
-  selectedTabMenu: CategoryVariant;
-  handleTabMenuSelect: (selectedMenu: CategoryVariant) => void;
+  tabMenus: Tab<TabVariant>[];
+  selectedTabMenu: TabVariant;
+  handleTabMenuSelect: (selectedMenu: TabVariant) => void;
 }
 
-function TabMenu({ selectedTabMenu, handleTabMenuSelect }: TabMenuProps) {
-  const handleTabMenuClick: MouseEventHandler<HTMLButtonElement> = event => {
-    handleTabMenuSelect(event.currentTarget.value as CategoryVariant);
+function TabMenu({ tabMenus, selectedTabMenu, handleTabMenuSelect }: TabMenuProps) {
+  const handleTabMenuClick = (event: MouseEvent<HTMLButtonElement>) => {
+    handleTabMenuSelect(event.currentTarget.value as TabVariant);
   };
 
   return (
     <Container>
-      {TAB_MENUS.map(({ value, label }) => {
+      {tabMenus.map(({ value, label }) => {
         const isSelected = selectedTabMenu === value;
         return (
           <List key={value} isSelected={isSelected}>
