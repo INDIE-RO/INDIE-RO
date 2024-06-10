@@ -8,7 +8,4 @@ function Homepage() {
 
 export default Homepage;
 
-const Container = css`
-  height: 100%;
-  background-color: ${theme.backgroundColors.deep};
-`;
+const Container = css``;

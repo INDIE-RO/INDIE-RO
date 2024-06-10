@@ -1,11 +1,12 @@
 export { default as Chip } from './Chip/Chip';
 export { default as ChipButton } from './ChipButton/ChipButton';
-export { default as DesktopLayout } from './DesktopLayout/DesktopLayout';
+export { default as DefaultLayout } from './Layout/DefaultLayout';
+export { default as DesktopLayout } from './Layout/DesktopLayout';
 export { default as Dialog } from './Dialog/Dialog';
 export { default as DialogConfirm } from './DialogConfirm/DialogConfirm';
 export { default as DialogConfirmContextProvider } from './DialogConfirm/DialogConfirmContext';
 export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
-export { default as MobileLayout } from './MobileLayout/MobileLayout';
+export { default as MobileLayout } from './Layout/MobileLayout';
 export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
 export { default as NavigationBar } from './NavigationBar/NavigationBar';
 export { default as SvgIcon } from './Svg/SvgIcon';

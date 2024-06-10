@@ -2,8 +2,10 @@ import { PropsWithChildren } from 'react';
 
 import { css } from '@emotion/react';
 
+import theme from '@/styles/theme';
+
 function MobileLayout({ children }: PropsWithChildren) {
-  return <div css={MobileLayoutStyle}>{children}</div>;
+  return <main css={MobileLayoutStyle}>{children}</main>;
 }
 
 const MobileLayoutStyle = css`
@@ -14,6 +16,12 @@ const MobileLayoutStyle = css`
   min-height: 100vh;
 
   overflow-y: auto;
+
+  // 자식 요소로 들어올 페이지 기본 스타일링
+  > section {
+    height: 100%;
+    background-color: ${theme.backgroundColors.deep};
+  }
 
   ::-webkit-scrollbar {
     display: none;
