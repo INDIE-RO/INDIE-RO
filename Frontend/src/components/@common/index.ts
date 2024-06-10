@@ -10,3 +10,5 @@ export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
 export { default as NavigationBar } from './NavigationBar/NavigationBar';
 export { default as SvgIcon } from './Svg/SvgIcon';
 export { default as SvgSprite } from './Svg/SvgSprite';
+export { default as Toast } from './Toast/Toast';
+export { default as ToastContextProvider } from './Toast/ToastContext';

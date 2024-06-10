@@ -10,6 +10,7 @@ import {
 import { SerializedStyles, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import theme from '@/styles/theme';
 import { executeSequentially, getValidChild } from '@/utils/@common';
 
 import DialogProvider, { useDialogContext } from './DialogContext';
@@ -117,7 +118,7 @@ const dialogLocationStyles: DialogLocationStyles = {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 
     &[open] {
-      animation: fade-in 0.7s;
+      animation: ${theme.animations.fadeIn} 0.7s;
     }
 
     @media screen and (min-width: 768px) {
@@ -133,7 +134,7 @@ const dialogLocationStyles: DialogLocationStyles = {
     border-end-end-radius: 0;
 
     &[open] {
-      animation: fade-in, slide-up 0.7s forwards;
+      animation: ${theme.animations.fadeIn}, ${theme.animations.slideUp} 0.7s forwards;
     }
 
     @media screen and (min-width: 768px) {
@@ -153,25 +154,7 @@ const Wrapper = styled.dialog<{ location: DialogLocation }>`
   overflow-y: auto;
 
   &::backdrop {
-    animation: fade-in 0.3s;
-  }
-
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes slide-up {
-    from {
-      transform: translateY(100vh);
-    }
-    to {
-      transform: translateY(calc(100vh - 100%));
-    }
+    animation: ${theme.animations.fadeIn} 0.3s;
   }
 
   ${({ location }) => dialogLocationStyles[location ?? 'center']}
@@ -185,6 +168,11 @@ const BoxForMobile = styled.div`
   width: 100%;
   height: 100%;
   background-color: transparent;
+  pointer-events: none; // 배경 뒤 클릭 가능하도록 설정
+
+  & * {
+    pointer-events: auto;
+  }
 
   @media screen and (min-width: 768px) {
     width: 430px;

@@ -1,3 +1,5 @@
+import { keyframes } from '@emotion/react';
+
 const colors = {
   primary: '#E9FF75',
   secondary: '#697335',
@@ -59,6 +61,46 @@ const fontWeights = {
   bold: 700,
 } as const;
 
+const animations = {
+  toastFadeIn: keyframes`
+    from {
+      opacity: 0;
+      transform: translateY(200%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  `,
+  toastFadeOut: keyframes`
+    from {
+      opacity: 1;
+      transform: translateY(-0%);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(200%);
+      display: none;
+    }
+  `,
+  fadeIn: keyframes`
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  `,
+  slideUp: keyframes`
+    from {
+      transform: translateY(100vh);
+    }
+    to {
+      transform: translateY(calc(100vh - 100%));
+    }
+  `,
+} as const;
+
 const theme = {
   colors,
   textColors,
@@ -67,6 +109,7 @@ const theme = {
   tagColors,
   fontSizes,
   fontWeights,
+  animations,
 };
 
 export type Colors = typeof colors;
@@ -76,6 +119,8 @@ export type BackgroundColors = typeof backgroundColors;
 
 export type FontSizes = typeof fontSizes;
 export type FontWeights = typeof fontWeights;
+
+export type Animations = typeof animations;
 
 export type ColorKeys = keyof typeof colors;
 export type TextColorKeys = keyof typeof textColors;

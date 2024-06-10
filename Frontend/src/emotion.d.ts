@@ -1,13 +1,13 @@
 import '@emotion/react';
 
 import type {
+  Animations,
   BackgroundColors,
   Colors,
   DividerColors,
   FontSizes,
   FontWeights,
   TextColors,
-  Theme,
 } from './styles/theme';
 
 declare module '@emotion/react' {
@@ -19,5 +19,7 @@ declare module '@emotion/react' {
 
     fontSizes: FontSizes;
     fontWeights: FontWeights;
+
+    animations: Animations;
   }
 }
