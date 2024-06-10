@@ -9,16 +9,16 @@ import {
 } from '@/components/@common';
 
 interface AppProps {
-  hasLayout?: boolean;
+  hasHeader?: boolean;
 }
 
-export default function App({ hasLayout = false }: AppProps) {
+export default function App({ hasHeader = false }: AppProps) {
   return (
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <DesktopLayout>
           <MobileLayout>
-            {hasLayout ? (
+            {hasHeader ? (
               <DefaultLayout>
                 <Outlet />
               </DefaultLayout>

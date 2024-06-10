@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
   // 레이아웃이 있는 페이지
   {
     path: '/',
-    element: <App hasLayout />,
+    element: <App hasHeader />,
     children: [
       {
         index: true,
