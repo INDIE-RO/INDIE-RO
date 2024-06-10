@@ -1,19 +1,30 @@
 import { Outlet } from 'react-router-dom';
 
 import {
+  DefaultLayout,
   DesktopLayout,
   DialogConfirmContextProvider,
   MobileLayout,
   ToastContextProvider,
 } from '@/components/@common';
 
-export default function App() {
+interface AppProps {
+  hasLayout?: boolean;
+}
+
+export default function App({ hasLayout = false }: AppProps) {
   return (
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <DesktopLayout>
           <MobileLayout>
-            <Outlet />
+            {hasLayout ? (
+              <DefaultLayout>
+                <Outlet />
+              </DefaultLayout>
+            ) : (
+              <Outlet />
+            )}
           </MobileLayout>
         </DesktopLayout>
       </DialogConfirmContextProvider>
