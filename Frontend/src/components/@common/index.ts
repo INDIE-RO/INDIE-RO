@@ -9,6 +9,7 @@ export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
 export { default as MobileLayout } from './Layout/MobileLayout';
 export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
 export { default as NavigationBar } from './NavigationBar/NavigationBar';
+export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as SvgIcon } from './Svg/SvgIcon';
 export { default as SvgSprite } from './Svg/SvgSprite';
 export { default as Toast } from './Toast/Toast';

@@ -11,6 +11,7 @@ export const SVG_ICON_VARIANTS = [
   'arrowUp',
   'check',
   'close',
+  'search',
 ] as const;
 export type SvgIconVariant = (typeof SVG_ICON_VARIANTS)[number];
 
