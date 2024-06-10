@@ -56,8 +56,7 @@ public class MetadataService {
             ),
             MetadataType.SORT_FIELD, List.of(
                     new Metadata(1, "마감순"),
-                    new Metadata(2, "최신순"),
-                    new Metadata(3, "조회순")
+                    new Metadata(2, "조회순")
             )
     );
 
