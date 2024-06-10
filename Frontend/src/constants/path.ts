@@ -6,6 +6,7 @@ export const PATH = {
   POLICY_DETAIL: '/policies/:id',
   CUSTOM_INFO: '/custom-info',
   SURVEY: '/survey',
+  INTRO: '/intro',
   EXCEPTION: '/*',
 } as const;
 

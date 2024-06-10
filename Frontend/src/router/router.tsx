@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
 import { PATH } from '@/constants/path';
-import Homepage from '@/pages/Homepage';
+import { Homepage, IntroPage, SurveyPage } from '@/pages';
 
 export const router = createBrowserRouter([
   {
@@ -10,8 +10,12 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: PATH.INTRO,
+        element: <IntroPage />,
+      },
+      {
         path: PATH.SURVEY,
-        element: <div>설문조사</div>,
+        element: <SurveyPage />,
       },
       {
         path: PATH.EXCEPTION,
