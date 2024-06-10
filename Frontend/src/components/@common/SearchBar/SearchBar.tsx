@@ -27,12 +27,12 @@ function SearchBar(searchBarProps: SearchBarProps) {
   return (
     <Wrapper onClick={onClick}>
       <Input
-        placeholder={placeholder}
-        maxLength={maxLength}
-        {...restProps}
         type='search'
         inputMode='search'
+        placeholder={placeholder}
+        maxLength={maxLength}
         onChange={updateQuery}
+        {...restProps}
       />
       <Button aria-label='검색'>
         <SvgIcon variant='search' stroke={theme.textColors.light} />
