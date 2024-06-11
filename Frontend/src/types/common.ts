@@ -29,6 +29,8 @@ export type RegionVariantKo =
   | '제주'
   | '세종';
 
+export type AgeVariantKo = '19세 이하' | '20 ~ 24세' | '25 ~ 29세' | '30 ~ 34세' | '35세 이상';
+
 export interface CategoryMeta {
   id: number;
   name: CategoryVariantKo;
@@ -37,4 +39,9 @@ export interface CategoryMeta {
 export interface RegionMeta {
   id: number;
   name: RegionVariantKo;
+}
+
+export interface AgeMeta {
+  id: number;
+  name: AgeVariantKo;
 }

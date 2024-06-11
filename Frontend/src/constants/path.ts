@@ -13,6 +13,7 @@ export const PATH = {
 export const API_PATH = {
   SURVEY_CATEGORY_META: '/policy/metadata/categories',
   SURVEY_REGION_META: '/policy/metadata/regions',
+  SURVEY_AGE_META: '/policy/metadata/ages',
 } as const;
 
 export const NAVIGATION_MENU: NavigationMenu[] = [
