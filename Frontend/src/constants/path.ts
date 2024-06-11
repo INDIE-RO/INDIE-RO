@@ -6,7 +6,12 @@ export const PATH = {
   POLICY_DETAIL: '/policies/:id',
   CUSTOM_INFO: '/custom-info',
   SURVEY: '/survey',
+  INTRO: '/intro',
   EXCEPTION: '/*',
+} as const;
+
+export const API_PATH = {
+  SURVEY_CATEGORY_META: '/policy/metadata/categories',
 } as const;
 
 export const NAVIGATION_MENU: NavigationMenu[] = [

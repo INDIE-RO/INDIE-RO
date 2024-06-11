@@ -7,7 +7,7 @@ import { initialize, mswLoader } from 'msw-storybook-addon';
 import { withRouter } from 'storybook-addon-remix-react-router';
 
 import { DialogConfirmContextProvider } from '../src/components/@common';
-import { handlers } from '../src/mocks/handlers';
+import handlers from '../src/mocks/handlers';
 import GlobalStyle from '../src/styles/GlobalStyle';
 import theme from '../src/styles/theme';
 

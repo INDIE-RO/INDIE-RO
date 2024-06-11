@@ -126,7 +126,6 @@ const Wrapper = styled.div<Partial<ChipProps>>`
   align-items: center;
 
   width: fit-content;
-  max-width: 37.5rem;
   padding: 1.2rem 1.6rem;
 
   font-weight: ${theme.fontWeights.bold};

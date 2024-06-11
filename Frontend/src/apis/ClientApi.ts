@@ -2,9 +2,9 @@ import { indieroFetcher } from '@/apis/fetcher';
 import { QueryStringProperty, generateQueryString } from '@/utils/route';
 
 interface RequestOptions {
-  path: string;
   params?: QueryStringProperty;
   credentials?: boolean;
+  headers?: HeadersInit;
 }
 
 type Fetcher = <T>(url: string, options?: RequestInit) => Promise<T>;
@@ -15,6 +15,11 @@ interface ClientApiConstructorProps {
 }
 
 const DEFAULT_HEADERS = { 'Content-Type': 'application/json' } as const;
+const DEFAULT_REQUEST_OPTIONS = {
+  params: {},
+  credentials: false,
+  headers: {},
+} as const;
 
 export class ClientApi {
   #headers: HeadersInit;
@@ -29,46 +34,46 @@ export class ClientApi {
     return path + generateQueryString(params);
   }
 
-  get({ path, params, credentials = false }: RequestOptions, headers?: HeadersInit) {
-    return this.#fetcher(this.getUrl(path, params), {
+  get<T>(path: string, requestOptions: RequestOptions = DEFAULT_REQUEST_OPTIONS) {
+    return this.#fetcher<T>(this.getUrl(path, requestOptions.params), {
       method: 'GET',
-      headers: { ...this.#headers, ...headers },
-      credentials: credentials ? 'include' : 'omit',
+      headers: { ...this.#headers, ...requestOptions.headers },
+      credentials: requestOptions.credentials ? 'include' : 'omit',
     });
   }
 
-  post<B>({ path, params, credentials = false }: RequestOptions, headers?: HeadersInit, body?: B) {
-    return this.#fetcher(this.getUrl(path, params), {
+  post<B>(path: string, requestOptions: RequestOptions = DEFAULT_REQUEST_OPTIONS, body?: B) {
+    return this.#fetcher(this.getUrl(path, requestOptions.params), {
       method: 'POST',
-      headers: { ...this.#headers, ...headers },
+      headers: { ...this.#headers, ...requestOptions.headers },
       body: body ? JSON.stringify(body) : null,
-      credentials: credentials ? 'include' : 'omit',
+      credentials: requestOptions.credentials ? 'include' : 'omit',
     });
   }
 
-  patch<B>({ path, params, credentials = false }: RequestOptions, headers?: HeadersInit, body?: B) {
-    return this.#fetcher(this.getUrl(path, params), {
+  patch<B>(path: string, requestOptions: RequestOptions = DEFAULT_REQUEST_OPTIONS, body?: B) {
+    return this.#fetcher(this.getUrl(path, requestOptions.params), {
       method: 'PATCH',
-      headers: { ...this.#headers, ...headers },
+      headers: { ...this.#headers, ...requestOptions.headers },
       body: body ? JSON.stringify(body) : null,
-      credentials: credentials ? 'include' : 'omit',
+      credentials: requestOptions.credentials ? 'include' : 'omit',
     });
   }
 
-  put<B>({ path, params, credentials = false }: RequestOptions, headers?: HeadersInit, body?: B) {
-    return this.#fetcher(this.getUrl(path, params), {
+  put<B>(path: string, requestOptions: RequestOptions = DEFAULT_REQUEST_OPTIONS, body?: B) {
+    return this.#fetcher(this.getUrl(path, requestOptions.params), {
       method: 'PUT',
-      headers: { ...this.#headers, ...headers },
+      headers: { ...this.#headers, ...requestOptions.headers },
       body: body ? JSON.stringify(body) : null,
-      credentials: credentials ? 'include' : 'omit',
+      credentials: requestOptions.credentials ? 'include' : 'omit',
     });
   }
 
-  delete({ path, params, credentials = false }: RequestOptions, headers?: HeadersInit) {
-    return this.#fetcher(this.getUrl(path, params), {
+  delete(path: string, requestOptions: RequestOptions = DEFAULT_REQUEST_OPTIONS) {
+    return this.#fetcher(this.getUrl(path, requestOptions.params), {
       method: 'DELETE',
-      headers: { ...this.#headers, ...headers },
-      credentials: credentials ? 'include' : 'omit',
+      headers: { ...this.#headers, ...requestOptions.headers },
+      credentials: requestOptions.credentials ? 'include' : 'omit',
     });
   }
 }
