@@ -56,8 +56,7 @@ public class MetadataService {
             ),
             MetadataType.SORT_FIELD, List.of(
                     new Metadata(1, "마감순"),
-                    new Metadata(2, "최신순"),
-                    new Metadata(3, "조회순")
+                    new Metadata(2, "조회순")
             )
     );
 
@@ -83,5 +82,9 @@ public class MetadataService {
                         (e1, e2) -> e1,
                         LinkedHashMap::new
                 ));
+    }
+
+    public String getOpeningStatusName(int id) {
+        return METADATA.get(MetadataType.OPENING_STATUS).get(id-1).getName();
     }
 }
