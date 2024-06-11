@@ -1,5 +1,3 @@
-import { ProgressBar } from '@/components/@common';
-
 export { default as Chip } from './Chip/Chip';
 export { default as ChipButton } from './ChipButton/ChipButton';
 export { default as ChipInput } from './ChipInput/ChipInput';
