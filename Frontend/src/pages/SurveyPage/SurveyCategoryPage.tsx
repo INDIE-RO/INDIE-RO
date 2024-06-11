@@ -21,11 +21,11 @@ function SurveyCategoryPage() {
       <p>원하시는 분야의 정보를 큐레이팅해드려요</p>
       <div style={{ height: '24px' }} />
       <ChipInputWrapper>
-        <ChipInput width='100%' height='5.5rem'>
+        <ChipInput variant='rounded' size='lg' width='100%'>
           전체 선택
         </ChipInput>
         {categoryMeta.map(category => (
-          <ChipInput key={category.id} width='100%' height='5.5rem'>
+          <ChipInput key={category.id} variant='rounded' size='lg' width='100%'>
             {category.name}
           </ChipInput>
         ))}
