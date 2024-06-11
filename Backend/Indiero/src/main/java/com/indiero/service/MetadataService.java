@@ -83,4 +83,8 @@ public class MetadataService {
                         LinkedHashMap::new
                 ));
     }
+
+    public String getOpeningStatusName(int id) {
+        return METADATA.get(MetadataType.OPENING_STATUS).get(id-1).getName();
+    }
 }
