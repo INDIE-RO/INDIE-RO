@@ -12,10 +12,14 @@ import { SvgSprite } from './components/@common';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 
-if (process.env.NODE_ENV === 'development') {
-  const { worker } = require('@/mocks/browser');
-  worker.start();
-}
+const enableMocking = async () => {
+  if (process.env.NODE_ENV !== 'development') {
+    return;
+  }
+
+  const { worker } = await import('./mocks/browser');
+  return worker.start();
+};
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,24 +31,26 @@ const queryClient = new QueryClient({
     },
   },
   queryCache: new QueryCache({
-    onError: () => {
-      alert('[Error] Something went wrong!');
+    onError: error => {
+      alert(error.message);
     },
   }),
 });
 
 /** @TODO ErrorBoundary 추가 필요 */
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Suspense fallback={<div>Loading...</div>}>
-          <SvgSprite />
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </Suspense>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </React.StrictMode>,
-);
+enableMocking().then(() => {
+  ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Suspense fallback={<div>Loading...</div>}>
+            <SvgSprite />
+            <RouterProvider router={router} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Suspense>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>,
+  );
+});
