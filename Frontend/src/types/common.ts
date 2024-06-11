@@ -8,3 +8,9 @@ export interface NavigationMenu {
 }
 
 export type CategoryVariant = 'job' | 'housing' | 'education' | 'welfare';
+export type CategoryVariantKo = '일자리' | '주거' | '교육' | '복지';
+
+export interface CategoryMeta {
+  id: number;
+  name: CategoryVariantKo;
+}
