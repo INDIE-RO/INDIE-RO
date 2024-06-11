@@ -10,6 +10,10 @@ export const PATH = {
   EXCEPTION: '/*',
 } as const;
 
+export const API_PATH = {
+  SURVEY_CATEGORY_META: '/policy/metadata/categories',
+} as const;
+
 export const NAVIGATION_MENU: NavigationMenu[] = [
   {
     variant: 'home',
