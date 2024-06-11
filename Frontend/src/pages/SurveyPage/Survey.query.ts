@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { getSurveyCategoryMeta } from './Survey.api';
 
 export const SURVEY_QUERY_KEY = {
-  CATEGORY_META: 'categories',
+  CATEGORY_META: 'CATEGORY_META',
 } as const;
 
 export const useSurveyCategoryMetaQuery = () => {
