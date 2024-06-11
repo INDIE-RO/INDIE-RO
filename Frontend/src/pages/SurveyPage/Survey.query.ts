@@ -1,9 +1,10 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-import { getSurveyCategoryMeta } from './Survey.api';
+import { getSurveyCategoryMeta, getSurveyRegionMeta } from './Survey.api';
 
 export const SURVEY_QUERY_KEY = {
   CATEGORY_META: 'CATEGORY_META',
+  REGION_META: 'REGION_META',
 } as const;
 
 export const useSurveyCategoryMetaQuery = () => {
@@ -14,6 +15,18 @@ export const useSurveyCategoryMetaQuery = () => {
 
   return {
     categoryMeta: data,
+    ...restQuery,
+  };
+};
+
+export const useSurveyRegionMetaQuery = () => {
+  const { data, ...restQuery } = useSuspenseQuery({
+    queryKey: [SURVEY_QUERY_KEY.REGION_META],
+    queryFn: getSurveyRegionMeta,
+  });
+
+  return {
+    regionMeta: data,
     ...restQuery,
   };
 };
