@@ -24,6 +24,9 @@ function NavigableHeader() {
 export default NavigableHeader;
 
 const Container = styled.header`
+  position: fixed;
+  z-index: 10000;
+
   display: flex;
   justify-content: space-between;
   width: 100%;
