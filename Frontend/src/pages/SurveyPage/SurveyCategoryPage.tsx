@@ -11,16 +11,19 @@ function SurveyCategoryPage() {
   return (
     <div>
       <div style={{ height: '20px' }} />
-      <ProgressBar totalStep={3} step={1} />
+      <ProgressBar step={1} />
       <div style={{ height: '20px' }} />
       <Title>
         어떤 분야의 정책/지원사업 <br />
         정보가 필요하신가요?
       </Title>
-      <div style={{ height: '12px' }} />
+      <div style={{ height: '14px' }} />
       <p>원하시는 분야의 정보를 큐레이팅해드려요</p>
       <div style={{ height: '24px' }} />
       <ChipInputWrapper>
+        <ChipInput width='100%' height='5.5rem'>
+          전체 선택
+        </ChipInput>
         {categoryMeta.map(category => (
           <ChipInput key={category.id} width='100%' height='5.5rem'>
             {category.name}
@@ -41,5 +44,5 @@ const Title = styled.h1`
 const ChipInputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: 16px;
 `;
