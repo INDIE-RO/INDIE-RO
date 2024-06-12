@@ -43,7 +43,13 @@ const useSurvey = () => {
     }
   };
 
-  return { handleSelectedAll, handleChangeCategory, handleChangeRegion };
+  const handleChangeAge = (e: ChangeEvent<HTMLInputElement>) => {
+    const age = e.target.value;
+
+    updateSurvey({ age });
+  };
+
+  return { handleSelectedAll, handleChangeCategory, handleChangeRegion, handleChangeAge };
 };
 
 export default useSurvey;

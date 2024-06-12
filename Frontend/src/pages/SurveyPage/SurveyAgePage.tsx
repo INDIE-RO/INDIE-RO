@@ -3,10 +3,14 @@ import styled from '@emotion/styled';
 import { ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
+import { useSurveyContext } from './Survey.Context';
+import useSurvey from './Survey.hook';
 import { useSurveyAgeMetaQuery } from './Survey.query';
 
 function SurveyAgePage() {
   const { ageMeta } = useSurveyAgeMetaQuery();
+  const { handleChangeAge } = useSurvey();
+  const { survey } = useSurveyContext();
 
   return (
     <div>
@@ -19,7 +23,16 @@ function SurveyAgePage() {
       <div style={{ height: '60px' }} />
       <ChipInputWrapper>
         {ageMeta.map(age => (
-          <ChipInput key={age.id} variant='rounded' size='lg' width='100%'>
+          <ChipInput
+            key={age.id}
+            type='checkbox'
+            value={age.name}
+            checked={survey.age === age.name}
+            variant='rounded'
+            size='lg'
+            width='100%'
+            onChange={handleChangeAge}
+          >
             {age.name}
           </ChipInput>
         ))}
