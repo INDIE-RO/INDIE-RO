@@ -13,7 +13,7 @@ export const getPolicies = async () => {
   try {
     const data = await indieroClient.get<GetPoliciesResponse>(API_PATH.POLICY_LIST);
 
-    if (!data) throw new Error(ERROR_MESSAGE.FETCH_ERROR);
+    if (!data) throw new Error('정책목록을 불러오는 데 실패했습니다.');
 
     return data;
   } catch (error) {
