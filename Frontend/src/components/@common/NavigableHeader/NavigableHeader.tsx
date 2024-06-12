@@ -33,4 +33,8 @@ const Container = styled.header`
   height: 4.8rem;
   padding: 1.2rem 2.2rem;
   background: ${theme.backgroundColors.deep};
+
+  @media screen and (min-width: 768px) {
+    max-width: 430px;
+  }
 `;
