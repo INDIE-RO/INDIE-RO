@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
 
+import { SvgIcon } from '@/components/@common';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
-import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
+import theme from '@/styles/theme';
+import { Policy } from '@/types/common';
 
-function PolicyList() {
-  const { policies } = usePoliciesQuery();
+interface PolicyListProps {
+  policies: Policy[];
+}
+function PolicyList({ policies }: PolicyListProps) {
   const hasResult = Boolean(policies.length > 0);
 
   return (
@@ -16,7 +20,10 @@ function PolicyList() {
           </li>
         ))
       ) : (
-        <p>없어없어</p>
+        <FlexBox>
+          <SvgIcon variant='noResult' width={300} height={300} />
+          <p>앗! 정책 목록이 없어요.</p>
+        </FlexBox>
       )}
     </Container>
   );
@@ -40,4 +47,15 @@ const Container = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-size: ${theme.fontSizes.lg};
+  font-weight: ${theme.fontWeights.bold};
+  color: ${theme.textColors.white};
 `;
