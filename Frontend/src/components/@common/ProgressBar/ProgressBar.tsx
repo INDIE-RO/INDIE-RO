@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import theme from '@/styles/theme';
 
 interface ProgressBarProps {
-  totalStep: number;
   step: number;
+  totalStep?: number;
 }
 
 function ProgressBar({ totalStep = 3, step }: ProgressBarProps) {

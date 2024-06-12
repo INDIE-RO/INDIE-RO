@@ -7,18 +7,21 @@ import {
   MobileLayout,
   ToastContextProvider,
 } from '@/components/@common';
+import { SurveyContextProvider } from '@/pages';
 
 export default function App() {
   return (
     <ToastContextProvider>
       <DialogConfirmContextProvider>
-        <DesktopLayout>
-          <Suspense fallback={<div>Loading...</div>}>
-            <MobileLayout>
-              <Outlet />
-            </MobileLayout>
-          </Suspense>
-        </DesktopLayout>
+        <SurveyContextProvider>
+          <DesktopLayout>
+            <Suspense fallback={<div>Loading...</div>}>
+              <MobileLayout>
+                <Outlet />
+              </MobileLayout>
+            </Suspense>
+          </DesktopLayout>
+        </SurveyContextProvider>
       </DialogConfirmContextProvider>
     </ToastContextProvider>
   );
