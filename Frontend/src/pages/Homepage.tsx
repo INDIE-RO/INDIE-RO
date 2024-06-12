@@ -1,11 +1,15 @@
-import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 
-import theme from '@/styles/theme';
+import { BasicLayout } from '@/components/@common';
 
 function Homepage() {
-  return <section css={Container}>Homepage</section>;
+  return (
+    <Section>
+      <BasicLayout>Homepage</BasicLayout>
+    </Section>
+  );
 }
 
 export default Homepage;
 
-const Container = css``;
+const Section = styled.section``;
