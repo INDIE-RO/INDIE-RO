@@ -2,13 +2,11 @@ import styled from '@emotion/styled';
 
 import { SvgIcon } from '@/components/@common';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
+import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import theme from '@/styles/theme';
-import { Policy } from '@/types/common';
 
-interface PolicyListProps {
-  policies: Policy[];
-}
-function PolicyList({ policies }: PolicyListProps) {
+function PolicyList() {
+  const { policies } = usePoliciesQuery();
   const hasResult = Boolean(policies.length > 0);
 
   return (

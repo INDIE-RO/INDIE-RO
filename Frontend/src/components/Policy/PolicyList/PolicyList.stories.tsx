@@ -2,8 +2,6 @@ import { Suspense } from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
 
-import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
-
 import PolicyList from './PolicyList';
 
 const meta = {
@@ -23,15 +21,4 @@ type Story = StoryObj<typeof PolicyList>;
 
 export const Basic: Story = {
   args: {},
-  render: () => {
-    const { policies } = usePoliciesQuery();
-
-    return <PolicyList policies={policies} />;
-  },
-};
-
-export const NoResult: Story = {
-  args: {
-    policies: [],
-  },
 };
