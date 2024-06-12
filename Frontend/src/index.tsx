@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
 
@@ -44,11 +44,9 @@ enableMocking().then(() => {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <Suspense fallback={<div>Loading...</div>}>
-            <SvgSprite />
-            <RouterProvider router={router} />
-            <ReactQueryDevtools initialIsOpen={false} />
-          </Suspense>
+          <SvgSprite />
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} />
         </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>,

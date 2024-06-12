@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import {
@@ -12,9 +13,11 @@ export default function App() {
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <DesktopLayout>
-          <MobileLayout>
-            <Outlet />
-          </MobileLayout>
+          <Suspense fallback={<div>Loading...</div>}>
+            <MobileLayout>
+              <Outlet />
+            </MobileLayout>
+          </Suspense>
         </DesktopLayout>
       </DialogConfirmContextProvider>
     </ToastContextProvider>
