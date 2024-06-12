@@ -1,6 +1,6 @@
 import { ChangeEvent } from 'react';
 
-import { useSurveyContext } from './Survey.Context';
+import { useSurveyContext } from './Survey.context';
 import { SurveyValue } from './Survey.type';
 
 const useSurvey = () => {
