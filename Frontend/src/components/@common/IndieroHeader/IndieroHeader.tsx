@@ -23,7 +23,6 @@ export default IndieroHeader;
 const Container = styled.header`
   width: 100%;
   height: 4.8rem;
-  max-width: 43rem;
   padding: 1.2rem 0 0 2rem;
   background: ${theme.backgroundColors.deep};
 `;

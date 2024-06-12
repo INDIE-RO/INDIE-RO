@@ -28,7 +28,6 @@ const Container = styled.header`
   justify-content: space-between;
   width: 100%;
   height: 4.8rem;
-  max-width: 43rem;
   padding: 1.2rem 2.2rem;
   background: ${theme.backgroundColors.deep};
 `;
