@@ -17,6 +17,7 @@ function PolicyItem({ policyInfo }: PolicyItemProps) {
       <TagContainer>
         {tags.map(tag => (
           <Tag
+            key={tag.id}
             color={tag.id !== 4 ? 'default' : 'white'}
             backgroundColor={theme.tagColors[TAG_BY_ID[tag.id]]}
           >
@@ -30,9 +31,25 @@ function PolicyItem({ policyInfo }: PolicyItemProps) {
   );
 }
 
+const Skeleton = () => (
+  <Wrapper skeleton>
+    <TagContainer>
+      {Array(4)
+        .fill('')
+        .map((_, i) => (
+          <TagSkeleton key={i} />
+        ))}
+    </TagContainer>
+    <Title />
+    <Period />
+  </Wrapper>
+);
+
+PolicyItem.Skeleton = Skeleton;
+
 export default PolicyItem;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ skeleton?: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -47,6 +64,8 @@ const Wrapper = styled.div`
 
   color: ${theme.textColors.white};
   cursor: pointer;
+
+  ${({ skeleton }) => skeleton && theme.skeleton}
 `;
 
 const TagContainer = styled.ul`
@@ -55,6 +74,16 @@ const TagContainer = styled.ul`
 
   width: 100%;
   margin-bottom: 0.8rem;
+`;
+
+const TagSkeleton = styled.div`
+  width: 4rem;
+  height: 2.4rem;
+  padding: 0 1.1rem;
+  border-radius: 20px;
+
+  background-color: ${theme.backgroundColors.deep};
+  ${theme.skeleton};
 `;
 
 const Title = styled.p`
