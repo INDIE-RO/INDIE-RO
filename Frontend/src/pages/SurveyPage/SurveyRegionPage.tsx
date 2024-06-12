@@ -19,8 +19,6 @@ function SurveyRegionPage() {
 
   const regionMetaValue = regionMeta.map(region => region.name);
 
-  console.log(survey);
-
   return (
     <div>
       <div style={{ height: '20px' }} />
