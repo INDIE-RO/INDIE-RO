@@ -1,4 +1,4 @@
-import { keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 const colors = {
   primary: '#E9FF75',
@@ -37,12 +37,12 @@ const backgroundColors = {
   light: colors.gray1,
 } as const;
 
-const tagColors = {
-  category: colors.pink,
-  region: colors.white,
-  openingStatus: colors.primary,
-  dDay: colors.red,
-};
+const tagColors: Record<string, keyof typeof colors> = {
+  category: 'pink',
+  region: 'white',
+  openingStatus: 'primary',
+  dDay: 'red',
+} as const;
 
 const fontSizes = {
   xxxs: '0.8rem',
@@ -62,6 +62,12 @@ const fontWeights = {
 } as const;
 
 const animations = {
+  shimmer: keyframes`
+    to {
+      background-position: 200% 0;
+    }
+  `,
+
   toastFadeIn: keyframes`
     from {
       opacity: 0;
@@ -101,6 +107,14 @@ const animations = {
   `,
 } as const;
 
+const skeleton = css`
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  border-radius: 8px;
+
+  animation: ${animations.shimmer} 1.5s infinite;
+`;
+
 const theme = {
   colors,
   textColors,
@@ -110,6 +124,7 @@ const theme = {
   fontSizes,
   fontWeights,
   animations,
+  skeleton,
 };
 
 export type Colors = typeof colors;

@@ -44,7 +44,7 @@ const Wrapper = styled.div<Partial<TagProps>>`
   display: flex;
   align-items: center;
   width: fit-content;
-  font-weight: ${theme.fontWeights.bold};
+  font-weight: ${theme.fontWeights.semiBold};
   color: ${({ theme, color }) => theme.textColors[color ?? 'white']};
   background: ${({ theme, backgroundColor }) => theme.colors[backgroundColor ?? 'gray6']};
   border-radius: 20px;
