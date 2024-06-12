@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
-import { useSurveyContext } from './Survey.Context';
+import { useSurveyContext } from './Survey.context';
 import useSurvey from './Survey.hook';
 import { useSurveyAgeMetaQuery } from './Survey.query';
 

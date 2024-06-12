@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 import { ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
-import { useSurveyContext } from './Survey.Context';
 import { SURVEY_KEY } from './Survey.constant';
+import { useSurveyContext } from './Survey.context';
 import useSurvey from './Survey.hook';
 import { useSurveyRegionMetaQuery } from './Survey.query';
 
