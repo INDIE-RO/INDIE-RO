@@ -7,3 +7,10 @@ export const CATEGORY_TYPE = {
   EDUCATION: 'education',
   WELFARE: 'welfare',
 } as const;
+
+export const TAG_BY_ID: Record<number, string> = {
+  1: 'category',
+  2: 'region',
+  3: 'openingStatus',
+  4: 'dDay',
+} as const;

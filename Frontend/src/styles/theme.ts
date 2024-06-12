@@ -37,12 +37,12 @@ const backgroundColors = {
   light: colors.gray1,
 } as const;
 
-const tagColors = {
-  category: colors.pink,
-  region: colors.white,
-  openingStatus: colors.primary,
-  dDay: colors.red,
-};
+const tagColors: Record<string, keyof typeof colors> = {
+  category: 'pink',
+  region: 'white',
+  openingStatus: 'primary',
+  dDay: 'red',
+} as const;
 
 const fontSizes = {
   xxxs: '0.8rem',
