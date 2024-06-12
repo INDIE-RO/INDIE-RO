@@ -11,6 +11,7 @@ export const PATH = {
 } as const;
 
 export const API_PATH = {
+  POLICY_LIST: '/policies',
   SURVEY_CATEGORY_META: '/policy/metadata/categories',
 } as const;
 
