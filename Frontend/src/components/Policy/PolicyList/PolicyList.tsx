@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { SvgIcon } from '@/components/@common';
+import NoResult from '@/assets/noResult.svg?url';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
 import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import theme from '@/styles/theme';
@@ -19,7 +19,7 @@ function PolicyList() {
         ))
       ) : (
         <FlexBox>
-          <SvgIcon variant='noResult' width={300} height={300} />
+          <Image src={NoResult} />
           <p>앗! 정책 목록이 없어요.</p>
         </FlexBox>
       )}
@@ -56,4 +56,9 @@ const FlexBox = styled.div`
   font-size: ${theme.fontSizes.lg};
   font-weight: ${theme.fontWeights.bold};
   color: ${theme.textColors.white};
+`;
+
+const Image = styled.img`
+  width: 30rem;
+  height: 30rem;
 `;
