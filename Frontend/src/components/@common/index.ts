@@ -5,7 +5,7 @@ export { default as Dialog } from './Dialog/Dialog';
 export { default as DialogConfirm } from './DialogConfirm/DialogConfirm';
 export { default as DialogConfirmContextProvider } from './DialogConfirm/DialogConfirmContext';
 export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
-export { default as DefaultLayout } from './Layout/DefaultLayout';
+export { default as BasicLayout } from './Layout/BasicLayout';
 export { default as DesktopLayout } from './Layout/DesktopLayout';
 export { default as MobileLayout } from './Layout/MobileLayout';
 export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';

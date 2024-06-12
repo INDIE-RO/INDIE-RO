@@ -10,6 +10,10 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        index: true,
+        element: <Homepage />,
+      },
+      {
         path: PATH.INTRO,
         element: <IntroPage />,
       },
@@ -24,17 +28,5 @@ export const router = createBrowserRouter([
     ],
 
     errorElement: <div>error page</div>,
-  },
-
-  // 레이아웃이 있는 페이지
-  {
-    path: '/',
-    element: <App hasHeader />,
-    children: [
-      {
-        index: true,
-        element: <Homepage />,
-      },
-    ],
   },
 ]);
