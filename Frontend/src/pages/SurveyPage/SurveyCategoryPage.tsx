@@ -3,10 +3,17 @@ import styled from '@emotion/styled';
 import { ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
+import { useSurveyContext } from './Survey.Context';
+import { SURVEY_KEY } from './Survey.constant';
+import useSurvey from './Survey.hook';
 import { useSurveyCategoryMetaQuery } from './Survey.query';
 
 function SurveyCategoryPage() {
   const { categoryMeta } = useSurveyCategoryMetaQuery();
+  const { handleSelectedAll, handleChangeCategory } = useSurvey();
+  const { survey } = useSurveyContext();
+
+  const categoryMetaValue = categoryMeta.map(category => category.name);
 
   return (
     <div>
@@ -21,11 +28,27 @@ function SurveyCategoryPage() {
       <p>원하시는 분야의 정보를 큐레이팅해드려요</p>
       <div style={{ height: '24px' }} />
       <ChipInputWrapper>
-        <ChipInput variant='rounded' size='lg' width='100%'>
+        <ChipInput
+          type='checkbox'
+          checked={survey.category.length === categoryMetaValue.length}
+          variant='rounded'
+          size='lg'
+          width='100%'
+          onChange={e => handleSelectedAll(e, SURVEY_KEY.CATEGORY, categoryMetaValue)}
+        >
           전체 선택
         </ChipInput>
         {categoryMeta.map(category => (
-          <ChipInput key={category.id} variant='rounded' size='lg' width='100%'>
+          <ChipInput
+            key={category.id}
+            type='checkbox'
+            value={category.name}
+            checked={survey.category.includes(category.name)}
+            variant='rounded'
+            size='lg'
+            width='100%'
+            onChange={handleChangeCategory}
+          >
             {category.name}
           </ChipInput>
         ))}

@@ -3,6 +3,9 @@ import styled from '@emotion/styled';
 import { ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
+import { useSurveyContext } from './Survey.Context';
+import { SURVEY_KEY } from './Survey.constant';
+import useSurvey from './Survey.hook';
 import { useSurveyRegionMetaQuery } from './Survey.query';
 
 const itemsPerRow = 3;
@@ -11,6 +14,12 @@ const width = `calc((100% - ${gap * (itemsPerRow - 1)}rem) / ${itemsPerRow})`;
 
 function SurveyRegionPage() {
   const { regionMeta } = useSurveyRegionMetaQuery();
+  const { handleSelectedAll, handleChangeRegion } = useSurvey();
+  const { survey } = useSurveyContext();
+
+  const regionMetaValue = regionMeta.map(region => region.name);
+
+  console.log(survey);
 
   return (
     <div>
@@ -26,11 +35,25 @@ function SurveyRegionPage() {
       <p>주변 지역 정보를 제공해드려요</p>
       <div style={{ height: '24px' }} />
       <ChipInputWrapper>
-        <ChipInput width={width} border-radius='8px'>
+        <ChipInput
+          type='checkbox'
+          checked={survey.region.length === regionMetaValue.length}
+          width={width}
+          border-radius='8px'
+          onChange={e => handleSelectedAll(e, SURVEY_KEY.REGION, regionMetaValue)}
+        >
           전체
         </ChipInput>
         {regionMeta.map(region => (
-          <ChipInput key={region.id} width={width} border-radius='8px'>
+          <ChipInput
+            key={region.id}
+            type='checkbox'
+            value={region.name}
+            checked={survey.region.includes(region.name)}
+            width={width}
+            border-radius='8px'
+            onChange={handleChangeRegion}
+          >
             {region.name}
           </ChipInput>
         ))}
