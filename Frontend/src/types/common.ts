@@ -45,3 +45,16 @@ export interface AgeMeta {
   id: number;
   name: AgeVariantKo;
 }
+
+export interface Policy {
+  id: number;
+  title: string;
+  period: string;
+  tags: Tag[];
+}
+
+export interface Tag {
+  id: number;
+  type: '분야' | '지역' | '모집현황' | '디데이';
+  name: string;
+}

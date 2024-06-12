@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react';
 
 import { IndieroHeader, NavigationBar } from '@/components/@common';
 
-function DefaultLayout({ children }: PropsWithChildren) {
+function BasicLayout({ children }: PropsWithChildren) {
   return (
     <>
       <IndieroHeader />
@@ -12,4 +12,4 @@ function DefaultLayout({ children }: PropsWithChildren) {
   );
 }
 
-export default DefaultLayout;
+export default BasicLayout;

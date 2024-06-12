@@ -50,8 +50,8 @@ public class MetadataService {
             ),
             MetadataType.OPENING_STATUS, List.of(
                     new Metadata(1, "상시모집"),
-                    new Metadata(2, "모집 중"),
-                    new Metadata(3, "모집 예정"),
+                    new Metadata(2, "모집중"),
+                    new Metadata(3, "모집예정"),
                     new Metadata(4, "마감")
             ),
             MetadataType.SORT_FIELD, List.of(
@@ -86,5 +86,25 @@ public class MetadataService {
 
     public String getOpeningStatusName(int id) {
         return METADATA.get(MetadataType.OPENING_STATUS).get(id-1).getName();
+    }
+
+    public List<String> convertCategoryIdsToNames(List<Integer> categoryIds) {
+        return categoryIds.stream()
+                .map(this::getCategoryName)
+                .collect(Collectors.toList());
+    }
+
+    private String getCategoryName(int categoryId) {
+        return METADATA.get(MetadataType.CATEGORY).get(categoryId-1).getName();
+    }
+
+    public List<String> convertRegionIdsToNames(List<Integer> regionIds) {
+        return regionIds.stream()
+                .map(this::getRegionName)
+                .collect(Collectors.toList());
+    }
+
+    private String getRegionName(int regionId) {
+        return METADATA.get(MetadataType.REGION).get(regionId-1).getName();
     }
 }

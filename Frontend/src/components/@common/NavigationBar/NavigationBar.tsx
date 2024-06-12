@@ -37,8 +37,11 @@ const Container = styled.nav`
   bottom: 0;
   width: 100%;
   height: 7.3rem;
-  max-width: 43rem;
   background: ${theme.backgroundColors.deep};
+
+  @media screen and (min-width: 768px) {
+    max-width: 430px;
+  }
 `;
 
 const List = styled.ul`

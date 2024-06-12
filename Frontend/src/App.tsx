@@ -1,7 +1,7 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import {
-  DefaultLayout,
   DesktopLayout,
   DialogConfirmContextProvider,
   MobileLayout,
@@ -9,25 +9,17 @@ import {
 } from '@/components/@common';
 import { SurveyContextProvider } from '@/pages';
 
-interface AppProps {
-  hasHeader?: boolean;
-}
-
-export default function App({ hasHeader = false }: AppProps) {
+export default function App() {
   return (
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <SurveyContextProvider>
           <DesktopLayout>
-            <MobileLayout>
-              {hasHeader ? (
-                <DefaultLayout>
-                  <Outlet />
-                </DefaultLayout>
-              ) : (
+            <Suspense fallback={<div>Loading...</div>}>
+              <MobileLayout>
                 <Outlet />
-              )}
-            </MobileLayout>
+              </MobileLayout>
+            </Suspense>
           </DesktopLayout>
         </SurveyContextProvider>
       </DialogConfirmContextProvider>

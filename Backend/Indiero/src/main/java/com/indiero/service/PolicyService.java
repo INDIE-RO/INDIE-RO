@@ -6,20 +6,26 @@ import com.indiero.dto.OtherInfo;
 import com.indiero.dto.Qualification;
 import com.indiero.dto.Tag;
 import com.indiero.dto.response.DetailPolicyResponse;
+import com.indiero.dto.response.PolicyResponse;
+import com.indiero.dto.response.UserPolicyResponse;
 import com.indiero.repository.PolicyRepository;
+import com.indiero.repository.UserPolicyRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PolicyService {
     private final PolicyRepository policyRepository;
+    private final UserPolicyRepository userPolicyRepository;
     private final MetadataService metadataService;
-    public PolicyService(PolicyRepository policyRepository, MetadataService metadataService) {
+    public PolicyService(PolicyRepository policyRepository, UserPolicyRepository userPolicyRepository, MetadataService metadataService) {
         this.policyRepository = policyRepository;
+        this.userPolicyRepository = userPolicyRepository;
         this.metadataService = metadataService;
     }
 
@@ -58,6 +64,44 @@ public class PolicyService {
         response.setOtherInfo(otherInfo);
 
         return response;
+    }
+
+    // 정책 Response 로 변환
+    private PolicyResponse convertToPolicyResponse(Policy policy) {
+        PolicyResponse response = new PolicyResponse();
+        response.setId(policy.getId());
+        response.setTitle(policy.getTitle());
+        response.setPeriod(determinePeriod(policy));
+        response.setTags(generateTags(policy));
+        return response;
+    }
+
+    // 사용자 맞춤정보 조회
+    public UserPolicyResponse getUserPolicy(Integer size, Long lastPolicyId, List<Integer> categoryIds, List<Integer> regionIds, int ageId, Integer sortBy) {
+
+        // id(Integer)들을 DB에 저장된 name(String)으로 변환
+        List<String> categoryNames = metadataService.convertCategoryIdsToNames(categoryIds);
+        List<String> regionNames = metadataService.convertRegionIdsToNames(regionIds);
+        List<Policy> policies = new ArrayList<>();
+
+        long totalCount = userPolicyRepository.countUserPolicies(ageId, categoryNames, regionNames);
+        boolean hasNext = false;
+
+        // 조회순 정렬
+        if (sortBy != null && sortBy == 2) {
+            policies = userPolicyRepository.findPoliciesSortedByViews(ageId, categoryNames, regionNames, lastPolicyId);
+        } else {
+            // 마감순 정렬
+            policies.addAll(userPolicyRepository.findActivePolicies(ageId, categoryNames, regionNames, lastPolicyId));
+            policies.addAll(userPolicyRepository.findOngoingPolicies(ageId, categoryNames, regionNames, lastPolicyId));
+            policies.addAll(userPolicyRepository.findExpiredPolicies(ageId, categoryNames, regionNames, lastPolicyId));
+        }
+        List<PolicyResponse> policyResponse = policies.stream()
+                .map(this::convertToPolicyResponse)
+                .collect(Collectors.toList());
+
+        return new UserPolicyResponse(hasNext, totalCount, policyResponse);
+
     }
 
     // 기간 계산
