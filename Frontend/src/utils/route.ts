@@ -6,7 +6,7 @@ export type QueryStringPropertyKey<T extends PropertyKey = PropertyKey> = T exte
   ? never
   : T;
 
-export type QueryStringPropertyValue = number | string | number[] | string[];
+export type QueryStringPropertyValue = number | string | number[] | string[] | undefined;
 
 export const generateQueryString = (keyValue: QueryStringProperty) =>
   Object.entries(keyValue)
