@@ -1,5 +1,5 @@
-import { ERROR_MESSAGE } from "@/constants/error";
-import { SurveyValue } from "@/pages/SurveyPage/Survey.type";
+import { ERROR_MESSAGE } from '@/constants/error';
+import { SurveyValue } from '@/pages/SurveyPage/Survey.type';
 
 export const STORAGE_KEY = {
   survey: 'survey',
@@ -28,10 +28,10 @@ const setLocalStorage = (key: keyof typeof STORAGE_KEY, newItem: unknown) => {
   }
 };
 
-const getSurvey = <SurveyValue>getLocalStorage(STORAGE_KEY.survey);
+const getSurvey = (): SurveyValue | null => getLocalStorage<SurveyValue>(STORAGE_KEY.survey);
 const setSurvey = (newValue: SurveyValue) => setLocalStorage(STORAGE_KEY.survey, newValue);
 
 export const indieroLocalStorage = {
   getSurvey,
-  setSurvey
-}
+  setSurvey,
+};
