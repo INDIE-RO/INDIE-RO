@@ -21,6 +21,38 @@ export const generateQueryString = (keyValue: QueryStringProperty) =>
     }, '?')
     .slice(0, -1);
 
+export const updateQueryString = (newQueryString: string) => {
+  const baseParams = new URLSearchParams(location.search);
+  const newParams = new URLSearchParams(newQueryString);
+
+  newParams.forEach((value, key) => {
+    if (baseParams.has(key)) {
+      baseParams.delete(key);
+    }
+
+    baseParams.append(key, value);
+  });
+
+  return `?${baseParams.toString().replace(/%2C/g, ',')}`;
+};
+
+export const replaceQueryString = (newQueryString: string, exclude?: string[]) => {
+  const baseParams = new URLSearchParams(location.search);
+  const newParams = new URLSearchParams(newQueryString);
+
+  new URLSearchParams(baseParams).forEach((value, key) => {
+    if (exclude?.includes(key)) return;
+
+    baseParams.delete(key);
+  });
+
+  newParams.forEach((value, key) => {
+    baseParams.append(key, value);
+  });
+
+  return `?${baseParams.toString().replace(/%2C/g, ',')}`;
+};
+
 export const getValidQueries = <T extends string>(search: string, queryKeys: Readonly<T[]>) =>
   decodeURIComponent(search)
     .replace(/^\?/, '')

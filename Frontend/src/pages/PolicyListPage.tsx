@@ -39,6 +39,7 @@ function PolicyListPage() {
         />
         <FilterContainer>
           <PolicyFilterBottomSheet categoryId={TAB_ID_BY_VARIANT[selectedTabMenu]} />
+          {/* <PolicyFilterSelectionDisplay /> */}
         </FilterContainer>
         <Suspense fallback={<PolicyList.Skeleton />}>
           <PolicyList />
@@ -56,5 +57,7 @@ const Wrapper = styled.div`
 `;
 
 const FilterContainer = styled.div`
+  display: flex;
+
   margin: 1.2rem 0;
 `;
