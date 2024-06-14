@@ -7,9 +7,12 @@ const policyHandlers = [
   http.get('/api' + API_PATH.POLICY_LIST, async ({ request }) => {
     const url = new URL(request.url);
     const regionIds = url.searchParams.get('regionIds');
+    const categoryId = url.searchParams.get('categoryId');
 
     await delay(2000);
 
+    if (categoryId === '2')
+      return HttpResponse.json(policyFixture.getPolicyListByCategory(), { status: 200 });
     if (regionIds) return HttpResponse.json(policyFixture.getPolicyListByRegion(), { status: 200 });
 
     return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });

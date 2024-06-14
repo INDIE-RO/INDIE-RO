@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -11,23 +11,32 @@ import theme from '@/styles/theme';
 import { generateQueryString } from '@/utils/route';
 
 const ALL_REGION_ID = 0;
-const INITIAL_FILTERS = {
+const INITIAL_FILTERS = (categoryId: number) => ({
+  categoryId,
   openingStatusId: 1,
   ageId: 1,
   regionIds: [1],
-};
+});
 
-function PolicyFilterBottomSheet() {
+interface PolicyFilterBottomSheetProps {
+  categoryId: number;
+}
+
+function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
   const { ageMeta, regionMeta, openingStatusMeta } = useFilterMetaQuery();
   const { navigate } = useEasyNavigate();
-  const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS);
+  const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS(categoryId));
 
   const resetFilters = () => {
-    setSelectedFilters(INITIAL_FILTERS);
+    setSelectedFilters(INITIAL_FILTERS(categoryId));
   };
 
   const getCheckedFunction = (selectedFilterIds: number[]) => (id: number) => {
     return selectedFilterIds.includes(id);
+  };
+
+  const changeCategoryId = (selectedCategoryId: number) => {
+    setSelectedFilters(prev => ({ ...prev, categoryId: selectedCategoryId }));
   };
 
   const changeOpeningStatusId = (selectedOpeningStatusId: number) => {
@@ -92,6 +101,10 @@ function PolicyFilterBottomSheet() {
 
     navigate(`${PATH.POLICY_LIST}${generateQueryString(normalizedFilterList)}`);
   };
+
+  useEffect(() => {
+    changeCategoryId(categoryId);
+  }, [categoryId]);
 
   return (
     <Dialog location={'bottom'} onBackdropClick={resetFilters}>
