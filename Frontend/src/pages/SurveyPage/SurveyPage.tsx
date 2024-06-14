@@ -4,9 +4,9 @@ import styled from '@emotion/styled';
 
 import { NavigableHeader } from '@/components/@common';
 import { useFunnel } from '@/hooks/@common';
+import { indieroLocalStorage } from '@/utils/localStorage';
 
 import { STEP } from './Survey.constant';
-import useSurvey from './Survey.hook';
 import { SurveyValue } from './Survey.type';
 import SurveyAgePage from './SurveyAgePage';
 import SurveyCategoryPage from './SurveyCategoryPage';
@@ -21,7 +21,11 @@ const INITIAL_SURVEY_STATE: SurveyValue = {
 function SurveyPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(STEP[0]);
 
-  const [survey, setSurvey] = useState<SurveyValue>(INITIAL_SURVEY_STATE);
+  const surveyState = indieroLocalStorage.getSurvey() || INITIAL_SURVEY_STATE;
+
+  const [survey, setSurvey] = useState<SurveyValue>(surveyState);
+
+  const isFirstStep = currentStep === STEP[0];
 
   const handleChangeStep = (direction: 'prev' | 'next') => {
     const currentIndex = STEP.findIndex(step => step === currentStep);
@@ -34,9 +38,7 @@ function SurveyPage() {
 
   return (
     <>
-      <NavigableHeader
-        onPrev={currentStep !== STEP[0] ? () => handleChangeStep('prev') : undefined}
-      />
+      <NavigableHeader onPrev={isFirstStep ? undefined : () => handleChangeStep('prev')} />
       <Container>
         <Funnel>
           <Step name='CATEGORY'>
