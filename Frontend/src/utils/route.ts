@@ -34,3 +34,18 @@ export const getValidQueries = <T extends string>(search: string, queryKeys: Rea
 
       return queryKeys.includes(key as T) ? { ...queries, [key]: value } : queries;
     }, Object.create(Object.prototype));
+
+export const parseQueryParams = <T extends string>(queryParams: Partial<Record<T, string>>) => {
+  return Object.entries(queryParams).reduce((parsedParams, [key, value]) => {
+    if (typeof value === 'string' && value.includes(',')) {
+      const valuesArray = value.split(',');
+
+      parsedParams[key as T] = valuesArray.every(val => !isNaN(Number(val)))
+        ? valuesArray.map(Number)
+        : valuesArray;
+    } else if (typeof value === 'string') {
+      parsedParams[key as T] = isNaN(Number(value)) ? value : Number(value);
+    }
+    return parsedParams;
+  }, {} as Record<T, string | number | (string | number)[]>);
+};
