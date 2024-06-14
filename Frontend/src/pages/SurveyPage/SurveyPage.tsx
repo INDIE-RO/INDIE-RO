@@ -22,7 +22,9 @@ function SurveyPage() {
 
   return (
     <>
-      <NavigableHeader onPrev={() => handleChangeStep('prev')} />
+      <NavigableHeader
+        onPrev={currentStep !== STEP[0] ? () => handleChangeStep('prev') : undefined}
+      />
       <Container>
         <Funnel>
           <Step name='CATEGORY'>
