@@ -20,3 +20,17 @@ export const generateQueryString = (keyValue: QueryStringProperty) =>
       return queryString;
     }, '?')
     .slice(0, -1);
+
+export const getValidQueries = <T extends string>(search: string, queryKeys: Readonly<T[]>) =>
+  decodeURIComponent(search)
+    .replace(/^\?/, '')
+    .split('&')
+    .reduce<Partial<Record<T, string>>>((queries, keyValue, _) => {
+      const [key, value] = keyValue.split('=');
+
+      if (Object.prototype.hasOwnProperty.call(queries, key)) {
+        throw new Error('Duplicated query');
+      }
+
+      return queryKeys.includes(key as T) ? { ...queries, [key]: value } : queries;
+    }, Object.create(Object.prototype));
