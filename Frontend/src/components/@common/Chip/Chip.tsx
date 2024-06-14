@@ -18,6 +18,10 @@ export interface ChipProps extends PropsWithChildren {
   disabled: boolean;
   width: CSSProperties['width'];
   height: CSSProperties['height'];
+  fontSize: CSSProperties['fontSize'];
+  fontWeight: CSSProperties['fontWeight'];
+  border: CSSProperties['border'];
+  borderRadius: CSSProperties['borderRadius'];
 }
 
 function Chip(chipProps: Partial<ChipProps>) {
@@ -137,6 +141,12 @@ const Wrapper = styled.div<Partial<ChipProps>>`
 
   ${({ width }) => width && `width: ${width}`};
   ${({ height }) => height && `height: ${height}`};
+
+  ${({ fontSize }) => fontSize && `font-size: ${fontSize}`};
+  ${({ fontWeight }) => fontWeight && `font-weight: ${fontWeight}`};
+
+  ${({ border }) => border && `border: ${border}`};
+  ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius}`};
 `;
 
 const TextBox = styled.p`
