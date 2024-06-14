@@ -1,15 +1,27 @@
+import { useState } from 'react';
+
 import styled from '@emotion/styled';
 
 import { NavigableHeader } from '@/components/@common';
 import { useFunnel } from '@/hooks/@common';
 
 import { STEP } from './Survey.constant';
+import useSurvey from './Survey.hook';
+import { SurveyValue } from './Survey.type';
 import SurveyAgePage from './SurveyAgePage';
 import SurveyCategoryPage from './SurveyCategoryPage';
 import SurveyRegionPage from './SurveyRegionPage';
 
+const INITIAL_SURVEY_STATE: SurveyValue = {
+  category: [],
+  region: [],
+  age: '',
+};
+
 function SurveyPage() {
   const { Funnel, Step, setStep, currentStep } = useFunnel(STEP[0]);
+
+  const [survey, setSurvey] = useState<SurveyValue>(INITIAL_SURVEY_STATE);
 
   const handleChangeStep = (direction: 'prev' | 'next') => {
     const currentIndex = STEP.findIndex(step => step === currentStep);
@@ -28,13 +40,13 @@ function SurveyPage() {
       <Container>
         <Funnel>
           <Step name='CATEGORY'>
-            <SurveyCategoryPage onNext={handleChangeStep} />
+            <SurveyCategoryPage survey={survey} setSurvey={setSurvey} onNext={handleChangeStep} />
           </Step>
           <Step name='REGION'>
-            <SurveyRegionPage onNext={handleChangeStep} />
+            <SurveyRegionPage survey={survey} setSurvey={setSurvey} onNext={handleChangeStep} />
           </Step>
           <Step name='AGE'>
-            <SurveyAgePage />
+            <SurveyAgePage survey={survey} setSurvey={setSurvey} />
           </Step>
         </Funnel>
       </Container>

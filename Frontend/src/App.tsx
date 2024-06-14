@@ -7,7 +7,6 @@ import {
   MobileLayout,
   ToastContextProvider,
 } from '@/components/@common';
-import { SurveyContextProvider } from '@/pages';
 
 import { PATH } from './constants/path';
 import { indieroLocalStorage } from './utils/localStorage';
@@ -26,15 +25,13 @@ export default function App() {
   return (
     <ToastContextProvider>
       <DialogConfirmContextProvider>
-        <SurveyContextProvider>
-          <DesktopLayout>
-            <Suspense fallback={<div>Loading...</div>}>
-              <MobileLayout>
-                <Outlet />
-              </MobileLayout>
-            </Suspense>
-          </DesktopLayout>
-        </SurveyContextProvider>
+        <DesktopLayout>
+          <Suspense fallback={<div>Loading...</div>}>
+            <MobileLayout>
+              <Outlet />
+            </MobileLayout>
+          </Suspense>
+        </DesktopLayout>
       </DialogConfirmContextProvider>
     </ToastContextProvider>
   );

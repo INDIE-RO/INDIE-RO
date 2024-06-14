@@ -4,18 +4,19 @@ import { ChipButton, ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
 import { SURVEY_KEY } from './Survey.constant';
-import { useSurveyContext } from './Survey.context';
 import useSurvey from './Survey.hook';
 import { useSurveyCategoryMetaQuery } from './Survey.query';
+import { SurveyValue } from './Survey.type';
 
 interface SurveyCategoryPageProps {
+  survey: SurveyValue;
+  setSurvey: (value: SurveyValue) => void;
   onNext: (direction: 'prev' | 'next') => void;
 }
 
-function SurveyCategoryPage({ onNext }: SurveyCategoryPageProps) {
+function SurveyCategoryPage({ survey, setSurvey, onNext }: SurveyCategoryPageProps) {
   const { categoryMeta } = useSurveyCategoryMetaQuery();
-  const { handleSelectedAll, handleChangeCategory } = useSurvey();
-  const { survey } = useSurveyContext();
+  const { handleSelectedAll, handleChangeCategory } = useSurvey({ survey, setSurvey });
 
   const categoryMetaValue = categoryMeta.map(category => category.name);
 

@@ -4,22 +4,23 @@ import { ChipButton, ChipInput, ProgressBar } from '@/components/@common';
 import theme from '@/styles/theme';
 
 import { SURVEY_KEY } from './Survey.constant';
-import { useSurveyContext } from './Survey.context';
 import useSurvey from './Survey.hook';
 import { useSurveyRegionMetaQuery } from './Survey.query';
+import { SurveyValue } from './Survey.type';
 
 const itemsPerRow = 3;
 const gap = 0.8;
 const width = `calc((100% - ${gap * (itemsPerRow - 1)}rem) / ${itemsPerRow})`;
 
 interface SurveyRegionPageProps {
+  survey: SurveyValue;
+  setSurvey: (value: SurveyValue) => void;
   onNext: (direction: 'prev' | 'next') => void;
 }
 
-function SurveyRegionPage({ onNext }: SurveyRegionPageProps) {
+function SurveyRegionPage({ survey, setSurvey, onNext }: SurveyRegionPageProps) {
   const { regionMeta } = useSurveyRegionMetaQuery();
-  const { handleSelectedAll, handleChangeRegion } = useSurvey();
-  const { survey } = useSurveyContext();
+  const { handleSelectedAll, handleChangeRegion } = useSurvey({ survey, setSurvey });
 
   const regionMetaValue = regionMeta.map(region => region.name);
 

@@ -5,14 +5,18 @@ import { useConfirm, useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { indieroLocalStorage } from '@/utils/localStorage';
 
-import { useSurveyContext } from './Survey.context';
 import useSurvey from './Survey.hook';
 import { useSurveyAgeMetaQuery } from './Survey.query';
+import { SurveyValue } from './Survey.type';
 
-function SurveyAgePage() {
+interface SurveyAgePageProps {
+  survey: SurveyValue;
+  setSurvey: (value: SurveyValue) => void;
+}
+
+function SurveyAgePage({ survey, setSurvey }: SurveyAgePageProps) {
   const { ageMeta } = useSurveyAgeMetaQuery();
-  const { handleChangeAge } = useSurvey();
-  const { survey } = useSurveyContext();
+  const { handleChangeAge } = useSurvey({ survey, setSurvey });
 
   const { confirm } = useConfirm();
 
