@@ -9,9 +9,22 @@ export interface GetPoliciesResponse {
   policies: Policy[];
 }
 
-export const getPolicies = async () => {
+export interface GetPoliciesRequest
+  extends Partial<Record<KeywordForFilter | KeywordForPaging | KeywordForSort, string>> {}
+
+export const KEYWORD_FOR_FILTER = ['categoryId', 'openingStatusId', 'ageId', 'regionIds'] as const;
+export const KEYWORD_FOR_PAGING = ['size', 'lastPolicyId'] as const;
+export const KEYWORD_FOR_SORT = ['sortBy'] as const;
+
+export type KeywordForFilter = (typeof KEYWORD_FOR_FILTER)[number];
+export type KeywordForPaging = (typeof KEYWORD_FOR_PAGING)[number];
+export type KeywordForSort = (typeof KEYWORD_FOR_SORT)[number];
+
+export const getPolicies = async (getPoliciesRequest: GetPoliciesRequest) => {
   try {
-    const data = await indieroClient.get<GetPoliciesResponse>(API_PATH.POLICY_LIST);
+    const data = await indieroClient.get<GetPoliciesResponse>(API_PATH.POLICY_LIST, {
+      params: getPoliciesRequest,
+    });
 
     if (!data) throw new Error('정책목록을 불러오는 데 실패했습니다.');
 

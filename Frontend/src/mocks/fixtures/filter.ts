@@ -3,7 +3,7 @@ import openingStatusMeta from '@/mocks/data/openingStatus.json';
 import regionsMeta from '@/mocks/data/regions.json';
 
 const getFilterMeta = () => ({
-  ageMeta: ageMeta.ages,
+  ages: ageMeta.ages,
   regions: regionsMeta.regions,
   openingStatuses: openingStatusMeta.openingStatuses,
 });

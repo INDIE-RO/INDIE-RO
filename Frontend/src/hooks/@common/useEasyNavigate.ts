@@ -14,7 +14,7 @@ const useEasyNavigate = () => {
     confirm(FORM_EXIT_CONFIRMATION_MESSAGE) && goBack();
   };
 
-  return { goHome, goBack, goBackSafely };
+  return { navigate, goHome, goBack, goBackSafely };
 };
 
 export default useEasyNavigate;
