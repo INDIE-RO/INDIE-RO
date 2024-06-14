@@ -129,7 +129,7 @@ const dialogLocationStyles: DialogLocationStyles = {
   `,
   bottom: css`
     width: 100vw;
-    max-height: 80vh;
+    max-height: 85vh;
     border-end-start-radius: 0;
     border-end-end-radius: 0;
 
