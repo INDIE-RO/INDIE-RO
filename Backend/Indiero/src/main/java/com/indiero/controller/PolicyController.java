@@ -1,7 +1,8 @@
 package com.indiero.controller;
 
+import com.indiero.dto.request.SearchPolicyParams;
 import com.indiero.dto.response.DetailPolicyResponse;
-import com.indiero.dto.response.UserPolicyResponse;
+import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.service.PolicyService;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +25,7 @@ public class PolicyController {
 
     // 사용자 맞춤정보 조회
     @GetMapping("/user")
-    public UserPolicyResponse getUserPolicy(
+    public ListPolicyResponse getUserPolicy(
             @RequestParam(required = false) Integer size,
             @RequestParam(required = false) Long lastPolicyId,
             @RequestParam List<Integer> categoryIds,
@@ -33,5 +34,11 @@ public class PolicyController {
             @RequestParam(required = false, defaultValue = "1") int sortBy
     ) {
         return policyService.getUserPolicy(size, lastPolicyId, categoryIds, regionIds, ageId, sortBy);
+    }
+
+    // 키워드 검색결과 조회
+    @GetMapping("/search")
+    public ListPolicyResponse searchPolicy(@ModelAttribute SearchPolicyParams params) {
+        return policyService.searchPolicy(params);
     }
 }
