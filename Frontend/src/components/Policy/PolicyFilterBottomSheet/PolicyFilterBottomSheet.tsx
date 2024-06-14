@@ -5,18 +5,22 @@ import styled from '@emotion/styled';
 import { ChipButton, Dialog, SvgIcon } from '@/components/@common';
 import PolicyFilterList from '@/components/Policy/PolicyFilterBottomSheet/PolicyFilterList/PolicyFilterList';
 import { useFilterMetaQuery } from '@/components/Policy/PolicyFilterBottomSheet/PolicyFilterList/PolicyFilterList.query';
+import {
+  KEYWORD_FOR_FILTER,
+  KeywordForFilter,
+} from '@/components/Policy/PolicyList/PolicyList.api';
 import { PATH } from '@/constants/path';
-import { useEasyNavigate } from '@/hooks/@common';
+import { useEasyNavigate, useValidQueryParams } from '@/hooks/@common';
 import theme from '@/styles/theme';
-import { generateQueryString } from '@/utils/route';
+import { generateQueryString, parseQueryParams } from '@/utils/route';
 
 const ALL_REGION_ID = 0;
-const INITIAL_FILTERS = (categoryId: number) => ({
-  categoryId,
-  openingStatusId: 1,
+const INITIAL_FILTERS = {
+  categoryId: 1,
+  openingStatusId: 2,
   ageId: 1,
-  regionIds: [1],
-});
+  regionIds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
+};
 
 interface PolicyFilterBottomSheetProps {
   categoryId: number;
@@ -25,10 +29,10 @@ interface PolicyFilterBottomSheetProps {
 function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
   const { ageMeta, regionMeta, openingStatusMeta } = useFilterMetaQuery();
   const { navigate } = useEasyNavigate();
-  const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS(categoryId));
+  const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS);
 
   const resetFilters = () => {
-    setSelectedFilters(INITIAL_FILTERS(categoryId));
+    setSelectedFilters(INITIAL_FILTERS);
   };
 
   const getCheckedFunction = (selectedFilterIds: number[]) => (id: number) => {
@@ -106,8 +110,29 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
     changeCategoryId(categoryId);
   }, [categoryId]);
 
+  const queryParams = useValidQueryParams<KeywordForFilter>(KEYWORD_FOR_FILTER);
+
+  useEffect(() => {
+    // URL 쿼리 파라미터로부터 필터 상태 동기화
+    const parsedQueryParams = parseQueryParams<KeywordForFilter>(queryParams);
+
+    setSelectedFilters(prev => {
+      const { categoryId, openingStatusId, ageId, regionIds } = parsedQueryParams;
+      const validRegionIds = regionIds && Array.isArray(regionIds);
+      const newRegionIds = validRegionIds ? regionIds : regionIds ? [regionIds] : null;
+
+      return {
+        ...prev,
+        categoryId: (categoryId as number) ?? INITIAL_FILTERS.categoryId,
+        openingStatusId: (openingStatusId as number) ?? INITIAL_FILTERS.openingStatusId,
+        ageId: (ageId as number) ?? INITIAL_FILTERS.ageId,
+        regionIds: (newRegionIds as number[]) ?? INITIAL_FILTERS.regionIds,
+      };
+    });
+  }, [Object.values(queryParams).join('')]);
+
   return (
-    <Dialog location={'bottom'} onBackdropClick={resetFilters}>
+    <Dialog location={'bottom'}>
       <Dialog.Trigger asChild>
         <ChipButton
           type='button'
