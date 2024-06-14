@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
-import { ChipButton, ChipInput, ProgressBar } from '@/components/@common';
-import { useEasyNavigate } from '@/hooks/@common';
+import { ChipButton, ChipInput, DialogConfirm, ProgressBar } from '@/components/@common';
+import { useConfirm, useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { indieroLocalStorage } from '@/utils/localStorage';
 
@@ -14,11 +14,18 @@ function SurveyAgePage() {
   const { handleChangeAge } = useSurvey();
   const { survey } = useSurveyContext();
 
+  const { confirm } = useConfirm();
+
   const { goHome } = useEasyNavigate();
 
-  const handleCompleteStep = () => {
-    indieroLocalStorage.setSurvey(survey);
-    goHome();
+  const handleCompleteStep = async () => {
+    const confirmed = await confirm({ message: '설문을 완료합니다' });
+
+    if (confirmed) {
+      indieroLocalStorage.setSurvey(survey);
+      goHome();
+      return;
+    }
   };
 
   return (
@@ -48,11 +55,14 @@ function SurveyAgePage() {
           ))}
         </ChipInputWrapper>
       </div>
-      <ButtonWrapper>
-        <ChipButton size='lg' width='100%' onClick={handleCompleteStep}>
-          완료
-        </ChipButton>
-      </ButtonWrapper>
+
+      <DialogConfirm onClick={handleCompleteStep}>
+        <ButtonWrapper>
+          <ChipButton type='button' size='lg' width='100%'>
+            완료
+          </ChipButton>
+        </ButtonWrapper>
+      </DialogConfirm>
     </>
   );
 }
