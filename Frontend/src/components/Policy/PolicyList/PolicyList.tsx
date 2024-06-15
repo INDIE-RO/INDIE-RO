@@ -2,16 +2,13 @@ import styled from '@emotion/styled';
 
 import NoResult from '@/assets/noResult.svg?url';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
-import {
-  KEYWORD_FOR_FILTER,
-  KeywordForFilter,
-} from '@/components/Policy/PolicyList/PolicyList.api';
+import { KEYWORD_FOR_ALL, KeywordForAll } from '@/components/Policy/PolicyList/PolicyList.api';
 import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import { useValidQueryParams } from '@/hooks/@common';
 import theme from '@/styles/theme';
 
 function PolicyList() {
-  const queryParams = useValidQueryParams<KeywordForFilter>(KEYWORD_FOR_FILTER);
+  const queryParams = useValidQueryParams<KeywordForAll>(KEYWORD_FOR_ALL);
   const { policies } = usePoliciesQuery(queryParams);
   const hasResult = Boolean(policies.length > 0);
 

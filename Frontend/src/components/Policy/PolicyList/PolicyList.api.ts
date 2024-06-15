@@ -15,10 +15,16 @@ export interface GetPoliciesRequest
 export const KEYWORD_FOR_FILTER = ['categoryId', 'openingStatusId', 'ageId', 'regionIds'] as const;
 export const KEYWORD_FOR_PAGING = ['size', 'lastPolicyId'] as const;
 export const KEYWORD_FOR_SORT = ['sortBy'] as const;
+export const KEYWORD_FOR_ALL = [
+  ...KEYWORD_FOR_FILTER,
+  ...KEYWORD_FOR_PAGING,
+  ...KEYWORD_FOR_SORT,
+] as const;
 
 export type KeywordForFilter = (typeof KEYWORD_FOR_FILTER)[number];
 export type KeywordForPaging = (typeof KEYWORD_FOR_PAGING)[number];
 export type KeywordForSort = (typeof KEYWORD_FOR_SORT)[number];
+export type KeywordForAll = (typeof KEYWORD_FOR_ALL)[number];
 
 export const getPolicies = async (getPoliciesRequest: GetPoliciesRequest) => {
   try {
