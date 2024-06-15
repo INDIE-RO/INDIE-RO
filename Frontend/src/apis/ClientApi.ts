@@ -1,8 +1,8 @@
 import { indieroFetcher } from '@/apis/fetcher';
-import { QueryStringProperty, generateQueryString } from '@/utils/route';
+import { generateQueryString } from '@/utils/route';
 
 interface RequestOptions {
-  params?: QueryStringProperty;
+  params?: any;
   credentials?: boolean;
   headers?: HeadersInit;
 }

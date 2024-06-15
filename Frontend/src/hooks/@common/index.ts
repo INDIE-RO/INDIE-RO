@@ -3,3 +3,4 @@ export { default as useContextInScope } from './useContextInScope';
 export { default as useDebounce } from './useDebounce';
 export { default as useEasyNavigate } from './useEasyNavigate';
 export { default as useFunnel } from './useFunnel';
+export { default as useValidQueryParams } from './useValidQueryParams';
