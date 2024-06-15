@@ -8,6 +8,7 @@ import { Tab, TabVariant } from '@/components/@common/TabMenu/type';
 import { PolicyFilterBottomSheet, PolicyList } from '@/components/Policy';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
+import PolicyListContainer from '@/components/Policy/PolicyList/PolicyListContainer';
 import { TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
@@ -50,7 +51,7 @@ function PolicyListPage() {
           <Dropdown metaData={sortMeta} onClickOption={changeSortBy} />
         </FilterContainer>
         <Suspense fallback={<PolicyList.Skeleton />}>
-          <PolicyList />
+          <PolicyListContainer />
         </Suspense>
       </Wrapper>
     </BasicLayout>
