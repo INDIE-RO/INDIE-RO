@@ -3,3 +3,5 @@ export const SURVEY_KEY = {
   REGION: 'region',
   AGE: 'age',
 } as const;
+
+export const STEP = ['CATEGORY', 'REGION', 'AGE'] as const;
