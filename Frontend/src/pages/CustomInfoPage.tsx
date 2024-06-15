@@ -21,7 +21,7 @@ function CustomInfoPage() {
 export default CustomInfoPage;
 
 const Wrapper = styled.div`
-  height: calc(100% - 6.8rem);
+  min-height: calc(100% - 6.8rem);
   padding: 1.6rem 2rem 2rem 2rem;
   background-color: ${theme.backgroundColors.deep};
 `;
