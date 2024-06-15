@@ -149,7 +149,7 @@ const Wrapper = styled.div<Partial<ChipProps>>`
   ${({ borderRadius }) => borderRadius && `border-radius: ${borderRadius}`};
 `;
 
-const TextBox = styled.p`
+const TextBox = styled.div`
   width: 100%;
 
   white-space: nowrap;
