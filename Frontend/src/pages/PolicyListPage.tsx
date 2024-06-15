@@ -9,6 +9,7 @@ import { PolicyFilterBottomSheet, PolicyList } from '@/components/Policy';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import { TAB_ID_BY_VARIANT } from '@/constants/common';
+import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { CategoryVariant } from '@/types/common';
@@ -22,14 +23,17 @@ const tabMenus: Tab<CategoryVariant>[] = [
 ];
 
 function PolicyListPage() {
-  const { updateQueryParams } = useEasyNavigate();
+  const { navigate } = useEasyNavigate();
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
   const [selectedTabMenu, setSelectedTabMenu] = useState<TabVariant>(tabMenus[0].value);
 
   const changeTab = (selectedMenu: TabVariant) => {
     setSelectedTabMenu(selectedMenu);
-    updateQueryParams(generateQueryString({ categoryId: TAB_ID_BY_VARIANT[selectedMenu] }));
+
+    navigate(
+      `${PATH.POLICY_LIST}${generateQueryString({ categoryId: TAB_ID_BY_VARIANT[selectedMenu] })}`,
+    );
   };
 
   return (
