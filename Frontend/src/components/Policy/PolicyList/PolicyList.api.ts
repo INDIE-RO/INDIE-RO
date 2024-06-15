@@ -1,7 +1,7 @@
 import { indieroClient } from '@/apis/ClientApi';
 import { ERROR_MESSAGE } from '@/constants/error';
 import { API_PATH } from '@/constants/path';
-import { Policy } from '@/types/common';
+import { Policy, SortMeta } from '@/types/common';
 
 export interface GetPoliciesResponse {
   hasNext: boolean;
@@ -27,6 +27,23 @@ export const getPolicies = async (getPoliciesRequest: GetPoliciesRequest) => {
     });
 
     if (!data) throw new Error('정책목록을 불러오는 데 실패했습니다.');
+
+    return data;
+  } catch (error) {
+    if (error instanceof Error) throw error;
+    else throw new Error(ERROR_MESSAGE.FETCH_ERROR);
+  }
+};
+
+export interface GetSortMetaResponse {
+  sortFields: SortMeta[];
+}
+
+export const getSortMeta = async () => {
+  try {
+    const data = await indieroClient.get<GetSortMetaResponse>(API_PATH.SORT_META);
+
+    if (!data) throw new Error('정렬기준을 불러오는 데 실패했습니다.');
 
     return data;
   } catch (error) {
