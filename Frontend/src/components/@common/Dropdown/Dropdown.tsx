@@ -76,6 +76,7 @@ const Button = styled.button`
   color: ${theme.textColors.white};
   font-size: ${theme.fontSizes.sm};
   font-weight: ${theme.fontWeights.bold};
+  white-space: nowrap;
 `;
 
 const Ul = styled.ul`
