@@ -31,6 +31,7 @@ export type RegionVariantKo =
 
 export type AgeVariantKo = '19세 이하' | '20 ~ 24세' | '25 ~ 29세' | '30 ~ 34세' | '35세 이상';
 export type OpeningStatusVariantKo = '상시모집' | '모집중' | '모집예정' | '마감';
+export type SortVariantKo = '마감순' | '조회순';
 export interface MetaData<T extends string = string> {
   id: number;
   name: T;
@@ -40,6 +41,7 @@ export interface OpeningStatusMeta extends MetaData<OpeningStatusVariantKo> {}
 export interface CategoryMeta extends MetaData<CategoryVariantKo> {}
 export interface RegionMeta extends MetaData<RegionVariantKo> {}
 export interface AgeMeta extends MetaData<AgeVariantKo> {}
+export interface SortMeta extends MetaData<SortVariantKo> {}
 
 export interface Policy {
   id: number;
