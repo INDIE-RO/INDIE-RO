@@ -15,13 +15,15 @@ function NavigationBar() {
   const [isActive, setIsActive] = useState(false);
 
   const handleMoveSurvey = async () => {
+    setIsActive(true);
+
     const confirmed = await confirm({ message: '설문을 수정할까요?' });
 
     if (confirmed) {
-      setIsActive(!isActive);
       navigate(PATH.SURVEY);
       return;
     }
+    setIsActive(false);
   };
 
   return (
