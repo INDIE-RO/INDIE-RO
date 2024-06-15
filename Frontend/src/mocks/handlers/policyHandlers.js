@@ -8,6 +8,7 @@ const policyHandlers = [
     const url = new URL(request.url);
     const regionIds = url.searchParams.get('regionIds');
     const categoryId = url.searchParams.get('categoryId');
+    const sortBy = url.searchParams.get('sortBy');
 
     await delay(2000);
 

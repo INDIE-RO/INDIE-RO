@@ -5,7 +5,6 @@ import {
   KEYWORD_FOR_FILTER,
   KeywordForFilter,
 } from '@/components/Policy/PolicyList/PolicyList.api';
-import { PATH } from '@/constants/path';
 import { useEasyNavigate, useValidQueryParams } from '@/hooks/@common';
 import { generateQueryString, parseQueryParams } from '@/utils/route';
 
@@ -19,7 +18,7 @@ const INITIAL_FILTERS = {
 
 export const usePolicyFilterBottomSheet = () => {
   const { ageMeta, regionMeta, openingStatusMeta } = useFilterMetaQuery();
-  const { navigate } = useEasyNavigate();
+  const { replaceQueryParams } = useEasyNavigate();
   const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS);
 
   const resetFilters = () => {
@@ -94,7 +93,7 @@ export const usePolicyFilterBottomSheet = () => {
       regionIds: normalizeRegionIds(selectedFilters.regionIds),
     };
 
-    navigate(`${PATH.POLICY_LIST}${generateQueryString(normalizedFilterList)}`);
+    replaceQueryParams(generateQueryString(normalizedFilterList), { exclude: ['sortBy'] });
   };
 
   const queryParams = useValidQueryParams<KeywordForFilter>(KEYWORD_FOR_FILTER);

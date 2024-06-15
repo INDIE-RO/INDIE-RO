@@ -13,6 +13,8 @@ export const SVG_ICON_VARIANTS = [
   'close',
   'search',
   'filter',
+  'up',
+  'down',
 ] as const;
 export type SvgIconVariant = (typeof SVG_ICON_VARIANTS)[number];
 

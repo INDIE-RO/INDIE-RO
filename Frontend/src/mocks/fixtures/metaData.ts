@@ -8,5 +8,18 @@ const getFilterMeta = () => ({
   openingStatuses: openingStatusMeta.openingStatuses,
 });
 
-const filterFixture = { getFilterMeta };
-export default filterFixture;
+const getSortMeta = () => ({
+  sortFields: [
+    {
+      id: 1,
+      name: '마감순',
+    },
+    {
+      id: 2,
+      name: '조회순',
+    },
+  ],
+});
+
+const metaDataFixture = { getFilterMeta, getSortMeta };
+export default metaDataFixture;
