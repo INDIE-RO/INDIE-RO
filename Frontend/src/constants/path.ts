@@ -1,12 +1,12 @@
 import { NavigationMenu } from '@/types/common';
 
 export const PATH = {
-  HOME: '/',
+  INTRO: '/',
+  HOME: '/home',
   POLICY_LIST: '/policies',
   POLICY_DETAIL: '/policies/:id',
   CUSTOM_INFO: '/custom-info',
   SURVEY: '/survey',
-  INTRO: '/intro',
   EXCEPTION: '/*',
 } as const;
 

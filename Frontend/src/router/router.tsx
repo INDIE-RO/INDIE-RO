@@ -11,11 +11,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Homepage />,
+        element: <IntroPage />,
       },
       {
-        path: PATH.INTRO,
-        element: <IntroPage />,
+        path: PATH.HOME,
+        element: <Homepage />,
       },
       {
         path: PATH.SURVEY,

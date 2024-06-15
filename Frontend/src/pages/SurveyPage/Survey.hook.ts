@@ -1,10 +1,16 @@
 import { ChangeEvent } from 'react';
 
-import { useSurveyContext } from './Survey.context';
 import { SurveyValue } from './Survey.type';
 
-const useSurvey = () => {
-  const { survey, updateSurvey } = useSurveyContext();
+interface useSurveyProps {
+  survey: SurveyValue;
+  setSurvey: (newValue: SurveyValue) => void;
+}
+
+const useSurvey = ({ survey, setSurvey }: useSurveyProps) => {
+  const updateSurvey = (newValue: Partial<SurveyValue>) => {
+    setSurvey({ ...survey, ...newValue });
+  };
 
   const handleSelectedAll = (
     e: ChangeEvent<HTMLInputElement>,
@@ -49,7 +55,14 @@ const useSurvey = () => {
     updateSurvey({ age });
   };
 
-  return { handleSelectedAll, handleChangeCategory, handleChangeRegion, handleChangeAge };
+  return {
+    survey,
+    updateSurvey,
+    handleSelectedAll,
+    handleChangeCategory,
+    handleChangeRegion,
+    handleChangeAge,
+  };
 };
 
 export default useSurvey;
