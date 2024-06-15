@@ -7,7 +7,7 @@ import {
 } from '@/components/Policy/PolicyList/PolicyList.api';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate, useValidQueryParams } from '@/hooks/@common';
-import { generateQueryString, parseQueryParams } from '@/utils/route';
+import { generateQueryString, parseQueryParams, replaceQueryString } from '@/utils/route';
 
 export const ALL_REGION_ID = 0;
 const INITIAL_FILTERS = {
@@ -94,7 +94,11 @@ export const usePolicyFilterBottomSheet = () => {
       regionIds: normalizeRegionIds(selectedFilters.regionIds),
     };
 
-    navigate(`${PATH.POLICY_LIST}${generateQueryString(normalizedFilterList)}`);
+    const newQueryString = replaceQueryString(generateQueryString(normalizedFilterList), [
+      'sortBy',
+    ]);
+
+    navigate(`${PATH.POLICY_LIST}${newQueryString}`);
   };
 
   const queryParams = useValidQueryParams<KeywordForFilter>(KEYWORD_FOR_FILTER);
