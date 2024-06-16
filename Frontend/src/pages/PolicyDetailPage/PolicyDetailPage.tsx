@@ -17,7 +17,7 @@ import { usePolicyDetailQuery } from './PolicyDetail.query';
 function PolicyDetailPage() {
   const { id } = useParams();
   const { policyDetail } = usePolicyDetailQuery(Number(id));
-  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(DETAIL_POLICY_TAB_MENUS[0].value);
+  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(DETAIL_POLICY_TAB_TYPE.DESCRIPTION);
 
   const policyInfo = {
     id: policyDetail?.id,

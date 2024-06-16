@@ -7,7 +7,7 @@ import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
 import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
 import { PolicyFilterBottomSheet, PolicyList } from '@/components/Policy';
-import { TAB_ID_BY_VARIANT } from '@/constants/common';
+import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
@@ -15,7 +15,7 @@ import { generateQueryString } from '@/utils/route';
 
 function PolicyListPage() {
   const { navigate } = useEasyNavigate();
-  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(TOTAL_POLICY_TAB_MENUS[0].value);
+  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(CATEGORY_TYPE.JOB);
 
   const changeTab = (selectedMenu: TabVariant) => {
     handleTabMenuClick(selectedMenu);
