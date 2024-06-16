@@ -3,3 +3,4 @@ export { default as PolicyFilterSelectionDisplay } from './PolicyFilterSelection
 export { default as PolicyItem } from './PolicyItem/PolicyItem';
 export { default as PolicyList } from './PolicyList/PolicyList';
 export { default as PolicyDetailOverview } from './PolicyDetailOverview/PolicyDetailOverview';
+export { default as PolicyDetailContent } from './PolicyDetailContent/PolicyDetailContent';
