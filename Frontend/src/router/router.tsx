@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import App from '@/App';
 import { PATH } from '@/constants/path';
-import { Homepage, IntroPage, SurveyPage } from '@/pages';
+import { Homepage, IntroPage, PolicyDetailPage, SurveyPage } from '@/pages';
 import PolicyListPage from '@/pages/PolicyListPage';
 
 export const router = createBrowserRouter([
@@ -25,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.POLICY_LIST,
         element: <PolicyListPage />,
+      },
+      {
+        path: PATH.POLICY_DETAIL,
+        element: <PolicyDetailPage />,
       },
       {
         path: PATH.EXCEPTION,
