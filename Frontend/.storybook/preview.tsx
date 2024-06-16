@@ -8,7 +8,6 @@ import { withRouter } from 'storybook-addon-remix-react-router';
 
 import { DialogConfirmContextProvider } from '../src/components/@common';
 import handlers from '../src/mocks/handlers';
-import { SurveyContextProvider } from '../src/pages';
 import GlobalStyle from '../src/styles/GlobalStyle';
 import theme from '../src/styles/theme';
 
@@ -52,9 +51,7 @@ const preview: Preview = {
         <ThemeProvider theme={theme}>
           <GlobalStyle />
           <DialogConfirmContextProvider>
-            <SurveyContextProvider>
-              <Story />
-            </SurveyContextProvider>
+            <Story />
           </DialogConfirmContextProvider>
         </ThemeProvider>
       </QueryClientProvider>

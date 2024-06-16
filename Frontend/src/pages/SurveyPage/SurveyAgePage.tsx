@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import { ChipButton, ChipInput, DialogConfirm, ProgressBar } from '@/components/@common';
+import { PATH } from '@/constants/path';
 import { useConfirm, useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { indieroLocalStorage } from '@/utils/localStorage';
@@ -20,14 +21,14 @@ function SurveyAgePage({ survey, setSurvey }: SurveyAgePageProps) {
 
   const { confirm } = useConfirm();
 
-  const { goHome } = useEasyNavigate();
+  const { navigate } = useEasyNavigate();
 
   const handleCompleteStep = async () => {
     const confirmed = await confirm({ message: '설문을 완료합니다' });
 
     if (confirmed) {
       indieroLocalStorage.setSurvey(survey);
-      goHome();
+      navigate(PATH.CUSTOM_INFO);
       return;
     }
   };

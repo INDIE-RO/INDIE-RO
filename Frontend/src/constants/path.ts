@@ -13,7 +13,9 @@ export const PATH = {
 export const API_PATH = {
   POLICY_LIST: '/policies',
   POLICY_DETAIL: '/policies/:id',
+  CUSTOM_INFO: '/policies/user',
   FILTER_META: '/policy/metadata/filters',
+  SORT_META: '/policy/metadata/sortFields',
   SURVEY_CATEGORY_META: '/policy/metadata/categories',
   SURVEY_REGION_META: '/policy/metadata/regions',
   SURVEY_AGE_META: '/policy/metadata/ages',
