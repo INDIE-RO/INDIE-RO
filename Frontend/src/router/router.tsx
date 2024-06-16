@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import App from '@/App';
 import { PATH } from '@/constants/path';
 import { Homepage, IntroPage, SurveyPage } from '@/pages';
+import CustomInfoPage from '@/pages/CustomInfoPage';
 import PolicyListPage from '@/pages/PolicyListPage';
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: PATH.SURVEY,
         element: <SurveyPage />,
+      },
+      {
+        path: PATH.CUSTOM_INFO,
+        element: <CustomInfoPage />,
       },
       {
         path: PATH.POLICY_LIST,

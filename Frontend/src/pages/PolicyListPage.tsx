@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { BasicLayout, Dropdown } from '@/components/@common';
 import TabMenu from '@/components/@common/TabMenu/TabMenu';
 import { Tab, TabVariant } from '@/components/@common/TabMenu/type';
-import { PolicyFilterBottomSheet, PolicyList } from '@/components/Policy';
+import { PolicyFilterBottomSheet, PolicyList, PolicyListContainer } from '@/components/Policy';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import { TAB_ID_BY_VARIANT } from '@/constants/common';
@@ -50,7 +50,7 @@ function PolicyListPage() {
           <Dropdown metaData={sortMeta} onClickOption={changeSortBy} />
         </FilterContainer>
         <Suspense fallback={<PolicyList.Skeleton />}>
-          <PolicyList />
+          <PolicyListContainer />
         </Suspense>
       </Wrapper>
     </BasicLayout>

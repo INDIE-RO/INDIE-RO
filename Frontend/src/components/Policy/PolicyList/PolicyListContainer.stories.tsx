@@ -3,10 +3,11 @@ import { Suspense } from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import PolicyList from './PolicyList';
+import PolicyListContainer from './PolicyListContainer';
 
 const meta = {
-  title: 'Policy/PolicyList',
-  component: PolicyList,
+  title: 'Policy/PolicyListContainer',
+  component: PolicyListContainer,
   decorators: [
     Story => (
       <Suspense fallback={<PolicyList.Skeleton />}>
@@ -14,10 +15,10 @@ const meta = {
       </Suspense>
     ),
   ],
-} satisfies Meta<typeof PolicyList>;
+} satisfies Meta<typeof PolicyListContainer>;
 
 export default meta;
-type Story = StoryObj<typeof PolicyList>;
+type Story = StoryObj<typeof PolicyListContainer>;
 
 export const Basic: Story = {
   args: {},

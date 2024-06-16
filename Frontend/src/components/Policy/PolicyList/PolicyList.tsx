@@ -2,14 +2,13 @@ import styled from '@emotion/styled';
 
 import NoResult from '@/assets/noResult.svg?url';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
-import { KEYWORD_FOR_ALL, KeywordForAll } from '@/components/Policy/PolicyList/PolicyList.api';
-import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
-import { useValidQueryParams } from '@/hooks/@common';
 import theme from '@/styles/theme';
+import { Policy } from '@/types/common';
 
-function PolicyList() {
-  const queryParams = useValidQueryParams<KeywordForAll>(KEYWORD_FOR_ALL);
-  const { policies } = usePoliciesQuery(queryParams);
+interface PolicyListProps {
+  policies: Policy[];
+}
+function PolicyList({ policies }: PolicyListProps) {
   const hasResult = Boolean(policies.length > 0);
 
   return (
