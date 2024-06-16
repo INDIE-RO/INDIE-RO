@@ -7,12 +7,12 @@ export interface PolicyDetail extends Policy {
   otherInfo: OtherInfo[];
 }
 
-interface Description {
+export interface Description {
   info: string;
   detail: string;
 }
 
-interface Qualification {
+export interface Qualification {
   age: string;
   residenceIncome: string;
   restriction: string;
@@ -22,7 +22,7 @@ interface Qualification {
   jobStatus: string;
 }
 
-interface OtherInfo {
+export interface OtherInfo {
   documents: string;
   contacts: string;
 }
