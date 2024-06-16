@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { BasicLayout, Dropdown, TabMenu } from '@/components/@common';
 import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
-import { Tab, TabVariant } from '@/components/@common/TabMenu/type';
+import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
 import { PolicyFilterBottomSheet, PolicyList, PolicyListContainer } from '@/components/Policy';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
