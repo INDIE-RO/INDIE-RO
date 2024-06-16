@@ -2,8 +2,7 @@ import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BasicLayout } from '@/components/@common';
-import TabMenu from '@/components/@common/TabMenu/TabMenu';
+import { BasicLayout, TabMenu } from '@/components/@common';
 import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
 import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
