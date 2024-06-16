@@ -2,3 +2,4 @@ export { default as PolicyFilterBottomSheet } from './PolicyFilterBottomSheet/Po
 export { default as PolicyFilterSelectionDisplay } from './PolicyFilterSelectionDisplay/PolicyFilterSelectionDisplay';
 export { default as PolicyItem } from './PolicyItem/PolicyItem';
 export { default as PolicyList } from './PolicyList/PolicyList';
+export { default as PolicyDetailOverview } from './PolicyDetailOverview/PolicyDetailOverview';
