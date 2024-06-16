@@ -29,8 +29,8 @@ function CustomInfo() {
             <CloverImg src={CloverMagic} alt='' />
             <CustomInfoDisplay>
               {`${surveyResult?.age} •
-          ${surveyResult?.category} •
-          ${surveyResult?.region}`}
+          ${surveyResult?.category.join(', ')} •
+          ${surveyResult?.region.length >= 1 ? '지역전체' : surveyResult?.region}`}
             </CustomInfoDisplay>
             <Dropdown metaData={sortMeta} onClickOption={changeSortBy} />
           </FlexBox>
@@ -41,9 +41,11 @@ function CustomInfo() {
           <TextLarge>관심 정보를 설정하지 않았어요</TextLarge>
           <TextSmall>설문조사하고 맞춤 정보를 받아보세요!</TextSmall>
           <NoResultImg src={NoResult} alt='' />
-          <ChipButton width='100%' onClick={goSurveyPage}>
-            설문조사 하러가기
-          </ChipButton>
+          <ButtonWrapper>
+            <ChipButton width='100%' onClick={goSurveyPage}>
+              설문조사 하러가기
+            </ChipButton>
+          </ButtonWrapper>
         </NoResultContainer>
       )}
     </>
@@ -90,12 +92,14 @@ const CloverImg = styled.img`
 `;
 
 const NoResultContainer = styled.div`
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  margin-top: 4rem;
+  height: calc(100vh - 14.9rem);
 `;
 
 const TextLarge = styled.p`
@@ -120,4 +124,10 @@ const NoResultImg = styled.img`
   height: 30rem;
 
   margin-bottom: 13.6rem;
+`;
+
+const ButtonWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
