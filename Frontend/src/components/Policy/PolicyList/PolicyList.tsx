@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
 import NoResult from '@/assets/noResult.svg?url';
@@ -7,6 +9,7 @@ import {
   KeywordForFilter,
 } from '@/components/Policy/PolicyList/PolicyList.api';
 import { usePoliciesQuery } from '@/components/Policy/PolicyList/PolicyList.query';
+import { PATH } from '@/constants/path';
 import { useValidQueryParams } from '@/hooks/@common';
 import theme from '@/styles/theme';
 
@@ -20,7 +23,9 @@ function PolicyList() {
       {hasResult ? (
         policies.map(policy => (
           <li key={policy.id}>
-            <PolicyItem policyInfo={policy} />
+            <Link to={`${PATH.POLICY_LIST}/${policy.id}`}>
+              <PolicyItem policyInfo={policy} />
+            </Link>
           </li>
         ))
       ) : (
