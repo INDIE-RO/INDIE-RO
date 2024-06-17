@@ -78,7 +78,7 @@ function PolicyDetailPage() {
           disabled={!policyDetail.url}
           onClick={() => window.open(policyDetail.url)}
         >
-          {policyDetail.url ? '신청하러가기' : '링크 정보가 없어요 🥲'}
+          {policyDetail.url ? '살펴보러가기' : '링크 정보가 없어요 🥲'}
         </ChipButton>
       </ButtonWrapper>
     </Container>
