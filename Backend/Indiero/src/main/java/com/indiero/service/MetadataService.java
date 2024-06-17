@@ -94,17 +94,27 @@ public class MetadataService {
                 .collect(Collectors.toList());
     }
 
-    private String getCategoryName(int categoryId) {
+    String getCategoryName(int categoryId) {
         return METADATA.get(MetadataType.CATEGORY).get(categoryId-1).getName();
     }
 
     public List<String> convertRegionIdsToNames(List<Integer> regionIds) {
-        return regionIds.stream()
+        List<String> regionNames = regionIds.stream()
                 .map(this::getRegionName)
                 .collect(Collectors.toList());
+        regionNames.add("중앙정부");
+        return regionNames;
     }
 
     private String getRegionName(int regionId) {
         return METADATA.get(MetadataType.REGION).get(regionId-1).getName();
+    }
+
+    public List<String> getAllRegionNames() {
+        List<String> regionNames = METADATA.get(MetadataType.REGION).stream()
+                .map(Metadata::getName)
+                .collect(Collectors.toList());
+        regionNames.add("중앙정부");
+        return regionNames;
     }
 }
