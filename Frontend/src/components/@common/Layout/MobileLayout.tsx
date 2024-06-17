@@ -19,7 +19,7 @@ const MobileLayoutStyle = css`
 
   // 자식 요소로 들어올 페이지 기본 스타일링
   > section {
-    height: 100vh;
+    min-height: 100vh;
     background-color: ${theme.backgroundColors.deep};
   }
 
