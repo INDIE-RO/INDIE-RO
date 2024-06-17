@@ -1,35 +1,29 @@
-import { Suspense, useState } from 'react';
+import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BasicLayout, Dropdown } from '@/components/@common';
-import TabMenu from '@/components/@common/TabMenu/TabMenu';
-import { Tab, TabVariant } from '@/components/@common/TabMenu/type';
+import { BasicLayout, Dropdown, TabMenu } from '@/components/@common';
+import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
+import { TabVariant } from '@/components/@common/TabMenu/type';
+import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
 import { PolicyFilterBottomSheet, PolicyList, PolicyListContainer } from '@/components/Policy';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
-import { TAB_ID_BY_VARIANT } from '@/constants/common';
+import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
-import { CategoryVariant } from '@/types/common';
 import { generateQueryString } from '@/utils/route';
-
-const tabMenus: Tab<CategoryVariant>[] = [
-  { value: 'job', label: '일자리' },
-  { value: 'housing', label: '주거' },
-  { value: 'education', label: '교육' },
-  { value: 'welfare', label: '복지/문화' },
-];
 
 function PolicyListPage() {
   const { navigate } = useEasyNavigate();
+  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(CATEGORY_TYPE.JOB);
+
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
-  const [selectedTabMenu, setSelectedTabMenu] = useState<TabVariant>(tabMenus[0].value);
 
   const changeTab = (selectedMenu: TabVariant) => {
-    setSelectedTabMenu(selectedMenu);
+    handleTabMenuClick(selectedMenu);
 
     navigate(
       `${PATH.POLICY_LIST}${generateQueryString({ categoryId: TAB_ID_BY_VARIANT[selectedMenu] })}`,
@@ -40,7 +34,7 @@ function PolicyListPage() {
     <BasicLayout>
       <Wrapper>
         <TabMenu
-          tabMenus={tabMenus}
+          tabMenus={TOTAL_POLICY_TAB_MENUS}
           selectedTabMenu={selectedTabMenu}
           handleTabMenuSelect={changeTab}
         />

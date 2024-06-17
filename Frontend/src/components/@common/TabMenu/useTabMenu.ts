@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
-const useTabMenu = <T>(init: T) => {
-  const [selectedTabMenu, setSelectedTabMenu] = useState<T>(init);
+import { TabVariant } from './type';
 
-  const handleTabMenuClick = (selectedMenu: T) => {
+const useTabMenu = (init: TabVariant) => {
+  const [selectedTabMenu, setSelectedTabMenu] = useState<TabVariant>(init);
+
+  const handleTabMenuClick = (selectedMenu: TabVariant) => {
     setSelectedTabMenu(selectedMenu);
   };
 

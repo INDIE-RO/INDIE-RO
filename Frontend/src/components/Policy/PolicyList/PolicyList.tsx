@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
+
 import styled from '@emotion/styled';
 
 import NoResult from '@/assets/noResult.svg?url';
 import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
+import { PATH } from '@/constants/path';
 import theme from '@/styles/theme';
 import { Policy } from '@/types/common';
 
@@ -16,7 +19,9 @@ function PolicyList({ policies }: PolicyListProps) {
       {hasResult ? (
         policies.map(policy => (
           <li key={policy.id}>
-            <PolicyItem policyInfo={policy} />
+            <Link to={`${PATH.POLICY_LIST}/${policy.id}`}>
+              <PolicyItem policyInfo={policy} />
+            </Link>
           </li>
         ))
       ) : (

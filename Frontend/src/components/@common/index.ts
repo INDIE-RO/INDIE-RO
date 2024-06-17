@@ -16,5 +16,6 @@ export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as SvgIcon } from './Svg/SvgIcon';
 export { default as SvgSprite } from './Svg/SvgSprite';
 export { default as Tag } from './Tag/Tag';
+export { default as TabMenu } from './TabMenu/TabMenu';
 export { default as Toast } from './Toast/Toast';
 export { default as ToastContextProvider } from './Toast/ToastContext';
