@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { BasicLayout, ChipButton, SearchBar } from '@/components/@common';
+import { BasicLayout, ChipButton, SearchBar, WordCloud } from '@/components/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import theme from '@/styles/theme';
 
@@ -35,6 +35,10 @@ function Homepage() {
           </TagContainer>
           <div style={{ height: '45px' }} />
           <WordCloudTitle>실시간 인기 키워드</WordCloudTitle>
+          <div style={{ height: '12px' }} />
+          <WordCloudWrapper>
+            <WordCloud />
+          </WordCloudWrapper>
         </Wrapper>
       </BasicLayout>
     </Section>
@@ -57,4 +61,10 @@ const TagContainer = styled.ul`
 const WordCloudTitle = styled.h1`
   font-size: ${theme.fontSizes.lg};
   font-weight: ${theme.fontWeights.bold};
+`;
+
+const WordCloudWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

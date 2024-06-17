@@ -55,3 +55,8 @@ export interface Tag {
   type: '분야' | '지역' | '모집현황' | '디데이';
   name: string;
 }
+
+export interface WordCloud {
+  text: string;
+  value: number;
+}

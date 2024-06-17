@@ -20,3 +20,4 @@ export { default as TabMenu } from './TabMenu/TabMenu';
 export { default as Tag } from './Tag/Tag';
 export { default as Toast } from './Toast/Toast';
 export { default as ToastContextProvider } from './Toast/ToastContext';
+export { default as WordCloud } from './WordCloud/WordCloud';
