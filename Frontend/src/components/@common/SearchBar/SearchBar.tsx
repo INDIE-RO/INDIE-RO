@@ -14,7 +14,7 @@ function SearchBar(searchBarProps: SearchBarProps) {
   const {
     updateQuery,
     onClickSearch,
-    placeholder = '원하는 키워드를 입력하세요',
+    placeholder = '원하는 키워드를 입력하세요!',
     maxLength = 255,
     ...restProps
   } = searchBarProps;

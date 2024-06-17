@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BasicLayout, Dropdown, TabMenu } from '@/components/@common';
+import { BasicLayout, Dropdown, SearchBar, TabMenu } from '@/components/@common';
 import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
 import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
@@ -12,6 +12,7 @@ import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.quer
 import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
+import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import theme from '@/styles/theme';
 import { generateQueryString } from '@/utils/route';
 
@@ -21,6 +22,7 @@ function PolicyListPage() {
 
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
+  const { search, changeSearchQuery } = usePolicySearch();
 
   const changeTab = (selectedMenu: TabVariant) => {
     handleTabMenuClick(selectedMenu);
@@ -33,6 +35,12 @@ function PolicyListPage() {
   return (
     <BasicLayout>
       <Wrapper>
+        <SearchBar
+          updateQuery={changeSearchQuery}
+          onClickSearch={search}
+          placeholder='필요한 정책을 검색하세요!'
+        />
+        <div style={{ height: '12px' }} />
         <TabMenu
           tabMenus={TOTAL_POLICY_TAB_MENUS}
           selectedTabMenu={selectedTabMenu}
