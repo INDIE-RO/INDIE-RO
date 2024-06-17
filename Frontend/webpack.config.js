@@ -44,7 +44,10 @@ module.exports = {
       template: './public/index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'public/mockServiceWorker.js', to: '.' }],
+      patterns: [
+        { from: 'public/assets', to: 'assets' },
+        { from: 'public/mockServiceWorker.js', to: '.' },
+      ],
     }),
     new Dotenv(),
   ],
