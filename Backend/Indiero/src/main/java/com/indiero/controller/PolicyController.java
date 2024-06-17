@@ -1,5 +1,6 @@
 package com.indiero.controller;
 
+import com.indiero.dto.request.AllPolicyParams;
 import com.indiero.dto.request.SearchPolicyParams;
 import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
@@ -40,5 +41,11 @@ public class PolicyController {
     @GetMapping("/search")
     public ListPolicyResponse searchPolicy(@ModelAttribute SearchPolicyParams params) {
         return policyService.searchPolicy(params);
+    }
+
+    // 모두보기 결과 조회
+    @GetMapping
+    public ListPolicyResponse getAllPolicy(@ModelAttribute AllPolicyParams params) {
+        return policyService.getAllPolicy(params);
     }
 }
