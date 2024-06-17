@@ -19,13 +19,13 @@ function SearchBar(searchBarProps: SearchBarProps) {
     ...restProps
   } = searchBarProps;
 
-  const onClick = (event: FormEvent<HTMLFormElement>) => {
+  const onClick = (event: FormEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (onClickSearch) onClickSearch();
   };
 
   return (
-    <Wrapper onClick={onClick}>
+    <Wrapper>
       <Input
         type='search'
         inputMode='search'
@@ -34,7 +34,7 @@ function SearchBar(searchBarProps: SearchBarProps) {
         onChange={updateQuery}
         {...restProps}
       />
-      <Button aria-label='검색'>
+      <Button aria-label='검색' onClick={onClick}>
         <SvgIcon variant='search' stroke={theme.textColors.light} />
       </Button>
     </Wrapper>
