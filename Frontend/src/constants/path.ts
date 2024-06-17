@@ -5,6 +5,7 @@ export const PATH = {
   HOME: '/home',
   POLICY_LIST: '/policies',
   POLICY_DETAIL: '/policies/:id',
+  POLICY_SEARCH: '/policies/search',
   CUSTOM_INFO: '/custom-info',
   SURVEY: '/survey',
   EXCEPTION: '/*',
@@ -13,6 +14,7 @@ export const PATH = {
 export const API_PATH = {
   POLICY_LIST: '/policies',
   POLICY_DETAIL: '/policies/:id',
+  POLICY_SEARCH: '/policies/search',
   CUSTOM_INFO: '/policies/user',
   FILTER_META: '/policy/metadata/filters',
   SORT_META: '/policy/metadata/sortFields',
