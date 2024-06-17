@@ -12,8 +12,8 @@ export const usePolicySearch = () => {
     setSearchQuery(event.target.value);
   };
 
-  const search = () => {
-    replaceQueryParams(generateQueryString({ query: searchQuery }), {
+  const search = (hashQuery?: string) => {
+    replaceQueryParams(generateQueryString({ query: hashQuery ?? searchQuery }), {
       path: API_PATH.POLICY_SEARCH,
       exclude: ['sortBy'],
     });
