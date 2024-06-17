@@ -16,12 +16,12 @@ export const API_PATH = {
   POLICY_DETAIL: '/policies/:id',
   POLICY_SEARCH: '/policies/search',
   CUSTOM_INFO: '/policies/user',
+  WORD_CLOUD: '/policies/wordCloud',
   FILTER_META: '/policy/metadata/filters',
   SORT_META: '/policy/metadata/sortFields',
   SURVEY_CATEGORY_META: '/policy/metadata/categories',
   SURVEY_REGION_META: '/policy/metadata/regions',
   SURVEY_AGE_META: '/policy/metadata/ages',
-  WORD_CLOUD: '/wordCloud',
 } as const;
 
 export const NAVIGATION_MENU: NavigationMenu[] = [
