@@ -146,6 +146,7 @@ const dialogLocationStyles: DialogLocationStyles = {
 
 const Wrapper = styled.dialog<{ location: DialogLocation }>`
   max-width: 100vw;
+  height: 100%;
 
   background-color: transparent;
   border-radius: 20px;
