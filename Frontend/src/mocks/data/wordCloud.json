@@ -2,63 +2,63 @@
   "words": [
     {
       "text": "지원금",
-      "value": 10
+      "value": 339
     },
     {
       "text": "자립수당",
-      "value": 20
+      "value": 15
     },
     {
       "text": "장학금",
-      "value": 30
+      "value": 78
     },
     {
       "text": "보증금",
-      "value": 40
+      "value": 262
     },
     {
       "text": "자립",
-      "value": 50
+      "value": 1310
     },
     {
       "text": "보호종료",
-      "value": 60
+      "value": 210
     },
     {
       "text": "주택",
-      "value": 70
+      "value": 203
     },
     {
       "text": "취업",
-      "value": 80
+      "value": 672
     },
     {
       "text": "일자리",
-      "value": 90
+      "value": 234
     },
     {
       "text": "창업",
-      "value": 64
+      "value": 653
     },
     {
       "text": "자격증",
-      "value": 64
+      "value": 167
     },
     {
       "text": "면접",
-      "value": 64
+      "value": 246
     },
     {
       "text": "교육",
-      "value": 64
+      "value": 662
     },
     {
       "text": "대학생",
-      "value": 64
+      "value": 170
     },
     {
       "text": "대출",
-      "value": 60
+      "value": 248
     }
   ]
 }
