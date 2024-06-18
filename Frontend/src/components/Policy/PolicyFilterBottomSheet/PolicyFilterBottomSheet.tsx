@@ -113,6 +113,7 @@ const ContentWrapper = styled.form`
   padding: 2.8rem;
 
   background-color: ${theme.backgroundColors.normal};
+  overflow-y: auto;
 `;
 
 const CloseButton = styled.button`
