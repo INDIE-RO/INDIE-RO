@@ -1,8 +1,8 @@
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BasicLayout, Dropdown, SearchBar, TabMenu } from '@/components/@common';
+import { BasicLayout, Dropdown, ScrollButton, SearchBar, TabMenu } from '@/components/@common';
 import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
 import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
@@ -13,7 +13,6 @@ import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
-import theme from '@/styles/theme';
 import { generateQueryString } from '@/utils/route';
 
 function PolicyListPage() {
@@ -23,6 +22,8 @@ function PolicyListPage() {
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
   const { search, changeSearchQuery } = usePolicySearch();
+
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   const changeTab = (selectedMenu: TabVariant) => {
     handleTabMenuClick(selectedMenu);
@@ -34,7 +35,7 @@ function PolicyListPage() {
 
   return (
     <BasicLayout>
-      <Wrapper>
+      <Container ref={scrollRef}>
         <SearchBar
           updateQuery={changeSearchQuery}
           onClickSearch={search}
@@ -54,16 +55,18 @@ function PolicyListPage() {
         <Suspense fallback={<PolicyList.Skeleton />}>
           <PolicyListContainer />
         </Suspense>
-      </Wrapper>
+        <ScrollButton targetRef={scrollRef} />
+      </Container>
     </BasicLayout>
   );
 }
 
 export default PolicyListPage;
 
-const Wrapper = styled.div`
+const Container = styled.section`
+  height: 100vh;
   padding: 2rem;
-  background-color: ${theme.backgroundColors.deep};
+  overflow-y: scroll;
 `;
 
 const FilterContainer = styled.div`

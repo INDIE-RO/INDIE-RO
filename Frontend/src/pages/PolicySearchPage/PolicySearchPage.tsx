@@ -14,28 +14,32 @@ function PolicySearchPage() {
   const { search, changeSearchQuery } = usePolicySearch();
   const { query } = useValidQueryParams<SearchKeywordForSearch>(SEARCH_KEYWORD_FOR_SEARCH);
 
-  const searchRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
     <BasicLayout>
-      <section ref={searchRef}>
+      <Container ref={scrollRef}>
         <div style={{ height: '20px' }} />
         <Wrapper>
           <SearchBar updateQuery={changeSearchQuery} onClickSearch={search} placeholder={query} />
           <div style={{ height: '20px' }} />
-
           <Suspense fallback={<PolicyList.Skeleton />}>
             <PolicySearchListContainer />
           </Suspense>
-
-          <ScrollButton targetRef={searchRef} />
         </Wrapper>
-      </section>
+        <ScrollButton targetRef={scrollRef} />
+      </Container>
     </BasicLayout>
   );
 }
 
 export default PolicySearchPage;
+
+const Container = styled.section`
+  position: relative;
+  height: 100vh;
+  overflow-y: scroll;
+`;
 
 const Wrapper = styled.div`
   padding: 0 20px;

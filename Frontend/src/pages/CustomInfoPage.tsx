@@ -1,27 +1,30 @@
-import { Suspense } from 'react';
+import { Suspense, useRef } from 'react';
 
 import styled from '@emotion/styled';
 
-import { BasicLayout } from '@/components/@common';
+import { BasicLayout, ScrollButton } from '@/components/@common';
 import { CustomInfo, PolicyList } from '@/components/Policy';
-import theme from '@/styles/theme';
 
 function CustomInfoPage() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
     <BasicLayout>
-      <Wrapper>
+      <Container ref={scrollRef}>
+        <div style={{ height: '20px' }} />
         <Suspense fallback={<PolicyList.Skeleton />}>
           <CustomInfo />
         </Suspense>
-      </Wrapper>
+        <ScrollButton targetRef={scrollRef} />
+      </Container>
     </BasicLayout>
   );
 }
 
 export default CustomInfoPage;
 
-const Wrapper = styled.div`
-  min-height: calc(100% - 6.8rem);
+const Container = styled.section`
+  height: 100vh;
+  overflow-y: scroll;
   padding: 1.6rem 2rem 2rem 2rem;
-  background-color: ${theme.backgroundColors.deep};
 `;
