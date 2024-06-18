@@ -83,6 +83,10 @@ const baseStyle = css`
     cursor: pointer;
   }
 
+  button:focus {
+    outline: none;
+  }
+
   button:disabled {
     cursor: not-allowed;
   }
