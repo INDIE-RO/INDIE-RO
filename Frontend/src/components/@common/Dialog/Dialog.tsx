@@ -155,6 +155,7 @@ const Wrapper = styled.dialog<{ location: DialogLocation }>`
 
   &::backdrop {
     animation: ${theme.animations.fadeIn} 0.3s;
+    background: rgba(0, 0, 0, 0.5);
   }
 
   ${({ location }) => dialogLocationStyles[location ?? 'center']}
