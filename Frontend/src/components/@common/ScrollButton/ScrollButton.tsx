@@ -21,13 +21,26 @@ function ScrollButton({ targetRef }: ScrollButtonProps) {
   };
 
   return (
-    <Wrapper type='button' onClick={handleScroll}>
-      <SvgIcon variant='arrowUp' width={24} height={24} fill={theme.colors.black} />
-    </Wrapper>
+    <Container>
+      <Wrapper type='button' onClick={handleScroll}>
+        <SvgIcon variant='arrowUp' width={24} height={24} fill={theme.colors.black} />
+      </Wrapper>
+    </Container>
   );
 }
 
 export default ScrollButton;
+
+const Container = styled.div`
+  position: fixed;
+  bottom: 9rem;
+  display: flex;
+  right: 2rem;
+
+  @media screen and (min-width: 768px) {
+    left: 125rem;
+  }
+`;
 
 const Wrapper = styled.button`
   width: 4rem;

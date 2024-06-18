@@ -90,6 +90,13 @@ const getPolicyList = () => ({
     .map((_, i) => policyInfo(i)),
 });
 
+// 검색 결과가 없을 때
+const getPolicyListEmpty = () => ({
+  hasNext: false,
+  totalCount: 0,
+  policies: [],
+});
+
 const getPolicyListByRegion = () => ({
   hasNext: false,
   totalCount: 30,
@@ -106,5 +113,10 @@ const getPolicyListByCategory = () => ({
     .map((_, i) => policyInfoByCategory(i)),
 });
 
-const policyFixture = { getPolicyList, getPolicyListByRegion, getPolicyListByCategory };
+const policyFixture = {
+  getPolicyList,
+  getPolicyListByRegion,
+  getPolicyListByCategory,
+  getPolicyListEmpty,
+};
 export default policyFixture;

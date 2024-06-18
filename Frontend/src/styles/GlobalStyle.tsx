@@ -4,6 +4,14 @@ import fonts from './font';
 import theme from './theme';
 
 const baseStyle = css`
+  @font-face {
+    font-family: 'JalnanGothic';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   ${fonts}
 
   * {

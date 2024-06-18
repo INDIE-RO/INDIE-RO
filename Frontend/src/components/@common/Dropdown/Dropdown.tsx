@@ -10,7 +10,7 @@ interface DropdownProps {
   metaData: MetaData[];
   onClickOption: <T extends number>(optionValue: T) => void;
 }
-function PolicySortDropdown(dropdownProps: DropdownProps) {
+function Dropdown(dropdownProps: DropdownProps) {
   const { metaData, onClickOption } = dropdownProps;
   const [open, setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(metaData.at(0)?.name ?? '');
@@ -54,7 +54,7 @@ function PolicySortDropdown(dropdownProps: DropdownProps) {
   );
 }
 
-export default PolicySortDropdown;
+export default Dropdown;
 
 const Container = styled.div`
   position: relative;
@@ -75,7 +75,7 @@ const Button = styled.button`
 
   color: ${theme.textColors.white};
   font-size: ${theme.fontSizes.sm};
-  font-weight: ${theme.fontWeights.bold};
+  font-weight: ${theme.fontWeights.medium};
   white-space: nowrap;
 `;
 
