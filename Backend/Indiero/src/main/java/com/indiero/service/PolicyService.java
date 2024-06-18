@@ -55,30 +55,19 @@ public class PolicyService {
     }
 
     private DetailPolicyResponse convertToPolicyDetailResponse(Policy policy) {
-        DetailPolicyResponse response = new DetailPolicyResponse();
-        response.setId(policy.getId());
-        response.setTitle(policy.getTitle());
-        response.setPeriod(determinePeriod(policy));
-        response.setTags(generateTags(policy));
-        response.setUrl(policy.getUrl());
-
-        // 상세내용
-        List<Description> description = new ArrayList<>();
-        description.add(new Description(policy.getInfo(), policy.getDetail()));
-        response.setDescription(description);
-
-        // 신청자격
-        List<Qualification> qualification = new ArrayList<>();
-        qualification.add(new Qualification(policy.getAge(), policy.getResidenceIncome(), policy.getRestriction(),
-                policy.getAdditionalInfo(), policy.getEducation(), policy.getMajor(), policy.getJobStatus()));
-        response.setQualification(qualification);
-
-        // 기타사항
-        List<OtherInfo> otherInfo = new ArrayList<>();
-        otherInfo.add(new OtherInfo(policy.getDocuments(), policy.getContacts()));
-        response.setOtherInfo(otherInfo);
-
-        return response;
+        return new DetailPolicyResponse(
+                policy.getId(),
+                policy.getTitle(),
+                determinePeriod(policy),
+                generateTags(policy),
+                policy.getUrl(),
+                List.of(new Description(policy.getInfo(), policy.getDetail())),
+                List.of(new Qualification(
+                        policy.getAge(), policy.getResidenceIncome(), policy.getRestriction(),
+                        policy.getAdditionalInfo(), policy.getEducation(), policy.getMajor(), policy.getJobStatus()
+                )),
+                List.of(new OtherInfo(policy.getDocuments(), policy.getContacts()))
+        );
     }
 
     // 정책 Response 로 변환
