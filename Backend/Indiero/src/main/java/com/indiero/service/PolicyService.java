@@ -248,21 +248,21 @@ public class PolicyService {
     // 워드클라우드 조회
     public WordCloudResponse getWordCloud() {
         List<Word> words = Arrays.asList(
-                new Word("지원금", 10),
-                new Word("자립수당", 20),
-                new Word("장학금", 30),
-                new Word("보증금", 40),
-                new Word("자립", 50),
-                new Word("보호종료", 60),
-                new Word("주택", 70),
-                new Word("취업", 80),
-                new Word("일자리", 90),
-                new Word("창업", 64),
-                new Word("자격증", 64),
-                new Word("면접", 64),
-                new Word("교육", 64),
-                new Word("대학생", 64),
-                new Word("대출", 60)
+                new Word("지원금", 339),
+                new Word("자립수당", 15),
+                new Word("장학금", 78),
+                new Word("보증금", 262),
+                new Word("자립", 1310),
+                new Word("보호종료", 210),
+                new Word("주택", 203),
+                new Word("취업", 672),
+                new Word("일자리", 234),
+                new Word("창업", 653),
+                new Word("자격증", 167),
+                new Word("면접", 246),
+                new Word("교육", 662),
+                new Word("대학생", 170),
+                new Word("대출", 248)
         );
         return new WordCloudResponse(words);
     }
