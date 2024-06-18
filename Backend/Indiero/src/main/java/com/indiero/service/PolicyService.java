@@ -1,6 +1,7 @@
 package com.indiero.service;
 
 import com.indiero.domain.Policy;
+import com.indiero.domain.Word;
 import com.indiero.dto.Description;
 import com.indiero.dto.OtherInfo;
 import com.indiero.dto.Qualification;
@@ -10,6 +11,7 @@ import com.indiero.dto.request.SearchPolicyParams;
 import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.dto.response.PolicyResponse;
+import com.indiero.dto.response.WordCloudResponse;
 import com.indiero.repository.PolicyQueryRepository;
 import com.indiero.repository.PolicyRepository;
 import com.indiero.repository.UserPolicyRepository;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -240,6 +243,28 @@ public class PolicyService {
         return policies.stream()
                 .filter(policy -> determineOpeningStatusId(policy) == openingStatusId)
                 .collect(Collectors.toList());
+    }
+
+    // 워드클라우드 조회
+    public WordCloudResponse getWordCloud() {
+        List<Word> words = Arrays.asList(
+                new Word("지원금", 10),
+                new Word("자립수당", 20),
+                new Word("장학금", 30),
+                new Word("보증금", 40),
+                new Word("자립", 50),
+                new Word("보호종료", 60),
+                new Word("주택", 70),
+                new Word("취업", 80),
+                new Word("일자리", 90),
+                new Word("창업", 64),
+                new Word("자격증", 64),
+                new Word("면접", 64),
+                new Word("교육", 64),
+                new Word("대학생", 64),
+                new Word("대출", 60)
+        );
+        return new WordCloudResponse(words);
     }
 
     // 기간 계산

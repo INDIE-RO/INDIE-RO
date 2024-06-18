@@ -4,6 +4,7 @@ import com.indiero.dto.request.AllPolicyParams;
 import com.indiero.dto.request.SearchPolicyParams;
 import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
+import com.indiero.dto.response.WordCloudResponse;
 import com.indiero.service.PolicyService;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,5 +48,11 @@ public class PolicyController {
     @GetMapping
     public ListPolicyResponse getAllPolicy(@ModelAttribute AllPolicyParams params) {
         return policyService.getAllPolicy(params);
+    }
+
+    // 워드클라우드 조회
+    @GetMapping("/wordCloud")
+    public WordCloudResponse getWordCloud() {
+        return policyService.getWordCloud();
     }
 }
