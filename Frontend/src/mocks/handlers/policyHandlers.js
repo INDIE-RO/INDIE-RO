@@ -12,9 +12,15 @@ const policyHandlers = [
     const sortBy = url.searchParams.get('sortBy');
     const searchQuery = url.searchParams.get('query');
 
-    await delay(200);
+    const hasSearchValue = policyFixture
+      .getPolicyList()
+      .policies.some(item => item.title.includes(searchQuery));
 
-    return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });
+    if (hasSearchValue) {
+      return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });
+    } else {
+      return HttpResponse.json(policyFixture.getPolicyListEmpty(), { status: 200 });
+    }
   }),
 
   /* 맞춤 정책목록 조회 */
