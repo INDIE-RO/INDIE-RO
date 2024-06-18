@@ -160,6 +160,10 @@ const Wrapper = styled.dialog<{ location: DialogLocation }>`
   }
 
   ${({ location }) => dialogLocationStyles[location ?? 'center']}
+
+  @media screen and (min-width: 768px) {
+    height: fit-content;
+  }
 `;
 
 const BoxForMobile = styled.div`
