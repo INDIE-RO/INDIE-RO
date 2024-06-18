@@ -19,6 +19,7 @@ function IntroPage() {
       <div style={{ height: '30px' }} />
       <TitleWrapper>
         <Logo />
+        <div style={{ height: '8px' }} />
         <Title>
           자립준비청년을 위한 <br />
           정책/지원사업 큐레이팅 서비스
@@ -32,6 +33,17 @@ function IntroPage() {
           <Clover1 />
           <Clover2 />
         </CloverWrapper>
+        안녕하세요, 인디:로(Indie:路)입니다! <br />
+        <br />
+        <IntroTitle>설문 시작하기</IntroTitle>
+        나에게 맞는 맞춤 정책을 확인해 보세요! <br />
+        <SubTextBox>
+          📝 설문문항 : 관심분야, 지역, 나이 <br />⏰ 소요시간: 𝟯초 <br />
+        </SubTextBox>
+        <br />
+        <IntroTitle>건너뛰기</IntroTitle>
+        인기 검색 키워드가 궁금하다면, <br />
+        인디로가 알려줄게요! <br />
       </IntroBox>
 
       <ButtonWrapper>
@@ -65,9 +77,26 @@ const Title = styled.h1`
 const IntroBox = styled.div`
   position: relative;
   width: 100%;
-  height: 30rem;
+  height: 38rem;
+  padding: 40px 20px;
   border-radius: 12px;
   background: ${theme.backgroundColors.normal};
+  font-size: ${theme.fontSizes.lg};
+  text-align: center;
+  line-height: 1.6;
+`;
+
+const IntroTitle = styled.h2`
+  color: ${theme.colors.primary};
+  font-size: ${theme.fontSizes.lg};
+  margin-bottom: 0.3rem;
+`;
+
+const SubTextBox = styled.p`
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  text-align: left;
 `;
 
 const CloverWrapper = styled.div`
