@@ -8,6 +8,7 @@ import com.indiero.dto.Qualification;
 import com.indiero.dto.Tag;
 import com.indiero.dto.request.AllPolicyParams;
 import com.indiero.dto.request.SearchPolicyParams;
+import com.indiero.dto.request.UserPolicyParams;
 import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.dto.response.PolicyResponse;
@@ -81,31 +82,31 @@ public class PolicyService {
     }
 
     // 사용자 맞춤정보 조회
-    public ListPolicyResponse getUserPolicy(Integer size, Long lastPolicyId, List<Integer> categoryIds, List<Integer> regionIds, int ageId, Integer sortBy) {
+    public ListPolicyResponse getUserPolicy(UserPolicyParams params) {
 
         // id(Integer)들을 DB에 저장된 name(String)으로 변환
-        List<String> categoryNames = metadataService.convertCategoryIdsToNames(categoryIds);
-        List<String> regionNames = metadataService.convertRegionIdsToNames(regionIds);
-        List<Policy> policies = new ArrayList<>();
-
-        long totalCount = userPolicyRepository.countUserPolicies(ageId, categoryNames, regionNames);
+        List<String> categoryNames = metadataService.convertCategoryIdsToNames(params.getCategoryIds());
+        List<String> regionNames = metadataService.convertRegionIdsToNames(params.getRegionIds());
+        List<Policy> policies = fetchUserPolicies(params.getAgeId(), categoryNames, regionNames, params.getLastPolicyId(), params.getSortBy());
+        List<PolicyResponse> policyResponses = policies.stream()
+                .map(this::convertToPolicyResponse)
+                .collect(Collectors.toList());
+        long totalCount = userPolicyRepository.countUserPolicies(params.getAgeId(), categoryNames, regionNames);
         boolean hasNext = false;
+        return new ListPolicyResponse(hasNext, totalCount, policyResponses);
+    }
 
-        // 조회순 정렬
-        if (sortBy != null && sortBy == 2) {
-            policies = userPolicyRepository.findPoliciesSortedByViews(ageId, categoryNames, regionNames, lastPolicyId);
+    private List<Policy> fetchUserPolicies(int ageId, List<String> categoryNames, List<String> regionNames,
+                                           Long lastPolicyId, Integer sortBy) {
+        if (sortBy != null && sortBy == SORT_BY_VIEWS) {
+            return userPolicyRepository.findPoliciesSortedByViews(ageId, categoryNames, regionNames, lastPolicyId);
         } else {
-            // 마감순 정렬
+            List<Policy> policies = new ArrayList<>();
             policies.addAll(userPolicyRepository.findActivePolicies(ageId, categoryNames, regionNames, lastPolicyId));
             policies.addAll(userPolicyRepository.findOngoingPolicies(ageId, categoryNames, regionNames, lastPolicyId));
             policies.addAll(userPolicyRepository.findExpiredPolicies(ageId, categoryNames, regionNames, lastPolicyId));
+            return policies;
         }
-        List<PolicyResponse> policyResponse = policies.stream()
-                .map(this::convertToPolicyResponse)
-                .collect(Collectors.toList());
-
-        return new ListPolicyResponse(hasNext, totalCount, policyResponse);
-
     }
 
     // 키워드 검색결과 조회
