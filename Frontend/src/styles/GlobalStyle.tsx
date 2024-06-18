@@ -12,30 +12,6 @@ const baseStyle = css`
     font-style: normal;
   }
 
-  @font-face {
-    font-family: 'TTLaundryGothicB';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2')
-      format('woff2');
-    font-weight: 700;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'NEXONFootballGothicBA1';
-    src: url('https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXONFootballGothicBA1.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'NeoDunggeunmoPro-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NeoDunggeunmoPro-Regular.woff2')
-      format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-
   ${fonts}
 
   * {
