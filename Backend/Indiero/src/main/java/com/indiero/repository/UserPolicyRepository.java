@@ -18,16 +18,11 @@ public interface UserPolicyRepository extends JpaRepository<Policy, Long> {
     3. 마감되었지만 마감 날짜와 오늘 날짜의 차이가 가장 작은 순
      */
 
+    String USER_FILTER_CONDITIONS =
+            "(p.ageCode LIKE %:ageId% AND p.category IN :categoryNames AND p.region IN :regionNames AND (:lastPolicyId IS NULL OR p.id < :lastPolicyId))";
+
     // 1. 진행 중인 정책
-    @Query("""
-        SELECT p FROM Policy p
-        WHERE p.ageCode LIKE %:ageId%
-        AND p.category IN :categoryNames
-        AND p.region IN :regionNames
-        AND (:lastPolicyId IS NULL OR p.id < :lastPolicyId)
-        AND p.endDate >= CURRENT_DATE
-        ORDER BY p.endDate ASC
-    """)
+    @Query("SELECT p FROM Policy p WHERE (" + USER_FILTER_CONDITIONS + ") AND p.endDate >= CURRENT_DATE ORDER BY p.endDate ASC")
     List<Policy> findActivePolicies (
             @Param("ageId") Integer ageId,
             @Param("categoryNames") List<String> categoryNames,
@@ -36,14 +31,7 @@ public interface UserPolicyRepository extends JpaRepository<Policy, Long> {
     );
 
     // 2. 상시 정책
-    @Query("""
-        SELECT p FROM Policy p
-        WHERE p.ageCode LIKE %:ageId%
-        AND p.category IN :categoryNames
-        AND p.region IN :regionNames
-        AND p.duration = '상시'
-        AND (:lastPolicyId IS NULL OR p.id < :lastPolicyId)
-    """)
+    @Query("SELECT p FROM Policy p WHERE (" + USER_FILTER_CONDITIONS + ") AND p.duration = '상시'")
     List<Policy> findOngoingPolicies (
             @Param("ageId") Integer ageId,
             @Param("categoryNames") List<String> categoryNames,
@@ -52,15 +40,7 @@ public interface UserPolicyRepository extends JpaRepository<Policy, Long> {
     );
 
     // 3. 마감된 정책
-    @Query("""
-        SELECT p FROM Policy p
-        WHERE p.ageCode LIKE %:ageId%
-        AND p.category IN :categoryNames
-        AND p.region IN :regionNames
-        AND (:lastPolicyId IS NULL OR p.id < :lastPolicyId)
-        AND p.endDate < CURRENT_DATE
-        ORDER BY p.endDate DESC
-    """)
+    @Query("SELECT p FROM Policy p WHERE (" + USER_FILTER_CONDITIONS + ") AND p.endDate < CURRENT_DATE ORDER BY p.endDate DESC")
     List<Policy> findExpiredPolicies (
             @Param("ageId") Integer ageId,
             @Param("categoryNames") List<String> categoryNames,
@@ -71,14 +51,7 @@ public interface UserPolicyRepository extends JpaRepository<Policy, Long> {
     /*
     조회순 정렬
      */
-    @Query("""
-        SELECT p FROM Policy p
-        WHERE p.ageCode LIKE %:ageId%
-        AND p.category IN :categoryNames
-        AND p.region IN :regionNames
-        AND (:lastPolicyId IS NULL OR p.id < :lastPolicyId)
-        ORDER BY p.views DESC
-    """)
+    @Query("SELECT p FROM Policy p WHERE " + USER_FILTER_CONDITIONS + " ORDER BY p.views DESC")
     List<Policy> findPoliciesSortedByViews(
             @Param("ageId") Integer ageId,
             @Param("categoryNames") List<String> categoryNames,
@@ -87,7 +60,7 @@ public interface UserPolicyRepository extends JpaRepository<Policy, Long> {
     );
 
     /*
-    totalCount 구하기 ?????
+    totalCount 구하기
      */
     @Query("""
         SELECT COUNT(p) FROM Policy p
