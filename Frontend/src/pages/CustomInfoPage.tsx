@@ -25,6 +25,6 @@ export default CustomInfoPage;
 
 const Container = styled.section`
   height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 1.6rem 2rem 2rem 2rem;
 `;

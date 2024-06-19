@@ -99,7 +99,7 @@ const NoResultContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  height: calc(100vh - 14.9rem);
+  height: calc(100vh - 16.9rem);
 `;
 
 const TextLarge = styled.p`
