@@ -146,6 +146,7 @@ const dialogLocationStyles: DialogLocationStyles = {
 
 const Wrapper = styled.dialog<{ location: DialogLocation }>`
   max-width: 100vw;
+  height: 100%;
 
   background-color: transparent;
   border-radius: 20px;
@@ -159,6 +160,10 @@ const Wrapper = styled.dialog<{ location: DialogLocation }>`
   }
 
   ${({ location }) => dialogLocationStyles[location ?? 'center']}
+
+  @media screen and (min-width: 768px) {
+    height: fit-content;
+  }
 `;
 
 const BoxForMobile = styled.div`

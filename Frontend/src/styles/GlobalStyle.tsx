@@ -17,6 +17,11 @@ const baseStyle = css`
   * {
     margin: 0;
     padding: 0;
+
+    &:has(dialog[open]) {
+      /* dialog를 포함하는 요소 선택 - dialog open 시 배경 스크롤 막기 */
+      overflow: hidden;
+    }
   }
 
   *,
@@ -76,6 +81,10 @@ const baseStyle = css`
     background-color: transparent;
     border: 0;
     cursor: pointer;
+  }
+
+  button:focus {
+    outline: none;
   }
 
   button:disabled {
