@@ -9,6 +9,7 @@ export const PATH = {
   CUSTOM_INFO: '/custom-info',
   SURVEY: '/survey',
   EXCEPTION: '/*',
+  LOADING: '/loading',
 } as const;
 
 export const API_PATH = {

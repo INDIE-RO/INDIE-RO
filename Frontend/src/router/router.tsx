@@ -6,6 +6,8 @@ import {
   CustomInfoPage,
   Homepage,
   IntroPage,
+  LoadingPage,
+  NotFoundPage,
   PolicyDetailPage,
   PolicyListPage,
   PolicySearchPage,
@@ -47,7 +49,11 @@ export const router = createBrowserRouter([
       },
       {
         path: PATH.EXCEPTION,
-        element: <div>404 NOT FOUND</div>,
+        element: <NotFoundPage />,
+      },
+      {
+        path: PATH.LOADING,
+        element: <LoadingPage />,
       },
     ],
 

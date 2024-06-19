@@ -38,7 +38,7 @@ const Container = styled.div`
   right: 2rem;
 
   @media screen and (min-width: 768px) {
-    left: 125rem;
+    left: calc(55% + 380px);
   }
 `;
 

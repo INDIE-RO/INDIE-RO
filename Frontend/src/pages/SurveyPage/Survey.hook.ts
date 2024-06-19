@@ -15,7 +15,7 @@ const useSurvey = ({ survey, setSurvey }: useSurveyProps) => {
   const handleSelectedAll = (
     e: ChangeEvent<HTMLInputElement>,
     key: keyof SurveyValue,
-    values: SurveyValue[keyof SurveyValue][],
+    values?: SurveyValue[keyof SurveyValue][],
   ) => {
     const checked = e.target.checked;
 
