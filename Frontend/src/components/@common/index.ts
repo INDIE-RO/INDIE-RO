@@ -8,6 +8,7 @@ export { default as Dropdown } from './Dropdown/Dropdown';
 export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
 export { default as BasicLayout } from './Layout/BasicLayout';
 export { default as DesktopLayout } from './Layout/DesktopLayout';
+export { default as Loading } from './Loading/Loading';
 export { default as MobileLayout } from './Layout/MobileLayout';
 export { default as NavigableHeader } from './NavigableHeader/NavigableHeader';
 export { default as NavigationBar } from './NavigationBar/NavigationBar';
