@@ -18,7 +18,7 @@ function SurveyCategoryPage({ survey, setSurvey, onNext }: SurveyCategoryPagePro
   const { categoryMeta } = useSurveyCategoryMetaQuery();
   const { handleSelectedAll, handleChangeCategory } = useSurvey({ survey, setSurvey });
 
-  const categoryMetaValue = categoryMeta.map(category => category.name);
+  const categoryMetaValue = categoryMeta?.map(category => category.name);
 
   return (
     <>
@@ -36,7 +36,7 @@ function SurveyCategoryPage({ survey, setSurvey, onNext }: SurveyCategoryPagePro
         <ChipInputWrapper>
           <ChipInput
             type='checkbox'
-            checked={survey.category.length === categoryMetaValue.length}
+            checked={survey.category.length === categoryMetaValue?.length}
             variant='rounded'
             size='lg'
             width='100%'
@@ -44,7 +44,7 @@ function SurveyCategoryPage({ survey, setSurvey, onNext }: SurveyCategoryPagePro
           >
             전체 선택
           </ChipInput>
-          {categoryMeta.map(category => (
+          {categoryMeta?.map(category => (
             <ChipInput
               key={category.id}
               type='checkbox'

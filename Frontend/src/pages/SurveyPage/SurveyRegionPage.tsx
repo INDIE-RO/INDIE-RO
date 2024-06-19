@@ -22,7 +22,7 @@ function SurveyRegionPage({ survey, setSurvey, onNext }: SurveyRegionPageProps) 
   const { regionMeta } = useSurveyRegionMetaQuery();
   const { handleSelectedAll, handleChangeRegion } = useSurvey({ survey, setSurvey });
 
-  const regionMetaValue = regionMeta.map(region => region.name);
+  const regionMetaValue = regionMeta?.map(region => region.name);
 
   return (
     <>
@@ -41,14 +41,14 @@ function SurveyRegionPage({ survey, setSurvey, onNext }: SurveyRegionPageProps) 
         <ChipInputWrapper>
           <ChipInput
             type='checkbox'
-            checked={survey.region.length === regionMetaValue.length}
+            checked={survey.region.length === regionMetaValue?.length}
             width={width}
             border-radius='8px'
             onChange={e => handleSelectedAll(e, SURVEY_KEY.REGION, regionMetaValue)}
           >
             전체
           </ChipInput>
-          {regionMeta.map(region => (
+          {regionMeta?.map(region => (
             <ChipInput
               key={region.id}
               type='checkbox'

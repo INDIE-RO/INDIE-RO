@@ -19,18 +19,15 @@ function SurveyAgePage({ survey, setSurvey }: SurveyAgePageProps) {
   const { ageMeta } = useSurveyAgeMetaQuery();
   const { handleChangeAge } = useSurvey({ survey, setSurvey });
 
-  const { confirm } = useConfirm();
-
   const { navigate } = useEasyNavigate();
 
-  const handleCompleteStep = async () => {
-    const confirmed = await confirm({ message: '설문을 완료합니다' });
+  const handleCompleteStep = () => {
+    indieroLocalStorage.setSurvey(survey);
+    navigate(PATH.LOADING);
 
-    if (confirmed) {
-      indieroLocalStorage.setSurvey(survey);
+    setTimeout(() => {
       navigate(PATH.CUSTOM_INFO);
-      return;
-    }
+    }, 2000);
   };
 
   return (
@@ -44,7 +41,7 @@ function SurveyAgePage({ survey, setSurvey }: SurveyAgePageProps) {
         <p>연령대에 맞는 정보들을 추천해드려요</p>
         <div style={{ height: '60px' }} />
         <ChipInputWrapper>
-          {ageMeta.map(age => (
+          {ageMeta?.map(age => (
             <ChipInput
               key={age.id}
               type='checkbox'
