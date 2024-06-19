@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
-import { theme } from '@fun-eat/design-system';
 
 import NotFound from '@/assets/NotFound.svg?url';
 import { PATH } from '@/constants/path';
+import theme from '@/styles/theme';
 
 function NotFoundPage() {
   return (
@@ -43,7 +43,7 @@ const LinkWrapper = styled.div`
   width: 124px;
   height: 36px;
   padding: 22px 80px;
-  border: 1px solid ${theme.colors.primary};
+  border: 1px solid ${theme.colors.white};
   border-radius: 20px;
   white-space: nowrap;
 `;
