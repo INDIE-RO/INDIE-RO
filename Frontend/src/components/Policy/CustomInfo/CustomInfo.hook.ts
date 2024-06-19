@@ -27,14 +27,14 @@ export const useCustomInfo = () => {
       const { category, region, age } = surveyResult;
 
       const categoryIds = categoryMeta
-        .filter(metaData => category.includes(metaData.name))
-        .map(metaData => String(metaData.id));
+        ?.filter(metaData => category.includes(metaData.name))
+        ?.map(metaData => String(metaData.id));
 
       const regionIds = regionMeta
-        .filter(metaData => region.includes(metaData.name))
+        ?.filter(metaData => region.includes(metaData.name))
         .map(metaData => String(metaData.id));
 
-      const ageId = String(ageMeta.find(metaData => age === metaData.name)?.id);
+      const ageId = String(ageMeta?.find(metaData => age === metaData.name)?.id);
 
       return {
         categoryIds,
