@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { BasicLayout, ScrollButton } from '@/components/@common';
 import { CustomInfo, PolicyList } from '@/components/Policy';
+import theme from '@/styles/theme';
 
 function CustomInfoPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -23,8 +24,9 @@ function CustomInfoPage() {
 
 export default CustomInfoPage;
 
-const Container = styled.section`
-  height: 100vh;
+const Container = styled.div`
+  height: calc(100vh - 6rem);
   overflow-y: auto;
-  padding: 1.6rem 2rem 2rem 2rem;
+  padding: 1.6rem 2rem 9rem 2rem;
+  background: ${theme.backgroundColors.deep};
 `;

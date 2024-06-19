@@ -109,13 +109,17 @@ const CloverWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   width: calc(100% - 40px);
   gap: 1.6rem;
+
+  @media screen and (min-width: 768px) {
+    max-width: 390px;
+  }
 `;
 
 const StyledChipButton = styled(ChipButton)`
