@@ -9,6 +9,7 @@ import {
 } from '@/components/@common';
 
 import { PATH } from './constants/path';
+import { LoadingPage } from './pages';
 import { indieroLocalStorage } from './utils/localStorage';
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <DesktopLayout>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<LoadingPage />}>
             <MobileLayout>
               <Outlet />
             </MobileLayout>
