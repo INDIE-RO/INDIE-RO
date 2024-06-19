@@ -40,7 +40,7 @@ function CustomInfo() {
         <NoResultContainer>
           <TextLarge>관심 정보를 설정하지 않았어요</TextLarge>
           <TextSmall>설문조사하고 맞춤 정보를 받아보세요!</TextSmall>
-          <NoResultImg src={NoResult} alt='' />
+          <NoResultImg src={NoResult} width={30} height={30} alt='' />
           <ButtonWrapper>
             <ChipButton width='100%' onClick={goSurveyPage}>
               설문조사 하러가기
@@ -92,17 +92,15 @@ const CloverImg = styled.img`
 `;
 
 const NoResultContainer = styled.div`
-  position: relative;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  height: calc(100vh - 16.9rem);
+  height: calc(100vh - 25rem);
 `;
 
-const TextLarge = styled.p`
+const TextLarge = styled.h1`
   margin-bottom: 1.2rem;
 
   font-size: ${theme.fontSizes.xl};
@@ -122,12 +120,15 @@ const TextSmall = styled.p`
 const NoResultImg = styled.img`
   width: 30rem;
   height: 30rem;
-
-  margin-bottom: 13.6rem;
 `;
 
 const ButtonWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
+  position: fixed;
+  bottom: 90px;
   width: 100%;
+  padding: 0 20px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 430px;
+  }
 `;

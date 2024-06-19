@@ -83,7 +83,11 @@ const ChipInputWrapper = styled.div`
 `;
 
 const ButtonWrapper = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 16px;
   width: calc(100% - 40px);
+
+  @media screen and (min-width: 768px) {
+    max-width: 390px;
+  }
 `;
