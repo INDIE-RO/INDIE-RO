@@ -105,6 +105,7 @@ const SurveyLinkWrapper = styled.div`
   gap: 0.8rem;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 `;
 
 const LinkName = styled.span<{ isActive: boolean }>`
