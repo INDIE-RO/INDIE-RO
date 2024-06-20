@@ -5,6 +5,9 @@ on:
     branches:
       - develop
       - main
+    paths:
+      - 'Frontend/**'
+      - .github/**
 
 jobs:
   build-and-deploy:
@@ -37,7 +40,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
 
