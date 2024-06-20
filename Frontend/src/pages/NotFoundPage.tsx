@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import NotFound from '@/assets/NotFound.svg?url';
+import NotFound from '@/assets/NotFound.svg';
 import { PATH } from '@/constants/path';
 import theme from '@/styles/theme';
 
