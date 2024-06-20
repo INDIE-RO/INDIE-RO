@@ -61,7 +61,7 @@ jobs:
       - name: S3에 배포
         run: aws s3 sync ./dist s3://indiero-bucket --delete
 
-      - name: Cloudfront invalidation
+      - name: Cloudfront 무효화
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} \
