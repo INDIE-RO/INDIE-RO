@@ -33,6 +33,9 @@ public class PolicyController {
     // 키워드 검색결과 조회
     @GetMapping("/search")
     public ListPolicyResponse searchPolicy(@ModelAttribute SearchPolicyParams params) {
+        if (params.getQuery() != null && !params.getQuery().isEmpty()) {
+            policyService.saveOrUpdateKeyword(params.getQuery());
+        }
         return policyService.searchPolicy(params);
     }
 
