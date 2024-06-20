@@ -48,6 +48,9 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --no-frozen-lockfile
 
+      - name: .env 파일 생성
+        run: echo "BASE_URL=$BASE_URL" >> .env
+
       - name: 클라이언트 빌드
         run: pnpm build
 
