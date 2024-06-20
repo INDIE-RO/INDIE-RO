@@ -43,7 +43,7 @@ jobs:
 
       - name: 의존성 설치
         if: steps.cache.outputs.cache-hit != 'true'
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: 클라이언트 빌드
         run: pnpm build
