@@ -59,7 +59,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: S3에 배포
-        run: aws s3 sync ./dist s3://indiero-bucket —-delete
+        run: aws s3 sync ./dist s3://indiero-bucket --delete
 
       - name: Cloudfront invalidation
         run: |
