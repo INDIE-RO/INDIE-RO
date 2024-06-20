@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
 
-import { BasicLayout, ChipButton, SearchBar, WordCloud } from '@/components/@common';
+import { BasicLayout, ChipButton, SearchBarContainer, WordCloud } from '@/components/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import theme from '@/styles/theme';
 
 const HASH_TAGS = ['자립준비청년', '지원금', '취업'] as const;
 
 function Homepage() {
-  const { search, changeSearchQuery } = usePolicySearch();
+  const { search } = usePolicySearch();
 
   return (
     <Section>
       <BasicLayout>
         <div style={{ height: '20px' }} />
         <Wrapper>
-          <SearchBar updateQuery={changeSearchQuery} onClickSearch={search} />
+          <SearchBarContainer />
           <div style={{ height: '16px' }} />
           <TagContainer>
             {HASH_TAGS.map(tag => (
