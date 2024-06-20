@@ -1,5 +1,6 @@
 package com.indiero.service;
 
+import com.indiero.domain.KeywordCount;
 import com.indiero.domain.Policy;
 import com.indiero.domain.Word;
 import com.indiero.dto.Description;
@@ -13,10 +14,12 @@ import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.dto.response.PolicyResponse;
 import com.indiero.dto.response.WordCloudResponse;
+import com.indiero.repository.KeywordRepository;
 import com.indiero.repository.PolicyQueryRepository;
 import com.indiero.repository.PolicyRepository;
 import com.indiero.repository.UserPolicyRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -31,6 +34,7 @@ public class PolicyService {
     private final UserPolicyRepository userPolicyRepository;
     private final MetadataService metadataService;
     private final PolicyQueryRepository policyQueryRepository;
+    private final KeywordRepository keywordRepository;
 
     private static final int SORT_BY_VIEWS = 2;
     private static final int ALWAYS_OPEN = 1;
@@ -38,11 +42,12 @@ public class PolicyService {
     private static final int RECRUITING_SOON = 3;
     private static final int CLOSED = 4;
 
-    public PolicyService(PolicyRepository policyRepository, UserPolicyRepository userPolicyRepository, MetadataService metadataService, PolicyQueryRepository policyQueryRepository) {
+    public PolicyService(PolicyRepository policyRepository, UserPolicyRepository userPolicyRepository, MetadataService metadataService, PolicyQueryRepository policyQueryRepository, KeywordRepository keywordRepository) {
         this.policyRepository = policyRepository;
         this.userPolicyRepository = userPolicyRepository;
         this.metadataService = metadataService;
         this.policyQueryRepository = policyQueryRepository;
+        this.keywordRepository = keywordRepository;
     }
 
     // 정책 상세 조회 기능
@@ -128,6 +133,18 @@ public class PolicyService {
             return "";
         }
         return query.trim().split("\\s+")[0];
+    }
+
+    @Transactional
+    public void saveOrUpdateKeyword(String query) {
+        String keyword = preprocessQuery(query);
+        if (!keyword.isEmpty()) {
+            KeywordCount keywordCount = keywordRepository.findById(keyword)
+                    .orElse(new KeywordCount());
+            keywordCount.setKeyword(keyword);
+            keywordCount.setCount(keywordCount.getCount() + 1);
+            keywordRepository.save(keywordCount);
+        }
     }
 
     // 자립준비청년 특화 검색 키워드인지 확인하기
