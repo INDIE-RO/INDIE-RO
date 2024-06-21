@@ -52,7 +52,7 @@ jobs:
         run: pnpm exec tsc -p ./tests/tsconfig.json --noEmit
 
       - name: Run Playwright tests
-        run: pnpx playwright test
+        run: pnpm exec playwright test
 
       - name: Store Artifacts from Failed Tests
         uses: actions/upload-artifact@v4
