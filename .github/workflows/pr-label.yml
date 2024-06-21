@@ -1,4 +1,4 @@
-name: 'Pull Request Labeler'
+name: 'PR Labeler'
 on:
   pull_request_target: # PR이 open(reopen) 되거나 새로운 commit push된 경우
     types: [opened, reopened, synchronize]
