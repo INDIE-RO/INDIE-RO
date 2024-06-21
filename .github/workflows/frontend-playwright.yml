@@ -34,7 +34,8 @@ jobs:
 
       - name: Get installed Playwright version
         id: playwright-version
-        run: echo "PLAYWRIGHT_VERSION=$(node -e "console.log(require('./pnpm-lock.yaml').dependencies['@playwright/test'].version)")" >> $GITHUB_ENV
+        run: |
+          echo "PLAYWRIGHT_VERSION=$(pnpm list -r -s --depth 0 | grep '@playwright/test' | cut -d@ -f2)" >> $GITHUB_ENV
 
       - name: Cache node_modules
         id: cache-node-modules
