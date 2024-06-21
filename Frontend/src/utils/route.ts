@@ -40,7 +40,7 @@ export const replaceQueryString = (newQueryString: string, exclude?: string[]) =
   const baseParams = new URLSearchParams(location.search);
   const newParams = new URLSearchParams(newQueryString);
 
-  new URLSearchParams(baseParams).forEach((value, key) => {
+  new URLSearchParams(baseParams).forEach((_, key) => {
     if (exclude?.includes(key)) return;
 
     baseParams.delete(key);
