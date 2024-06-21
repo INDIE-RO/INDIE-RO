@@ -9,6 +9,7 @@ test-results
 junit.xml
 *storybook.log
 /test-results/
+/tests-out/
 /playwright-report/
 /blob-report/
 /playwright/.cache/

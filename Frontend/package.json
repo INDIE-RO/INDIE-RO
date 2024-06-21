@@ -7,9 +7,10 @@
     "build": "webpack --mode=production",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "test": "npx playwright test --reporter=list",
-    "test:ui": "npx playwright test --ui",
-    "test:report": "npx playwright show-report"
+    "test": "playwright test --reporter=list",
+    "test:headed": "playwright test --headed --reporter=list",
+    "test:ui": "playwright test --ui",
+    "test:ui-report": "playwright show-report"
   },
   "keywords": [],
   "author": "",
