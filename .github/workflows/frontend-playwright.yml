@@ -35,7 +35,9 @@ jobs:
       - name: Get installed Playwright version
         id: playwright-version
         run: |
-          echo "PLAYWRIGHT_VERSION=$(pnpm list -r -s --depth 0 | grep '@playwright/test' | cut -d@ -f2)" >> $GITHUB_ENV
+          PLAYWRIGHT_VERSION=$(pnpm list -r -s --depth 0 | grep @playwright/test | cut -d@ -f2)
+          echo "Playwright's Version": $PLAYWRIGHT_VERSION"
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
 
       - name: Cache node_modules
         id: cache-node-modules
@@ -46,7 +48,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Cache playwright binaries
+      - name: Cache Playwright Browsers for Playwright's Version
         id: cache-playwright
         uses: actions/cache@v3
         with:
