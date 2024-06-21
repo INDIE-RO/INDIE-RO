@@ -49,7 +49,7 @@ jobs:
         run: pnpx playwright install --with-deps
 
       - name: Run type checks
-        run: pnpx tsc -p ./tests/tsconfig.json --noEmit
+        run: pnpm exec tsc -p ./tests/tsconfig.json --noEmit
 
       - name: Run Playwright tests
         run: pnpx playwright test
