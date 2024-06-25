@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga4';
+
 import { AdorableWordCloud, CloudWord, Options } from 'adorable-word-cloud';
 
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
@@ -16,6 +18,12 @@ function WordCloud() {
   const { search } = usePolicySearch();
 
   const onWordClick = (word: CloudWord) => {
+    ReactGA.event({
+      category: '버튼',
+      action: '워드클라우드 키워드 클릭',
+      label: 'word-cloud',
+    });
+
     search(word.text);
   };
 
