@@ -19,6 +19,6 @@ export const ERROR_MESSAGE: Record<keyof typeof ERROR_STATUS, string> = {
     '로컬 스토리지에 아이템을 저장할 수 없습니다. 로컬 스토리지를 활성화하거나 용량을 확인해주세요.',
   CLIENT_ERROR: `유효하지 않은 요청입니다.\n${RETRY_MESSAGE}`,
   NOT_FOUND_ERROR: '요청하신 페이지를 찾을 수 없습니다.',
-  SERVER_ERROR: `서버에 문제가 생겼습니다.\n만약 동일한 문제가 반복될 경우 indie_ro@gmail.com으로 연락바랍니다.`,
+  SERVER_ERROR: `서버에 문제가 생겼습니다.\n만약 동일한 문제가 반복될 경우 indiero2024@gmail.com으로 연락바랍니다.`,
   NETWORK_ERROR: '네트워크 오프라인이 감지되었습니다',
 } as const;
