@@ -21,8 +21,8 @@ importers:
         specifier: ^5.40.0
         version: 5.45.1(@tanstack/react-query@5.45.1(react@18.3.1))(react@18.3.1)
       adorable-word-cloud:
-        specifier: ^0.0.9
-        version: 0.0.9
+        specifier: ^0.1.1
+        version: 0.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -51,6 +51,9 @@ importers:
       '@emotion/babel-plugin':
         specifier: ^11.11.0
         version: 11.11.0
+      '@playwright/test':
+        specifier: ^1.44.1
+        version: 1.44.1
       '@storybook/addon-essentials':
         specifier: ^8.1.4
         version: 8.1.9(@types/react-dom@18.3.0)(@types/react@18.3.3)(prettier@2.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1142,6 +1145,11 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
+  '@playwright/test@1.44.1':
+    resolution: {integrity: sha512-1hZ4TNvD5z9VuhNJ/walIjvMVvYkZKf71axoF/uiAqpntQJXpG64dlXhoDXE3OczPuTuvjf/M5KWFg5VAVUS3Q==}
+    engines: {node: '>=16'}
+    hasBin: true
+
   '@radix-ui/primitive@1.0.1':
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
 
@@ -2054,8 +2062,11 @@ packages:
     resolution: {integrity: sha512-4B/qKCfeE/ODUaAUpSwfzazo5x29WD4r3vXiWsB7I2mSDAihwEqKO+g8GELZUQSSAo5e1XTYh3ZVfLyxBc12nA==}
     engines: {node: '>= 10.0.0'}
 
-  adorable-word-cloud@0.0.9:
-    resolution: {integrity: sha512-mbTIm+gGfuADbOZrZZJ4riN4EzBhFMvtmFg3PIRktW3wKYl3iRJRCltB4ZBUfU755yC+f8IyZ7lE//+mKCnRTA==}
+  adorable-word-cloud@0.1.1:
+    resolution: {integrity: sha512-0MvDvQIZFhPjaRu9KF3J8amvc48Ce7f1KUaKXL0/Dp0iQrCM3TZGBNkjKc7yNsyiy8TeHYO5EeaGaxNV8IANCw==}
+    peerDependencies:
+      react: '>=16.13.0'
+      react-dom: '>=16.13.0'
 
   ajv-formats@2.1.1:
     resolution: {integrity: sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==}
@@ -3151,6 +3162,11 @@ packages:
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
+
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
@@ -3423,8 +3439,9 @@ packages:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
 
-  internmap@1.0.1:
-    resolution: {integrity: sha512-lDB5YccMydFBtasVtxnZ3MRBHuaoE8GKsppq+EchKL2U4nK/DmEpPHNH8MZe5HkMtpSiTSOZwfN0tzYjO/lJEw==}
+  internmap@2.0.3:
+    resolution: {integrity: sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==}
+    engines: {node: '>=12'}
 
   interpret@3.1.1:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
@@ -4184,6 +4201,16 @@ packages:
   pkg-dir@7.0.0:
     resolution: {integrity: sha512-Ie9z/WINcxxLp27BKOCHGde4ITq9UklYKDzVo1nhk5sqGEXU3FpkwP5GM2voTGJkGd9B3Otl+Q4uwSOeSUtOBA==}
     engines: {node: '>=14.16'}
+
+  playwright-core@1.44.1:
+    resolution: {integrity: sha512-wh0JWtYTrhv1+OSsLPgFzGzt67Y7BE/ZS3jEqgGBlp2ppp1ZDj8c+9IARNW4dwf1poq5MgHreEM2KV/GuR4cFA==}
+    engines: {node: '>=16'}
+    hasBin: true
+
+  playwright@1.44.1:
+    resolution: {integrity: sha512-qr/0UJ5CFAtloI3avF95Y0L1xQo6r3LQArLIg/z/PoGJ6xa+EwzrwO5lpNr/09STxdHuUoP2mvuELJS+hLdtgg==}
+    engines: {node: '>=16'}
+    hasBin: true
 
   polished@4.3.1:
     resolution: {integrity: sha512-OBatVyC/N7SCW/FaDHrSd+vn0o5cS855TOmYi4OkdWUMSJCET/xip//ch8xGUvtr3i44X9LVyWwQlRMTN3pwSA==}
@@ -6488,6 +6515,10 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
+  '@playwright/test@1.44.1':
+    dependencies:
+      playwright: 1.44.1
+
   '@radix-ui/primitive@1.0.1':
     dependencies:
       '@babel/runtime': 7.24.7
@@ -7941,7 +7972,7 @@ snapshots:
 
   address@1.2.2: {}
 
-  adorable-word-cloud@0.0.9:
+  adorable-word-cloud@0.1.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       d3: 7.9.0
       d3-cloud: 1.2.7
@@ -8450,7 +8481,21 @@ snapshots:
 
   d3-array@3.2.4:
     dependencies:
-      internmap: 1.0.1
+      internmap: 2.0.3
+
+  d3-axis@3.0.0: {}
+
+  d3-brush@3.0.0:
+    dependencies:
+      d3-dispatch: 3.0.1
+      d3-drag: 3.0.0
+      d3-interpolate: 3.0.1
+      d3-selection: 3.0.0
+      d3-transition: 3.0.1(d3-selection@3.0.0)
+
+  d3-chord@3.0.1:
+    dependencies:
+      d3-path: 3.1.0
 
   d3-axis@3.0.0: {}
 
@@ -9153,6 +9198,9 @@ snapshots:
 
   fs.realpath@1.0.0: {}
 
+  fsevents@2.3.2:
+    optional: true
+
   fsevents@2.3.3:
     optional: true
 
@@ -9433,7 +9481,7 @@ snapshots:
       hasown: 2.0.2
       side-channel: 1.0.6
 
-  internmap@1.0.1: {}
+  internmap@2.0.3: {}
 
   interpret@3.1.1: {}
 
@@ -10118,6 +10166,14 @@ snapshots:
   pkg-dir@7.0.0:
     dependencies:
       find-up: 6.3.0
+
+  playwright-core@1.44.1: {}
+
+  playwright@1.44.1:
+    dependencies:
+      playwright-core: 1.44.1
+    optionalDependencies:
+      fsevents: 2.3.2
 
   polished@4.3.1:
     dependencies:

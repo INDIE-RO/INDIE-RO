@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 import { ChipButton, ChipInput, DialogConfirm, ProgressBar } from '@/components/@common';
 import { PATH } from '@/constants/path';
-import { useConfirm, useEasyNavigate } from '@/hooks/@common';
+import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { indieroLocalStorage } from '@/utils/localStorage';
 
