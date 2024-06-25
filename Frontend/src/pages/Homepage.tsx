@@ -1,3 +1,5 @@
+import ReactGA from 'react-ga4';
+
 import styled from '@emotion/styled';
 
 import { BasicLayout, ChipButton, SearchBarContainer, WordCloud } from '@/components/@common';
@@ -8,6 +10,16 @@ const HASH_TAGS = ['자립준비청년', '지원금', '취업'] as const;
 
 function Homepage() {
   const { search } = usePolicySearch();
+
+  const handleTagClick = (tag: string) => {
+    ReactGA.event({
+      category: '버튼',
+      action: '핵심 키워드 클릭',
+      label: 'tag-keyword',
+    });
+
+    search(tag);
+  };
 
   return (
     <Section>
@@ -26,7 +38,7 @@ function Homepage() {
                   color={theme.colors.primary}
                   fontSize={theme.fontSizes.sm}
                   fontWeight={theme.fontWeights.semiBold}
-                  onClick={() => search(tag)}
+                  onClick={() => handleTagClick(tag)}
                 >
                   {`# ${tag}`}
                 </ChipButton>

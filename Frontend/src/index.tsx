@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import ReactGA from 'react-ga4';
 import { RouterProvider } from 'react-router-dom';
 
 import { ThemeProvider } from '@emotion/react';
@@ -11,6 +12,8 @@ import { router } from '@/router/router';
 import { SvgSprite } from './components/@common';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
+
+ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID);
 
 const enableMocking = async () => {
   // if (process.env.NODE_ENV !== 'development') {

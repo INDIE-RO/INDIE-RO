@@ -1,4 +1,5 @@
 import { useLayoutEffect } from 'react';
+import ReactGA from 'react-ga4';
 
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
@@ -46,7 +47,16 @@ export const useCustomInfo = () => {
     return {};
   };
 
-  const goSurveyPage = () => navigate(PATH.SURVEY);
+  const goSurveyPage = () => {
+    ReactGA.event({
+      category: '버튼',
+      action: '설문조사 페이지로 이동',
+      label: 'survey',
+    });
+
+    navigate(PATH.SURVEY);
+  };
+
   const navigateCustomInfo = () => {
     updateQueryParams(generateQueryString(getCustomInfoQueryParams()), { path: PATH.CUSTOM_INFO });
   };
