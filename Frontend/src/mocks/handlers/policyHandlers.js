@@ -1,13 +1,13 @@
 import { HttpResponse, delay, http } from 'msw';
 
-import { API_PATH } from '@/constants/path';
+import { API_PATH, BASE_URL } from '@/constants/path';
 import policyFixture from '@/mocks/fixtures/policy';
 
 import policyDetail from '../data/policyDetail.json';
 
 const policyHandlers = [
   /* 정책 검색 결과 조회 */
-  http.get('/api' + API_PATH.POLICY_SEARCH, async ({ request }) => {
+  http.get(BASE_URL + '/api' + API_PATH.POLICY_SEARCH, async ({ request }) => {
     const url = new URL(request.url);
     const sortBy = url.searchParams.get('sortBy');
     const searchQuery = url.searchParams.get('query');
@@ -24,7 +24,7 @@ const policyHandlers = [
   }),
 
   /* 맞춤 정책목록 조회 */
-  http.get('/api' + API_PATH.CUSTOM_INFO, async ({ request }) => {
+  http.get(BASE_URL + '/api' + API_PATH.CUSTOM_INFO, async ({ request }) => {
     const url = new URL(request.url);
     const regionIds = url.searchParams.get('regionIds');
     const categoryIds = url.searchParams.get('categoryIds');
@@ -40,7 +40,7 @@ const policyHandlers = [
   }),
 
   /* 정책목록 조회 */
-  http.get('/api' + API_PATH.POLICY_LIST, async ({ request }) => {
+  http.get(BASE_URL + '/api' + API_PATH.POLICY_LIST, async ({ request }) => {
     const url = new URL(request.url);
     const regionIds = url.searchParams.get('regionIds');
     const categoryId = url.searchParams.get('categoryId');
@@ -55,7 +55,7 @@ const policyHandlers = [
     return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });
   }),
 
-  http.get('/api' + API_PATH.POLICY_DETAIL, async ({ request }) => {
+  http.get(BASE_URL + '/api' + API_PATH.POLICY_DETAIL, async ({ request }) => {
     // 나중에 id로 정책 상세 정보를 가져올 때를 대비해 작성
     const url = new URL(request.url);
     const policyId = url.pathname.split('/').pop();
