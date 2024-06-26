@@ -63,7 +63,7 @@ export const useCustomInfo = () => {
 
   useLayoutEffect(() => {
     navigateCustomInfo();
-  }, []);
+  }, [surveyResult?.age, surveyResult?.category.join(), surveyResult?.region.join()]);
 
   return { surveyResult, goSurveyPage };
 };
