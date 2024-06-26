@@ -35,7 +35,7 @@ export const useCustomInfo = () => {
         ?.filter(metaData => region.includes(metaData.name))
         .map(metaData => String(metaData.id));
 
-      const ageId = String(ageMeta?.find(metaData => age === metaData.name)?.id);
+      const ageId = String(ageMeta?.find(metaData => age === metaData.name)?.id ?? 1);
 
       return {
         categoryIds,

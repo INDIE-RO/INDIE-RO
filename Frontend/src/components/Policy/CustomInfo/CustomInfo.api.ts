@@ -14,7 +14,7 @@ export interface GetCustomPoliciesRequest
     Record<CustomKeywordForFilter | CustomKeywordForPaging | CustomKeywordForSort, string>
   > {}
 
-export const CUSTOM_KEYWORD_FOR_FILTER = ['categoryIds', 'ageId', 'regionIds'] as const;
+export const CUSTOM_KEYWORD_FOR_FILTER = ['ageId', 'categoryIds', 'regionIds'] as const;
 export const CUSTOM_KEYWORD_FOR_PAGING = ['size', 'lastPolicyId'] as const;
 export const CUSTOM_KEYWORD_FOR_SORT = ['sortBy'] as const;
 export const CUSTOM_KEYWORD_FOR_ALL = [
