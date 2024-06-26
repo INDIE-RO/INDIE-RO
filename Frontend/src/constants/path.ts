@@ -1,5 +1,7 @@
 import { NavigationMenu } from '@/types/common';
 
+export const BASE_URL = process.env.BASE_URL;
+
 export const PATH = {
   INTRO: '/',
   HOME: '/home',
