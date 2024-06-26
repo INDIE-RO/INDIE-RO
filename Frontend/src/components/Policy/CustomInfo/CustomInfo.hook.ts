@@ -35,7 +35,7 @@ export const useCustomInfo = () => {
         ?.filter(metaData => region.includes(metaData.name))
         .map(metaData => String(metaData.id));
 
-      const ageId = String(ageMeta?.find(metaData => age === metaData.name)?.id);
+      const ageId = String(ageMeta?.find(metaData => age === metaData.name)?.id ?? 1);
 
       return {
         categoryIds,
@@ -63,7 +63,7 @@ export const useCustomInfo = () => {
 
   useLayoutEffect(() => {
     navigateCustomInfo();
-  }, []);
+  }, [surveyResult?.age, surveyResult?.category.join(), surveyResult?.region.join()]);
 
   return { surveyResult, goSurveyPage };
 };

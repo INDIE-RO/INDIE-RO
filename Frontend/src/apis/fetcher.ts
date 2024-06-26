@@ -1,6 +1,6 @@
 import { ERROR_MESSAGE } from '@/constants/error';
+import { BASE_URL } from '@/constants/path';
 
-const BASE_URL = process.env.BASE_URL;
 const INDIERO_END_POINT = BASE_URL + '/api';
 
 const fetcher = (endpoint: string) => {

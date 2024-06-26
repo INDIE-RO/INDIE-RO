@@ -19,7 +19,7 @@ function CustomInfo() {
   const { changeSortBy } = usePolicySort();
 
   const queryParams = useValidQueryParams<CustomKeywordForAll>(CUSTOM_KEYWORD_FOR_ALL);
-  const { policies } = useCustomPoliciesQuery(queryParams);
+  const { policies = [] } = useCustomPoliciesQuery(queryParams);
 
   return (
     <>
