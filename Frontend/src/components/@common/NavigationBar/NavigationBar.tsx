@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import styled from '@emotion/styled';
 
 import { DialogConfirm, SvgIcon } from '@/components/@common';
+import { useCustomInfo } from '@/components/Policy/CustomInfo/CustomInfo.hook';
 import { NAVIGATION_MENU, PATH } from '@/constants/path';
 import { useConfirm } from '@/hooks/@common';
 import theme from '@/styles/theme';
@@ -11,6 +12,7 @@ import theme from '@/styles/theme';
 function NavigationBar() {
   const { confirm } = useConfirm();
   const navigate = useNavigate();
+  const { getCustomInfoQueryString } = useCustomInfo();
 
   const [isActive, setIsActive] = useState(false);
 
@@ -44,7 +46,7 @@ function NavigationBar() {
                 </SurveyLinkWrapper>
               </DialogConfirm>
             ) : (
-              <Link to={path}>
+              <Link to={variant === 'user' ? path + getCustomInfoQueryString() : path}>
                 {({ isActive }) => (
                   <>
                     <SvgIcon
