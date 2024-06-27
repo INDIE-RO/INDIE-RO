@@ -9,7 +9,7 @@ import {
   useSurveyRegionMetaQuery,
 } from '@/pages/SurveyPage/Survey.query';
 import { indieroLocalStorage } from '@/utils/localStorage';
-import { generateQueryString } from '@/utils/route';
+import { generateQueryString, replaceQueryString } from '@/utils/route';
 
 export const useCustomInfo = () => {
   const { ageMeta } = useSurveyAgeMetaQuery();
@@ -57,13 +57,18 @@ export const useCustomInfo = () => {
     navigate(PATH.SURVEY);
   };
 
+  const getCustomInfoQueryString = () => {
+    const exclude = ['sortBy'];
+    return replaceQueryString(generateQueryString(getCustomInfoQueryParams()), exclude);
+  };
+
   const navigateCustomInfo = () => {
-    updateQueryParams(generateQueryString(getCustomInfoQueryParams()), { path: PATH.CUSTOM_INFO });
+    updateQueryParams(getCustomInfoQueryString());
   };
 
   useLayoutEffect(() => {
-    navigateCustomInfo();
+    if (location.pathname === PATH.CUSTOM_INFO) navigateCustomInfo();
   }, [surveyResult?.age, surveyResult?.category.join(), surveyResult?.region.join()]);
 
-  return { surveyResult, goSurveyPage };
+  return { surveyResult, goSurveyPage, getCustomInfoQueryString };
 };
