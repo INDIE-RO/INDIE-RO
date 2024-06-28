@@ -30,7 +30,7 @@ function CustomInfo() {
             <CustomInfoDisplay>
               {`${surveyResult?.age} •
           ${surveyResult?.category.join(', ')} •
-          ${surveyResult?.region.length >= 1 ? '지역전체' : surveyResult?.region}`}
+          ${surveyResult?.region.length > 1 ? '지역전체' : surveyResult?.region}`}
             </CustomInfoDisplay>
             <Dropdown metaData={sortMeta} onClickOption={changeSortBy} />
           </FlexBox>
