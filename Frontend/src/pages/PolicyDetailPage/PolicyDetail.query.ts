@@ -8,7 +8,7 @@ export const POLICY_DETAIL_KEY = {
 
 export const usePolicyDetailQuery = (policyId: number) => {
   const { data, ...restQuery } = useSuspenseQuery({
-    queryKey: [POLICY_DETAIL_KEY.POLICY_DETAIL],
+    queryKey: [POLICY_DETAIL_KEY.POLICY_DETAIL, policyId],
     queryFn: () => getPolicyDetail(policyId),
   });
 

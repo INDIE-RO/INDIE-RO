@@ -18,7 +18,7 @@ export default function App() {
   useEffect(() => {
     const hasSurvey = indieroLocalStorage.getSurvey();
 
-    if (hasSurvey) {
+    if (location.pathname === PATH.INTRO && hasSurvey) {
       navigate(PATH.HOME, { replace: true });
     }
   }, []);
