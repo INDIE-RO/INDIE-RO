@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import styled from '@emotion/styled';
 
 import { ChipButton, Dialog, SvgIcon } from '@/components/@common';
-import PolicyFilterList from '@/components/Policy/PolicyFilterBottomSheet/PolicyFilterList/PolicyFilterList';
 import theme from '@/styles/theme';
 
 import { ALL_REGION_ID, usePolicyFilterBottomSheet } from './PolicyFilterBottomSheet.hook';
+import PolicyFilterList from './PolicyFilterList/PolicyFilterList';
 
 interface PolicyFilterBottomSheetProps {
   categoryId: number;
@@ -20,6 +20,7 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
     regionMeta,
     openingStatusMeta,
     selectedFilters,
+    clearAllFilters,
     resetFilters,
     getCheckedFunction,
     changeCategoryId,
@@ -65,7 +66,7 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
               labelText='모집현황'
               containerRole='radiogroup'
               role='radio'
-              checked={getCheckedFunction([selectedFilters.openingStatusId])}
+              checked={getCheckedFunction([selectedFilters.openingStatusId ?? -1])}
               onClick={changeOpeningStatusId}
             />
             <PolicyFilterList
@@ -73,7 +74,7 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
               labelText='나이'
               containerRole='radiogroup'
               role='radio'
-              checked={getCheckedFunction([selectedFilters.ageId])}
+              checked={getCheckedFunction([selectedFilters.ageId ?? -1])}
               onClick={changeAgeId}
             />
             <PolicyFilterList
@@ -84,9 +85,21 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
               onClick={changeRegionIds}
             />
           </FilterListContainer>
-          <Dialog.Close asChild onClick={() => onSubmit}>
-            <ChipButton width='100%'>필터적용</ChipButton>
-          </Dialog.Close>
+          <ButtonContainer>
+            <ChipButton
+              type='button'
+              variant='outline'
+              width='30%'
+              color={theme.colors.white}
+              backgroundColor={theme.colors.white}
+              onClick={clearAllFilters}
+            >
+              초기화
+            </ChipButton>
+            <Dialog.Close asChild onClick={() => onSubmit}>
+              <ChipButton width='100%'>필터적용</ChipButton>
+            </Dialog.Close>
+          </ButtonContainer>
           {isMobile && <div style={{ minHeight: '100px' }} />}
         </ContentWrapper>
       </Dialog.Content>
@@ -130,4 +143,13 @@ const FlexBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+
+  width: 100%;
 `;
