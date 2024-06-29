@@ -106,6 +106,9 @@ export const usePolicyFilterBottomSheet = () => {
       const { categoryId, openingStatusId, ageId, regionIds } = parsedQueryParams;
       const validRegionIds = regionIds && Array.isArray(regionIds);
       const newRegionIds = validRegionIds ? regionIds : regionIds ? [regionIds] : null;
+      const isAllRegion = regionMeta.length === newRegionIds?.length;
+
+      if (isAllRegion) newRegionIds.unshift(INITIAL_FILTERS.regionIds[0]);
 
       return {
         ...prev,
