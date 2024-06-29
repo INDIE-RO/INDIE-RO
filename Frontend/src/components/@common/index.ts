@@ -5,6 +5,7 @@ export { default as Dialog } from './Dialog/Dialog';
 export { default as DialogConfirm } from './DialogConfirm/DialogConfirm';
 export { default as DialogConfirmContextProvider } from './DialogConfirm/DialogConfirmContext';
 export { default as Dropdown } from './Dropdown/Dropdown';
+export { default as ErrorBoundary } from './ErrorBoundary/ErrorBoundary';
 export { default as IndieroHeader } from './IndieroHeader/IndieroHeader';
 export { default as BasicLayout } from './Layout/BasicLayout';
 export { default as DesktopLayout } from './Layout/DesktopLayout';

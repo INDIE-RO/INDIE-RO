@@ -4,12 +4,13 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import {
   DesktopLayout,
   DialogConfirmContextProvider,
+  ErrorBoundary,
   MobileLayout,
   ToastContextProvider,
 } from '@/components/@common';
 
 import { PATH } from './constants/path';
-import { LoadingPage } from './pages';
+import { ErrorPage, LoadingPage } from './pages';
 import { indieroLocalStorage } from './utils/localStorage';
 
 export default function App() {
@@ -27,11 +28,13 @@ export default function App() {
     <ToastContextProvider>
       <DialogConfirmContextProvider>
         <DesktopLayout>
-          <Suspense fallback={<LoadingPage />}>
-            <MobileLayout>
-              <Outlet />
-            </MobileLayout>
-          </Suspense>
+          <ErrorBoundary fallback={ErrorPage}>
+            <Suspense fallback={<LoadingPage />}>
+              <MobileLayout>
+                <Outlet />
+              </MobileLayout>
+            </Suspense>
+          </ErrorBoundary>
         </DesktopLayout>
       </DialogConfirmContextProvider>
     </ToastContextProvider>
