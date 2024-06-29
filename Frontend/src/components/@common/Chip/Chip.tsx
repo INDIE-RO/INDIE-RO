@@ -133,7 +133,7 @@ const Wrapper = styled.div<Partial<ChipProps>>`
   padding: 1.2rem 1.6rem;
 
   font-weight: ${theme.fontWeights.bold};
-  transition: background-color 0.3s ease, 0.3s;
+  transition: background-color 0.07s ease;
 
   ${({ size }) => chipSizeStyles[size ?? 'md']};
   ${({ variant, color, backgroundColor, disabled }) =>
