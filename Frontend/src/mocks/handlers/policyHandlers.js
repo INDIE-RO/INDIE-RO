@@ -3,8 +3,8 @@ import { HttpResponse, delay, http } from 'msw';
 import { API_PATH, BASE_URL } from '@/constants/path';
 import categoryMeta from '@/mocks/data/categories.json';
 import openingStatusMeta from '@/mocks/data/openingStatus.json';
+import policiesResponse from '@/mocks/data/policies.json';
 import regionMeta from '@/mocks/data/regions.json';
-import policyFixture from '@/mocks/fixtures/policy';
 
 import policyDetail from '../data/policyDetail.json';
 
@@ -15,14 +15,14 @@ const policyHandlers = [
     const sortBy = url.searchParams.get('sortBy');
     const searchQuery = url.searchParams.get('query');
 
-    const hasSearchValue = policyFixture
-      .getPolicyList()
-      .policies.some(item => item.title.includes(searchQuery));
+    const { policies, ...restResponse } = policiesResponse;
+
+    const hasSearchValue = policies.some(item => item.title.includes(searchQuery));
 
     if (hasSearchValue) {
-      return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });
+      return HttpResponse.json(policies, { status: 200 });
     } else {
-      return HttpResponse.json(policyFixture.getPolicyListEmpty(), { status: 200 });
+      return HttpResponse.json({ ...restResponse, policies: [] }, { status: 200 });
     }
   }),
 
@@ -33,7 +33,7 @@ const policyHandlers = [
     const categoryIds = url.searchParams.get('categoryIds')?.split(',').map(parseInt);
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
 
-    const { policies, ...restResponse } = policyFixture.getPolicyList();
+    const { policies, ...restResponse } = policiesResponse;
 
     // 필터링(정책분야, 모집현황, 지역)
     const filteredPolicies = filterPolicies({
@@ -45,9 +45,14 @@ const policyHandlers = [
     // 정렬
     const sortedPolicies = sortPolicies(filteredPolicies, sortBy);
 
+    const totalCount = sortedPolicies.length;
+
     await delay(2000);
 
-    return HttpResponse.json({ ...restResponse, policies: sortedPolicies }, { status: 200 });
+    return HttpResponse.json(
+      { ...restResponse, totalCount, policies: sortedPolicies },
+      { status: 200 },
+    );
   }),
 
   /* 정책목록 조회 */
@@ -58,7 +63,7 @@ const policyHandlers = [
     const openingStatusId = parseInt(url.searchParams.get('openingStatusId'));
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
 
-    const { policies, ...restResponse } = policyFixture.getPolicyList();
+    const { policies, ...restResponse } = policiesResponse;
 
     // 필터링(정책분야, 모집현황, 지역)
     const filteredPolicies = filterPolicies({
@@ -71,9 +76,14 @@ const policyHandlers = [
     // 정렬
     const sortedPolicies = sortPolicies(filteredPolicies, sortBy);
 
+    const totalCount = sortedPolicies.length;
+
     await delay(2000);
 
-    return HttpResponse.json({ ...restResponse, policies: sortedPolicies }, { status: 200 });
+    return HttpResponse.json(
+      { ...restResponse, totalCount, policies: sortedPolicies },
+      { status: 200 },
+    );
   }),
 
   http.get(BASE_URL + '/api' + API_PATH.POLICY_DETAIL, async ({ request }) => {
