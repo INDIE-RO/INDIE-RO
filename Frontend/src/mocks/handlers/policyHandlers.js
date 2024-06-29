@@ -12,18 +12,25 @@ const policyHandlers = [
   /* 정책 검색 결과 조회 */
   http.get(BASE_URL + '/api' + API_PATH.POLICY_SEARCH, async ({ request }) => {
     const url = new URL(request.url);
-    const sortBy = url.searchParams.get('sortBy');
-    const searchQuery = url.searchParams.get('query');
+    const sortBy = parseInt(url.searchParams.get('sortBy'));
+    const searchQuery = url.searchParams.get('query') ?? '';
 
     const { policies, ...restResponse } = policiesResponse;
 
-    const hasSearchValue = policies.some(item => item.title.includes(searchQuery));
+    // 키워드 검색
+    const searchedPolicies = policies.filter(policy => policy.title.includes(searchQuery));
 
-    if (hasSearchValue) {
-      return HttpResponse.json(policies, { status: 200 });
-    } else {
-      return HttpResponse.json({ ...restResponse, policies: [] }, { status: 200 });
-    }
+    // 정렬
+    const sortedPolicies = sortPolicies(searchedPolicies, sortBy);
+
+    const totalCount = sortedPolicies.length;
+
+    await delay(1000);
+
+    return HttpResponse.json(
+      { ...restResponse, totalCount, policies: sortedPolicies },
+      { status: 200 },
+    );
   }),
 
   /* 맞춤 정책목록 조회 */
@@ -47,7 +54,7 @@ const policyHandlers = [
 
     const totalCount = sortedPolicies.length;
 
-    await delay(2000);
+    await delay(1000);
 
     return HttpResponse.json(
       { ...restResponse, totalCount, policies: sortedPolicies },
@@ -59,7 +66,7 @@ const policyHandlers = [
   http.get(BASE_URL + '/api' + API_PATH.POLICY_LIST, async ({ request }) => {
     const url = new URL(request.url);
     const sortBy = parseInt(url.searchParams.get('sortBy'));
-    const categoryId = parseInt(url.searchParams.get('categoryId'));
+    const categoryId = parseInt(url.searchParams.get('categoryId')) ?? 1;
     const openingStatusId = parseInt(url.searchParams.get('openingStatusId'));
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
 
@@ -78,7 +85,7 @@ const policyHandlers = [
 
     const totalCount = sortedPolicies.length;
 
-    await delay(2000);
+    await delay(1000);
 
     return HttpResponse.json(
       { ...restResponse, totalCount, policies: sortedPolicies },
