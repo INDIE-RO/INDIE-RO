@@ -7,6 +7,7 @@ import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.dto.response.WordCloudResponse;
 import com.indiero.service.PolicyService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,7 +27,7 @@ public class PolicyController {
 
     // 사용자 맞춤정보 조회
     @GetMapping("/user")
-    public ListPolicyResponse getUserPolicy(@ModelAttribute UserPolicyParams params) {
+    public ListPolicyResponse getUserPolicy(@Valid @ModelAttribute UserPolicyParams params) {
         return policyService.getUserPolicy(params);
     }
 
