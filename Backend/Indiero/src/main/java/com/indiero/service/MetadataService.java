@@ -98,6 +98,12 @@ public class MetadataService {
         return METADATA.get(MetadataType.CATEGORY).get(categoryId-1).getName();
     }
 
+    public List<String> getAllCategoryNames() {
+        return METADATA.get(MetadataType.CATEGORY).stream()
+                .map(Metadata::getName)
+                .collect(Collectors.toList());
+    }
+
     public List<String> convertRegionIdsToNames(List<Integer> regionIds) {
         List<String> regionNames = regionIds.stream()
                 .map(this::getRegionName)

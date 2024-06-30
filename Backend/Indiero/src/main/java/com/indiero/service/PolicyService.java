@@ -10,10 +10,7 @@ import com.indiero.dto.Tag;
 import com.indiero.dto.request.AllPolicyParams;
 import com.indiero.dto.request.SearchPolicyParams;
 import com.indiero.dto.request.UserPolicyParams;
-import com.indiero.dto.response.DetailPolicyResponse;
-import com.indiero.dto.response.ListPolicyResponse;
-import com.indiero.dto.response.PolicyResponse;
-import com.indiero.dto.response.WordCloudResponse;
+import com.indiero.dto.response.*;
 import com.indiero.repository.KeywordRepository;
 import com.indiero.repository.PolicyQueryRepository;
 import com.indiero.repository.PolicyRepository;
@@ -23,9 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -88,10 +83,9 @@ public class PolicyService {
 
     // 사용자 맞춤정보 조회
     public ListPolicyResponse getUserPolicy(UserPolicyParams params) {
-
         // id(Integer)들을 DB에 저장된 name(String)으로 변환
-        List<String> categoryNames = metadataService.convertCategoryIdsToNames(params.getCategoryIds());
-        List<String> regionNames = metadataService.convertRegionIdsToNames(params.getRegionIds());
+        List<String> categoryNames = getCategoryNames(params.getCategoryIds());
+        List<String> regionNames = getRegionNames(params.getRegionIds());
         List<Policy> policies = fetchUserPolicies(params.getAgeId(), categoryNames, regionNames, params.getLastPolicyId(), params.getSortBy());
         List<PolicyResponse> policyResponses = policies.stream()
                 .map(this::convertToPolicyResponse)
@@ -99,6 +93,14 @@ public class PolicyService {
         long totalCount = userPolicyRepository.countUserPolicies(params.getAgeId(), categoryNames, regionNames);
         boolean hasNext = false;
         return new ListPolicyResponse(hasNext, totalCount, policyResponses);
+    }
+
+    private List<String> getCategoryNames(List<Integer> categoryIds) {
+        if (categoryIds == null || categoryIds.isEmpty()) {
+            return metadataService.getAllCategoryNames();
+        } else {
+            return metadataService.convertCategoryIdsToNames(categoryIds);
+        }
     }
 
     private List<Policy> fetchUserPolicies(int ageId, List<String> categoryNames, List<String> regionNames,
@@ -274,6 +276,35 @@ public class PolicyService {
         return new WordCloudResponse(words);
     }
 
+    // AI 추천 정책 조회
+    public Map<String, Object> getRecommendationsById(Long id) {
+
+        List<RecommendationPolicyResponse> recommendedPolicies;
+        if (id == null) {
+            recommendedPolicies = getDefaultRecommendations();
+        } else {
+            Policy policy = policyRepository.findById(id)
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid policy id: " + id));
+
+            recommendedPolicies = List.of(
+                    new RecommendationPolicyResponse(policy.getS1_id().longValue(), policy.getS1_title()),
+                    new RecommendationPolicyResponse(policy.getS2_id().longValue(), policy.getS2_title())
+            );
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("recommendedPolicies", recommendedPolicies);
+
+        return response;
+    }
+
+    private List<RecommendationPolicyResponse> getDefaultRecommendations() {
+        return List.of(
+                new RecommendationPolicyResponse(1814L, "2024년 자립준비청년(청년 유형) 전세임대"),
+                new RecommendationPolicyResponse(1823L, "자립준비청년 의료비 지원 사업")
+        );
+    }
+
     // 기간 계산
     private String determinePeriod(Policy policy) {
         return "상시".equals(policy.getDuration()) ? null : policy.getStartDate() + " ~ " + policy.getEndDate();
@@ -309,6 +340,10 @@ public class PolicyService {
     }
 
     private long calculateDDay(Policy policy) {
-        return ChronoUnit.DAYS.between(LocalDate.now(), policy.getEndDate());
+        LocalDate endDate = policy.getEndDate();
+        if (endDate == null) {
+            return -1;
+        }
+        return ChronoUnit.DAYS.between(LocalDate.now(), endDate);
     }
 }

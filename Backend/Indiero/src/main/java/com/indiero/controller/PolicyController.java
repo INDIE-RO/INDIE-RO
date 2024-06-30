@@ -7,7 +7,9 @@ import com.indiero.dto.response.DetailPolicyResponse;
 import com.indiero.dto.response.ListPolicyResponse;
 import com.indiero.dto.response.WordCloudResponse;
 import com.indiero.service.PolicyService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/policies")
@@ -26,7 +28,7 @@ public class PolicyController {
 
     // 사용자 맞춤정보 조회
     @GetMapping("/user")
-    public ListPolicyResponse getUserPolicy(@ModelAttribute UserPolicyParams params) {
+    public ListPolicyResponse getUserPolicy(@Valid @ModelAttribute UserPolicyParams params) {
         return policyService.getUserPolicy(params);
     }
 
@@ -49,5 +51,11 @@ public class PolicyController {
     @GetMapping("/wordCloud")
     public WordCloudResponse getWordCloud() {
         return policyService.getWordCloud();
+    }
+
+    // AI 추천 정책 조회
+    @GetMapping("/recommendations")
+    public Map<String, Object> getRecommendations(@RequestParam(required = false) Long id) {
+        return policyService.getRecommendationsById(id);
     }
 }

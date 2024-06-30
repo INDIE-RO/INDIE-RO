@@ -54,4 +54,11 @@ public class Policy {
 
     @Column(columnDefinition = "integer default 0", nullable = false)
     private Integer views;
+
+    private Integer s1_id;
+    private String s1_title;
+    private Float s1_score;
+    private Integer s2_id;
+    private String s2_title;
+    private Float s2_score;
 }
