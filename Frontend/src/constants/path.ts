@@ -1,3 +1,5 @@
+import { R } from 'node_modules/msw/lib/core/HttpResponse-B07UKAkU';
+
 import { NavigationMenu } from '@/types/common';
 
 export const BASE_URL = process.env.BASE_URL;
@@ -19,6 +21,7 @@ export const API_PATH = {
   POLICY_DETAIL: '/policies/:id',
   POLICY_SEARCH: '/policies/search',
   CUSTOM_INFO: '/policies/user',
+  RECOMMEND_POLICY: '/policies/recommendations',
   WORD_CLOUD: '/policies/wordCloud',
   FILTER_META: '/policy/metadata/filters',
   SORT_META: '/policy/metadata/sortFields',

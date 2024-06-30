@@ -60,3 +60,8 @@ export interface WordCloud {
   text: string;
   value: number;
 }
+
+export interface RecommendPolicy {
+  id: number;
+  title: string;
+}
