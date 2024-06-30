@@ -58,6 +58,9 @@ const policyHandlers = [
 
   // 추천 정책 조회
   http.get(BASE_URL + '/api' + API_PATH.RECOMMEND_POLICY, async ({ request }) => {
+    const url = new URL(request.url);
+    const recentViewedId = url.searchParams.get('id');
+
     return HttpResponse.json(recommendPolicy, { status: 200 });
   }),
 

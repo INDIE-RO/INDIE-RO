@@ -7,6 +7,7 @@ import PolicyItem from '@/components/Policy/PolicyItem/PolicyItem';
 import { PATH } from '@/constants/path';
 import theme from '@/styles/theme';
 import { Policy } from '@/types/common';
+import { indieroLocalStorage } from '@/utils/localStorage';
 
 interface PolicyListProps {
   policies: Policy[];
@@ -14,11 +15,15 @@ interface PolicyListProps {
 function PolicyList({ policies }: PolicyListProps) {
   const hasResult = Boolean(policies.length > 0);
 
+  const handlePolicyClick = (policyId: number) => {
+    indieroLocalStorage.setRecentViewedPolicyId(policyId);
+  };
+
   return (
     <Container>
       {hasResult ? (
         policies.map(policy => (
-          <li key={policy.id}>
+          <li key={policy.id} onClick={() => handlePolicyClick(policy.id)}>
             <Link to={`${PATH.POLICY_LIST}/${policy.id}`}>
               <PolicyItem policyInfo={policy} />
             </Link>
