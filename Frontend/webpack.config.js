@@ -30,6 +30,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(png|jpeg|jpg)$/,
+        type: 'asset/resource',
+      },
     ],
   },
   mode: 'none',
