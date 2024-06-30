@@ -4,6 +4,7 @@ import { API_PATH, BASE_URL } from '@/constants/path';
 import policyFixture from '@/mocks/fixtures/policy';
 
 import policyDetail from '../data/policyDetail.json';
+import recommendPolicy from '../data/recommendPolicy.json';
 
 const policyHandlers = [
   /* 정책 검색 결과 조회 */
@@ -55,6 +56,12 @@ const policyHandlers = [
     return HttpResponse.json(policyFixture.getPolicyList(), { status: 200 });
   }),
 
+  // 추천 정책 조회
+  http.get(BASE_URL + '/api' + API_PATH.RECOMMEND_POLICY, async ({ request }) => {
+    return HttpResponse.json(recommendPolicy, { status: 200 });
+  }),
+
+  // 정책 상세 조회
   http.get(BASE_URL + '/api' + API_PATH.POLICY_DETAIL, async ({ request }) => {
     // 나중에 id로 정책 상세 정보를 가져올 때를 대비해 작성
     const url = new URL(request.url);
