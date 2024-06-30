@@ -1,5 +1,3 @@
-import { R } from 'node_modules/msw/lib/core/HttpResponse-B07UKAkU';
-
 import { NavigationMenu } from '@/types/common';
 
 export const BASE_URL = process.env.BASE_URL;
