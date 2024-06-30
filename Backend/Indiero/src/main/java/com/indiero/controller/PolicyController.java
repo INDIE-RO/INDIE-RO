@@ -9,6 +9,7 @@ import com.indiero.dto.response.WordCloudResponse;
 import com.indiero.service.PolicyService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/policies")
@@ -50,5 +51,11 @@ public class PolicyController {
     @GetMapping("/wordCloud")
     public WordCloudResponse getWordCloud() {
         return policyService.getWordCloud();
+    }
+
+    // AI 추천 정책 조회
+    @GetMapping("/recommendations")
+    public Map<String, Object> getRecommendations(@RequestParam(required = false) Long id) {
+        return policyService.getRecommendationsById(id);
     }
 }
