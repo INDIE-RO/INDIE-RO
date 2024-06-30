@@ -7,6 +7,7 @@ import Banner2 from '@/assets/banner-2.png';
 import { Carousel } from '@/components/@common';
 import { PATH } from '@/constants/path';
 import theme from '@/styles/theme';
+import { calculateLeftPosition } from '@/utils/style';
 
 import { useRecommendPolicyQuery } from './RecommendPolicy.query';
 
@@ -15,7 +16,7 @@ function RecommendPolicy() {
 
   const banners = [
     { src: Banner1, textLocation: '6rem', textColor: theme.colors.gray7 },
-    { src: Banner2, textLocation: '11rem', textColor: theme.colors.white },
+    { src: Banner2, textLocation: '12rem', textColor: theme.colors.white },
   ];
 
   return (
@@ -62,12 +63,20 @@ const BannerContainer = styled.div`
 
 const TitleWrapper = styled.div<{ textLocation: string; textColor: string }>`
   position: absolute;
-  left: ${({ textLocation }) => textLocation};
+  left: ${({ textLocation }) => calculateLeftPosition(textLocation, '6')};
   color: ${({ textColor }) => textColor};
+
+  @media screen and (min-width: 768px) {
+    left: ${({ textLocation }) => textLocation};
+  }
 `;
 
 const SubTitle = styled.h3`
-  font-size: ${theme.fontSizes.xxs};
+  font-size: ${theme.fontSizes.md};
+
+  @media screen and (min-width: 768px) {
+    font-size: ${theme.fontSizes.xxs};
+  }
 `;
 
 const StyledLink = styled(Link)<{ textColor: string }>`
@@ -75,9 +84,14 @@ const StyledLink = styled(Link)<{ textColor: string }>`
 `;
 
 const Title = styled.h2`
-  max-width: 26rem;
-  font-size: ${theme.fontSizes.md};
+  max-width: 50rem;
+  font-size: ${theme.fontSizes.xl};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  @media screen and (min-width: 768px) {
+    font-size: ${theme.fontSizes.md};
+    max-width: 26rem;
+  }
 `;
