@@ -16,6 +16,7 @@ function CustomInfoPage() {
         <Suspense fallback={<PolicyList.Skeleton />}>
           <CustomInfo />
         </Suspense>
+        <div style={{ height: '10rem' }} />
         <ScrollButton targetRef={scrollRef} />
       </Container>
     </BasicLayout>

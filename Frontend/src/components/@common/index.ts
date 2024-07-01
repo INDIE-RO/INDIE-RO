@@ -1,3 +1,4 @@
+export { default as Carousel } from './Carousel/Carousel';
 export { default as Chip } from './Chip/Chip';
 export { default as ChipButton } from './ChipButton/ChipButton';
 export { default as ChipInput } from './ChipInput/ChipInput';

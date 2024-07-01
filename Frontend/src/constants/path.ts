@@ -19,6 +19,7 @@ export const API_PATH = {
   POLICY_DETAIL: '/policies/:id',
   POLICY_SEARCH: '/policies/search',
   CUSTOM_INFO: '/policies/user',
+  RECOMMEND_POLICY: '/policies/recommendations',
   WORD_CLOUD: '/policies/wordCloud',
   FILTER_META: '/policy/metadata/filters',
   SORT_META: '/policy/metadata/sortFields',

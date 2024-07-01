@@ -7,6 +7,7 @@ import policiesResponse from '@/mocks/data/policies.json';
 import regionMeta from '@/mocks/data/regions.json';
 
 import policyDetail from '../data/policyDetail.json';
+import recommendPolicy from '../data/recommendPolicy.json';
 
 const policyHandlers = [
   /* 정책 검색 결과 조회 */
@@ -93,6 +94,15 @@ const policyHandlers = [
     );
   }),
 
+  // 추천 정책 조회
+  http.get(BASE_URL + '/api' + API_PATH.RECOMMEND_POLICY, async ({ request }) => {
+    const url = new URL(request.url);
+    const recentViewedId = url.searchParams.get('id');
+
+    return HttpResponse.json(recommendPolicy, { status: 200 });
+  }),
+
+  // 정책 상세 조회
   http.get(BASE_URL + '/api' + API_PATH.POLICY_DETAIL, async ({ request }) => {
     // 나중에 id로 정책 상세 정보를 가져올 때를 대비해 작성
     const url = new URL(request.url);

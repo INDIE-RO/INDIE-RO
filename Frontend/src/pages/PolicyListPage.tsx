@@ -55,6 +55,7 @@ function PolicyListPage() {
         <Suspense fallback={<PolicyList.Skeleton />}>
           <PolicyListContainer />
         </Suspense>
+        <div style={{ height: '10rem' }} />
         <ScrollButton targetRef={scrollRef} />
       </Container>
     </BasicLayout>
