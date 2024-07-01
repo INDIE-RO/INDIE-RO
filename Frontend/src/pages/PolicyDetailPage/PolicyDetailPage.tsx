@@ -75,10 +75,10 @@ function PolicyDetailPage() {
         <ChipButton
           size='lg'
           width='100%'
-          disabled={!policyDetail.url}
+          disabled={policyDetail.url === '-'}
           onClick={() => window.open(policyDetail.url)}
         >
-          {policyDetail.url ? '살펴보러가기' : '링크 정보가 없어요 🥲'}
+          {policyDetail.url === '-' ? '링크 정보가 없어요 🥲' : '살펴보러가기'}
         </ChipButton>
       </ButtonWrapper>
     </Container>
