@@ -26,6 +26,7 @@ function PolicySearchPage() {
           <Suspense fallback={<PolicyList.Skeleton />}>
             <PolicySearchListContainer />
           </Suspense>
+          <div style={{ height: '10rem' }} />
         </Wrapper>
         <ScrollButton targetRef={scrollRef} />
       </Container>
