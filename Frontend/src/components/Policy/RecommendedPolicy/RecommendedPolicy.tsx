@@ -63,19 +63,19 @@ const BannerContainer = styled.div`
 
 const TitleWrapper = styled.div<{ textLocation: string; textColor: string }>`
   position: absolute;
-  left: ${({ textLocation }) => calculateLeftPosition(textLocation, '6')};
+  left: ${({ textLocation }) => textLocation};
   color: ${({ textColor }) => textColor};
 
-  @media screen and (min-width: 768px) {
-    left: ${({ textLocation }) => textLocation};
+  @media (min-width: 431px) and (max-width: 767px) {
+    left: ${({ textLocation }) => calculateLeftPosition(textLocation, '6')};
   }
 `;
 
 const SubTitle = styled.h3`
-  font-size: ${theme.fontSizes.md};
+  font-size: ${theme.fontSizes.xxs};
 
-  @media screen and (min-width: 768px) {
-    font-size: ${theme.fontSizes.xxs};
+  @media (min-width: 431px) and (max-width: 767px) {
+    font-size: ${theme.fontSizes.md};
   }
 `;
 
@@ -84,14 +84,15 @@ const StyledLink = styled(Link)<{ textColor: string }>`
 `;
 
 const Title = styled.h2`
-  max-width: 50rem;
-  font-size: ${theme.fontSizes.xl};
+  max-width: 26rem;
+  font-size: ${theme.fontSizes.md};
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  @media screen and (min-width: 768px) {
-    font-size: ${theme.fontSizes.md};
-    max-width: 26rem;
+  @media (min-width: 431px) and (max-width: 767px) {
+    font-size: ${theme.fontSizes.xl};
+    max-width: 50rem;
   }
 `;

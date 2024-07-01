@@ -9,10 +9,10 @@ export const RECOMMEND_POLICY_QUERY_KEY = {
 } as const;
 
 export const useRecommendedPolicyQuery = () => {
-  const recentViewedPolicyId = indieroLocalStorage.getRecentViewedPolicyId() ?? 0;
+  const recentViewedPolicyId = indieroLocalStorage.getRecentViewedPolicyId() ?? undefined;
   const { data, ...restQuery } = useSuspenseQuery({
     queryKey: [RECOMMEND_POLICY_QUERY_KEY.RECOMMENDED_POLICY, recentViewedPolicyId],
-    queryFn: getRecommendedPolicy,
+    queryFn: () => getRecommendedPolicy({ id: recentViewedPolicyId }),
   });
 
   return {
