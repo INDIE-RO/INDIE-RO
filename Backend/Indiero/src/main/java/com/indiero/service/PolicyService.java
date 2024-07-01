@@ -300,8 +300,8 @@ public class PolicyService {
 
     private List<RecommendationPolicyResponse> getDefaultRecommendations() {
         return List.of(
-                new RecommendationPolicyResponse(1814L, "2024년 자립준비청년(청년 유형) 전세임대"),
-                new RecommendationPolicyResponse(1823L, "자립준비청년 의료비 지원 사업")
+                new RecommendationPolicyResponse(1821L, "2024년 자립준비청년(청년 유형) 전세임대"),
+                new RecommendationPolicyResponse(1830L, "자립준비청년 의료비 지원 사업")
         );
     }
 
