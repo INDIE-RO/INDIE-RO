@@ -1,10 +1,8 @@
-<div style="color:#ffffff; background-color:#25242D;">
-
 ![title](docs/home/title.png)
 
 <a href="https://indiero.com" target="_blank">
   <p align="center">
-    <img src="docs/home/indie.png" height="250px"/>
+    <img src="docs/home/indie2.png" height="250px"/>
   </p>
   <p align="center" style="font-size: larger;">
     INDIE:RO 바로가기
@@ -91,4 +89,3 @@
 | <img src="https://avatars.githubusercontent.com/u/170625956?v=4" width=200px alt="김은서" /> | <img src="https://avatars.githubusercontent.com/u/80464961?v=4" width=200px alt="백솔비" /> | <img src="https://avatars.githubusercontent.com/u/24777828?v=4" width=200px alt="최혜령" /> | <img src="https://avatars.githubusercontent.com/u/107941880?v=4" width=200px alt="하승희" /> |
 |                                             Data                                             |                                          Frontend                                           |                                          Frontend                                           |                                           Backend                                            |
 
-</div>
