@@ -13,7 +13,7 @@ db = pymysql.connect(
 )
 
 cursor = db.cursor()
-sql = 'SELECT policyId FROM policies'
+sql = 'SELECT * FROM policies'
 existing_df = pd.read_sql(sql, db)
 db.close()
 existing = existing_df['policyId'].tolist() # 기존 DB에 있는 policyId
@@ -180,11 +180,14 @@ df = df.drop('정책분야코드', axis = 1)
 
 df
 
-### 전처리 코드
-
 # 결측치 대체
 df = df.replace('null', '-')
 df.columns # 열 출력
+
+# 인덱스 재설정
+df = df.reset_index()
+df.index = df.index + len(existing_df)
+df['ID'] = df.index + 1
 
 ## 연령
 import re
@@ -426,11 +429,6 @@ df['기간유형'].value_counts()
 
 ## 최종 데이터프레임 !
 
-# 인덱스 재설정
-df = df.reset_index()
-# 새로운 정책은 기존 정책 길이에 1 더해서 새로운 ID 생성돼서 기존 ID와 겹치지 않도록 수정 !
-df['ID'] = df.index + len(existing)
-
 # 조회수 칼럼 추가
 df['조회수'] = 0
 
@@ -453,9 +451,14 @@ df.columns = ['id', 'policyId', 'title', 'info', 'detail', 'duration', 'period',
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+# title 데이터 프레임 만들기
+title_df = existing_df['title'].append(df['title'])
+total_df = existing_df.append(df)
+total_df = total_df.drop(['s1_id', 's1_title', 's1_score', 's2_id', 's2_title', 's2_score', 'policy_id'], axis=1)
+
 # TF-IDF 벡터화
 vectorizer = TfidfVectorizer(ngram_range=(1, 2))
-tfidf_matrix = vectorizer.fit_transform(df['title'])
+tfidf_matrix = vectorizer.fit_transform(title_df)
 
 # 코사인 유사도 계산
 cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
@@ -490,11 +493,14 @@ def get_similar_policies(df, cosine_sim):
     return pd.DataFrame(similar_policies)
 
 # 유사한 정책 추가한 데이터프레임 생성
-similar_policies_df = get_similar_policies(df, cosine_sim)
-df = pd.concat([df,similar_policies_df], axis=1)
+similar_policies_df = get_similar_policies(total_df, cosine_sim)
+
+# 기존 데이터 프레임과 결합
+dff = pd.concat([total_df, similar_policies_df], axis=1)
+dff
 
 # csv로 저장
-# df.to_csv('df_240701.csv', encoding='utf-8 sig', index = False)
+# df.to_csv('df_240614.csv', encoding='utf-8 sig', index = False)
 
 from sqlalchemy import create_engine
 engine = create_engine('mysql+pymysql://root:sync2024!@indiero.checo2o802an.ap-northeast-2.rds.amazonaws.com:3306/indiero')
@@ -532,4 +538,4 @@ dt = {'id': sa.types.BIGINT(),
       's2_score': sa.types.FLOAT()
      }
 
-df.to_sql(name='policies', dtype = dt, con = engine, if_exists='append', index = False) #append로 기존 조회수는 유지
+dff.to_sql(name='policies', dtype = dt, con = engine, if_exists='replace', index = False)
