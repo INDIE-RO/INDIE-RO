@@ -2,18 +2,19 @@ import { indieroClient } from '@/apis/ClientApi';
 import { ERROR_MESSAGE } from '@/constants/error';
 import { API_PATH } from '@/constants/path';
 import { RecommendedPolicy } from '@/types/common';
-import { indieroLocalStorage } from '@/utils/localStorage';
 
 export interface GetRecommendedPolicyResponse {
   recommendedPolicies: RecommendedPolicy[];
 }
 
-const recentViewedPolicyId = indieroLocalStorage.getRecentViewedPolicyId();
+export interface GetRecommendedPolicyRequest {
+  id?: number;
+}
 
-export const getRecommendedPolicy = async () => {
+export const getRecommendedPolicy = async ({ id }: GetRecommendedPolicyRequest) => {
   try {
     const data = await indieroClient.get<GetRecommendedPolicyResponse>(API_PATH.RECOMMEND_POLICY, {
-      params: { id: recentViewedPolicyId },
+      params: { id },
     });
 
     if (!data) throw new Error('추천 정책을 불러오는 데 실패했습니다.');
