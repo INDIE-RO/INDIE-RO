@@ -6,4 +6,4 @@ export { default as PolicyList } from './PolicyList/PolicyList';
 export { default as PolicyDetailOverview } from './PolicyDetailOverview/PolicyDetailOverview';
 export { default as PolicyDetailContent } from './PolicyDetailContent/PolicyDetailContent';
 export { default as PolicyListContainer } from './PolicyList/PolicyListContainer';
-export { default as RecommendPolicy } from './RecommendPolicy/RecommendPolicy';
+export { default as RecommendedPolicy } from './RecommendedPolicy/RecommendedPolicy';

@@ -61,7 +61,7 @@ export interface WordCloud {
   value: number;
 }
 
-export interface RecommendPolicy {
+export interface RecommendedPolicy {
   id: number;
   title: string;
 }

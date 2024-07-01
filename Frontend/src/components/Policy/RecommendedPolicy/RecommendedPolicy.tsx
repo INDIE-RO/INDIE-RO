@@ -9,10 +9,10 @@ import { PATH } from '@/constants/path';
 import theme from '@/styles/theme';
 import { calculateLeftPosition } from '@/utils/style';
 
-import { useRecommendPolicyQuery } from './RecommendPolicy.query';
+import { useRecommendedPolicyQuery } from './RecommendedPolicy.query';
 
-function RecommendPolicy() {
-  const { recommendPolicy } = useRecommendPolicyQuery();
+function RecommendedPolicy() {
+  const { recommendedPolicy } = useRecommendedPolicyQuery();
 
   const banners = [
     { src: Banner1, textLocation: '6rem', textColor: theme.colors.gray7 },
@@ -23,7 +23,7 @@ function RecommendPolicy() {
     <div>
       <Carousel
         duration={5000}
-        carouselList={recommendPolicy.map((policy, index) => (
+        carouselList={recommendedPolicy.map((policy, index) => (
           <BannerContainer key={policy.id}>
             <img src={banners[index % banners.length].src} alt='정책 배너' />
             <TitleWrapper
@@ -45,7 +45,7 @@ function RecommendPolicy() {
   );
 }
 
-export default RecommendPolicy;
+export default RecommendedPolicy;
 
 const BannerContainer = styled.div`
   position: relative;

@@ -1,18 +1,18 @@
 import { indieroClient } from '@/apis/ClientApi';
 import { ERROR_MESSAGE } from '@/constants/error';
 import { API_PATH } from '@/constants/path';
-import { RecommendPolicy } from '@/types/common';
+import { RecommendedPolicy } from '@/types/common';
 import { indieroLocalStorage } from '@/utils/localStorage';
 
-export interface GetRecommendPolicyResponse {
-  recommendedPolicies: RecommendPolicy[];
+export interface GetRecommendedPolicyResponse {
+  recommendedPolicies: RecommendedPolicy[];
 }
 
 const recentViewedPolicyId = indieroLocalStorage.getRecentViewedPolicyId();
 
-export const getRecommendPolicy = async () => {
+export const getRecommendedPolicy = async () => {
   try {
-    const data = await indieroClient.get<GetRecommendPolicyResponse>(API_PATH.RECOMMEND_POLICY, {
+    const data = await indieroClient.get<GetRecommendedPolicyResponse>(API_PATH.RECOMMEND_POLICY, {
       params: { id: recentViewedPolicyId },
     });
 

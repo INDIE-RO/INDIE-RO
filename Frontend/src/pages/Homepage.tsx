@@ -3,7 +3,7 @@ import ReactGA from 'react-ga4';
 import styled from '@emotion/styled';
 
 import { BasicLayout, ChipButton, SearchBarContainer, WordCloud } from '@/components/@common';
-import { RecommendPolicy } from '@/components/Policy';
+import { RecommendedPolicy } from '@/components/Policy';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import theme from '@/styles/theme';
 
@@ -48,7 +48,7 @@ function Homepage() {
           </TagContainer>
         </Wrapper>
         <div style={{ height: '45px' }} />
-        <RecommendPolicy />
+        <RecommendedPolicy />
         <div style={{ height: '45px' }} />
         <Wrapper>
           <WordCloudTitle>실시간 인기 키워드</WordCloudTitle>
