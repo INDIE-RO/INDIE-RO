@@ -1,5 +1,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
+import { indieroLocalStorage } from '@/utils/localStorage';
+
 import { getRecommendedPolicy } from './RecommendedPolicy.api';
 
 export const RECOMMEND_POLICY_QUERY_KEY = {
@@ -7,8 +9,9 @@ export const RECOMMEND_POLICY_QUERY_KEY = {
 } as const;
 
 export const useRecommendedPolicyQuery = () => {
+  const recentViewedPolicyId = indieroLocalStorage.getRecentViewedPolicyId() ?? 0;
   const { data, ...restQuery } = useSuspenseQuery({
-    queryKey: [RECOMMEND_POLICY_QUERY_KEY.RECOMMENDED_POLICY],
+    queryKey: [RECOMMEND_POLICY_QUERY_KEY.RECOMMENDED_POLICY, recentViewedPolicyId],
     queryFn: getRecommendedPolicy,
   });
 
