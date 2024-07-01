@@ -2,7 +2,7 @@
 
 <a href="https://indiero.com" target="_blank">
   <p align="center">
-    <img src="docs/home/indie2.png" height="250px"/>
+    <img src="docs/home/indie3.png" height="250px"/>
   </p>
   <p align="center" style="font-size: larger;">
     INDIE:RO 바로가기
