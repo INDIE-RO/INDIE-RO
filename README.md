@@ -1,13 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-body {
-  background-color: #25242D;
-}
-</style>
 </head>
-<body>
+<body style="color:white; background-color:#25242D">
 
 ![title](docs/home/title.png)
 
