@@ -9,17 +9,31 @@ import { useEasyNavigate, useValidQueryParams } from '@/hooks/@common';
 import { generateQueryString, parseQueryParams } from '@/utils/route';
 
 export const ALL_REGION_ID = 0;
+
+interface Filters {
+  categoryId?: number;
+  openingStatusId?: number;
+  ageId?: number;
+  regionIds: number[];
+}
+
 const INITIAL_FILTERS = {
   categoryId: 1,
   openingStatusId: 2,
-  ageId: 1,
+  ageId: 2,
   regionIds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17],
 };
 
 export const usePolicyFilterBottomSheet = () => {
   const { ageMeta, regionMeta, openingStatusMeta } = useFilterMetaQuery();
   const { replaceQueryParams } = useEasyNavigate();
-  const [selectedFilters, setSelectedFilters] = useState(INITIAL_FILTERS);
+  const [selectedFilters, setSelectedFilters] = useState<Filters>(INITIAL_FILTERS);
+
+  const clearAllFilters = () => {
+    setSelectedFilters({
+      regionIds: [],
+    });
+  };
 
   const resetFilters = () => {
     setSelectedFilters(INITIAL_FILTERS);
@@ -106,6 +120,9 @@ export const usePolicyFilterBottomSheet = () => {
       const { categoryId, openingStatusId, ageId, regionIds } = parsedQueryParams;
       const validRegionIds = regionIds && Array.isArray(regionIds);
       const newRegionIds = validRegionIds ? regionIds : regionIds ? [regionIds] : null;
+      const isAllRegion = regionMeta.length === newRegionIds?.length;
+
+      if (isAllRegion) newRegionIds.unshift(INITIAL_FILTERS.regionIds[0]);
 
       return {
         ...prev,
@@ -122,6 +139,7 @@ export const usePolicyFilterBottomSheet = () => {
     regionMeta,
     openingStatusMeta,
     selectedFilters,
+    clearAllFilters,
     resetFilters,
     getCheckedFunction,
     changeCategoryId,

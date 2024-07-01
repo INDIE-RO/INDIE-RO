@@ -51,7 +51,7 @@ function Homepage() {
         <RecommendedPolicy />
         <div style={{ height: '45px' }} />
         <Wrapper>
-          <WordCloudTitle>실시간 인기 키워드</WordCloudTitle>
+          <WordCloudTitle>오늘의 인기 키워드</WordCloudTitle>
           <div style={{ height: '12px' }} />
           <WordCloudWrapper>
             <WordCloud />

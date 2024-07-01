@@ -1,6 +1,7 @@
 package com.indiero.repository;
 
 import com.indiero.domain.Policy;
+import com.indiero.dto.response.RecommendationPolicyResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -58,4 +59,9 @@ public interface PolicyRepository extends JpaRepository<Policy, Long> {
     List<Policy> findPoliciesSortedByViews(@Param("ageId") int ageId,
                                            @Param("categoryName") String categoryName,
                                            @Param("regionNames") List<String> regionNames);
+
+
+    // AI 추천 정책 조회
+    @Query
+    List<RecommendationPolicyResponse> findRecommendationPoliciesById(Long id);
 }

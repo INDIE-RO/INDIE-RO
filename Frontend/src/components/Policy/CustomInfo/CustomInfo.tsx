@@ -19,7 +19,7 @@ function CustomInfo() {
   const { changeSortBy } = usePolicySort();
 
   const queryParams = useValidQueryParams<CustomKeywordForAll>(CUSTOM_KEYWORD_FOR_ALL);
-  const { policies = [] } = useCustomPoliciesQuery(queryParams);
+  const { policies } = useCustomPoliciesQuery(queryParams);
 
   return (
     <>
@@ -30,11 +30,11 @@ function CustomInfo() {
             <CustomInfoDisplay>
               {`${surveyResult?.age} •
           ${surveyResult?.category.join(', ')} •
-          ${surveyResult?.region.length >= 1 ? '지역전체' : surveyResult?.region}`}
+          ${surveyResult?.region.length > 1 ? '지역전체' : surveyResult?.region}`}
             </CustomInfoDisplay>
             <Dropdown metaData={sortMeta} onClickOption={changeSortBy} />
           </FlexBox>
-          <PolicyList policies={policies} />
+          {policies ? <PolicyList policies={policies} /> : <PolicyList.Skeleton />}
         </>
       ) : (
         <NoResultContainer>
