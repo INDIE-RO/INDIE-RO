@@ -13,6 +13,8 @@ export const useRecommendedPolicyQuery = () => {
   const { data, ...restQuery } = useSuspenseQuery({
     queryKey: [RECOMMEND_POLICY_QUERY_KEY.RECOMMENDED_POLICY, recentViewedPolicyId],
     queryFn: getRecommendedPolicy,
+    staleTime: 0,
+    gcTime: 0,
   });
 
   return {
