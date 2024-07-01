@@ -13,13 +13,13 @@ body {
 
 <a href="https://indiero.com">
   <p align="center">
-    <img src="./Frontend/public/assets/apple-icon-180x180.png"/>
+    <img src="docs/home/indie.png" height="250px"/>
   </p>
   <p align="center" style="font-size: larger;">
     INDIE:RO 바로가기
   </p>
 </a>
-<p align="center" style="font-size: xx-small;">
+<p align="center" style="font-size: x-small;">
   자립준비청년들을 위한 관련 정책 및 지원 정보 큐레이팅 서비스
 </p>
 
@@ -30,23 +30,22 @@ body {
 이를 통해, 청년들이 자신의 상황에 맞는 정보를 쉽게 접근하고, 실질적인 지원을 받을 수 있도록 도움을 주는 것을 목표로 하고 있습니다.
 
 <img src="docs/home/result1.png" alt="결과물1" />
-
+<br />
 <img src="docs/home/result2.png" alt="결과물2" />
 
 ## 주요 기능 소개
 
 ### 유사도 기반 정책 추천
 
+![유사도 기반 정책 추천](docs/home/recommendation.gif)
+
 ### 조회수 기반 인기 키워드 추천
+
+![조회수 기반 인기 키워드 추천](docs/home/wordcloud.gif)
 
 ### 설문조사를 통한 맞춤정보 조회
 
-<table>
-  <tr>
-    <td><img src="docs/home/survey.png" alt="설문조사" /></td>
-    <td><img src="docs/home/custom-info.png" alt="맞춤정보" /></td>
-  </tr>
-</table>
+![설문조사를 통한 맞춤정보 조회](docs/home/custom-info.gif)
 
 ### 지원 플랫폼
 
