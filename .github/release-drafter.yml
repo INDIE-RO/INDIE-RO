@@ -1,0 +1,20 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+template: |
+  # What's Changed
+
+  $CHANGES
+
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+
+categories:
+  - title: '🍳 Frontend'
+    labels:
+      - '🍳 Frontend'
+  - title: '🚀 Backend'
+    labels:
+      - '🚀 Backend'
+  - title: '🧢 Data'
+    labels:
+      - '🧢 Data'
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
