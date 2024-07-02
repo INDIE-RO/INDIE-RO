@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import ReactGA from 'react-ga4';
 
 import styled from '@emotion/styled';
 
@@ -6,6 +6,7 @@ import Banner1 from '@/assets/banner-1.png';
 import Banner2 from '@/assets/banner-2.png';
 import { Carousel } from '@/components/@common';
 import { PATH } from '@/constants/path';
+import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
 import { calculateLeftPosition } from '@/utils/style';
 
@@ -13,30 +14,36 @@ import { useRecommendedPolicyQuery } from './RecommendedPolicy.query';
 
 function RecommendedPolicy() {
   const { recommendedPolicy } = useRecommendedPolicyQuery();
+  const { navigate } = useEasyNavigate();
 
   const banners = [
     { src: Banner1, textLocation: '6rem', textColor: theme.colors.gray7 },
     { src: Banner2, textLocation: '12rem', textColor: theme.colors.white },
   ];
 
+  const goRecommendedPolicy = (policyId: number) => {
+    ReactGA.event({
+      category: '버튼',
+      action: '추천 정책 배너 클릭',
+      label: 'recommended-policy-banner',
+    });
+
+    navigate(`${PATH.POLICY_LIST}/${policyId}`);
+  };
+
   return (
     <div>
       <Carousel
         duration={5000}
         carouselList={recommendedPolicy.map((policy, index) => (
-          <BannerContainer key={policy.id}>
+          <BannerContainer key={policy.id} onClick={() => goRecommendedPolicy(policy.id)}>
             <img src={banners[index % banners.length].src} alt='정책 배너' />
             <TitleWrapper
               textLocation={banners[index % banners.length].textLocation}
               textColor={banners[index % banners.length].textColor}
             >
               <SubTitle>이 정책은 어때요?</SubTitle>
-              <StyledLink
-                to={`${PATH.POLICY_LIST}/${policy.id}`}
-                textColor={banners[index % banners.length].textColor}
-              >
-                <Title>{policy.title}</Title>
-              </StyledLink>
+              <Title>{policy.title}</Title>
             </TitleWrapper>
           </BannerContainer>
         ))}
@@ -54,6 +61,8 @@ const BannerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -77,10 +86,6 @@ const SubTitle = styled.h3`
   @media (min-width: 431px) and (max-width: 767px) {
     font-size: ${theme.fontSizes.md};
   }
-`;
-
-const StyledLink = styled(Link)<{ textColor: string }>`
-  color: ${({ textColor }) => textColor};
 `;
 
 const Title = styled.h2`
