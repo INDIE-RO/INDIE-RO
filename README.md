@@ -36,7 +36,10 @@
 
 ![설문조사를 통한 맞춤정보 조회](docs/home/custom-info.gif)
 
-### 지원 플랫폼
+## 서버 구성도
+![서버구성도](docs/home/infra.png)
+
+## 지원 플랫폼
 
 <table>
   <tr>
