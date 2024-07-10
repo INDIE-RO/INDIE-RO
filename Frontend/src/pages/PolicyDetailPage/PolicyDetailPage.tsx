@@ -72,14 +72,14 @@ function PolicyDetailPage() {
       <div style={{ height: '60px' }} />
 
       <ButtonWrapper>
-        <ChipButton
+        <LinkButton
           size='lg'
           width='100%'
           disabled={policyDetail.url === '-'}
           onClick={() => window.open(policyDetail.url)}
         >
           {policyDetail.url === '-' ? '링크 정보가 없어요 🥲' : '살펴보러가기'}
-        </ChipButton>
+        </LinkButton>
       </ButtonWrapper>
     </Container>
   );
@@ -101,11 +101,23 @@ const Divider = styled.hr`
 
 const ButtonWrapper = styled.div`
   position: fixed;
-  bottom: 16px;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
   width: 100%;
+  height: 80px;
   padding: 0 20px;
+
+  background: ${theme.backgroundColors.deep};
 
   @media screen and (min-width: 768px) {
     max-width: 430px;
   }
+`;
+
+const LinkButton = styled(ChipButton)`
+  bottom: 16px;
 `;
