@@ -8,6 +8,11 @@
     INDIE:RO 바로가기
   </p>
 </a>
+<a href="https://youtu.be/OTbPonOCBro?si=46pgq9HaeVRXKO2P" target="_blank">
+  <p align="center" style="font-size: larger;">
+  INDIE:RO 소개영상 보러가기
+  </p>
+</a>
 <p align="center" style="font-size: x-small;">
   자립준비청년들을 위한 관련 정책 및 지원 정보 큐레이팅 서비스
 </p>
