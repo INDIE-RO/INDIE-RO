@@ -51,7 +51,7 @@ function PolicyDetailPage() {
       <Wrapper>
         <PolicyDetailOverview policyInfo={policyInfo} />
       </Wrapper>
-      <div style={{ height: '22px' }} />
+      <div style={{ height: '20px' }} />
       <Divider />
 
       <TabMenu
