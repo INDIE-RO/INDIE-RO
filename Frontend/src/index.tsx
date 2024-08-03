@@ -16,9 +16,9 @@ import theme from './styles/theme';
 ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID);
 
 const enableMocking = async () => {
-  if (process.env.NODE_ENV !== 'development') {
-    return;
-  }
+  // if (process.env.NODE_ENV !== 'development') {
+  //   return;
+  // }
 
   const { worker } = await import('./mocks/browser');
   return worker.start();
@@ -28,7 +28,7 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 0,
-      staleTime: 1000 * 60 * 5 /** @TODO 논의 후 값 변경 필요 */,
+      staleTime: 1000 * 60 * 5,
       gcTime: 1000 * 60 * 5,
       throwOnError: true,
     },
@@ -40,7 +40,6 @@ const queryClient = new QueryClient({
   }),
 });
 
-/** @TODO ErrorBoundary 추가 필요 */
 enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <React.StrictMode>

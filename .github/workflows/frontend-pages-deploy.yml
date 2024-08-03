@@ -1,0 +1,77 @@
+name: Frontend Pages Deploy
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+    paths:
+      - 'Frontend/**'
+      - .github/**
+
+  workflow_dispatch: # 수동 실행을 위한 설정
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./Frontend
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Use repository source
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.11.1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9.1.3
+
+      - name: Cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Set PUBLIC_URL
+        run: |
+          PUBLIC_URL=$(echo $GITHUB_REPOSITORY | sed -r 's/^.+\/(.+)$/\/\1\//')
+          echo PUBLIC_URL=$PUBLIC_URL > .env
+
+      - name: Create .env
+        run: |
+          echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
+          echo "GOOGLE_ANALYTICS_ID=${{ secrets.GOOGLE_ANALYTICS_ID }}" >> .env
+
+      - name: Build App
+        run: |
+          pnpm build
+          cp ./dist/index.html ./dist/404.html
+
+      - name: Build Storybook
+        run: |
+          pnpm build:sb
+          mv ./storybook-static ./dist/storybook
+
+      - name: Deploy To 'gh-pages' Branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
