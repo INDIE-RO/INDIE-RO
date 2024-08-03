@@ -50,6 +50,11 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: pnpm install --no-frozen-lockfile
 
+      - name: Set PUBLIC_URL
+        run: |
+          PUBLIC_URL=$(echo $GITHUB_REPOSITORY | sed -r 's/^.+\/(.+)$/\/\1\//')
+          echo PUBLIC_URL=$PUBLIC_URL > .env
+
       - name: Create .env
         run: |
           echo "BASE_URL=${{ secrets.BASE_URL }}" >> .env
