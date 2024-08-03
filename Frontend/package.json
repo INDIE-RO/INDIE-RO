@@ -6,7 +6,7 @@
     "start": "webpack serve --mode=development & open 'http://localhost:3000'",
     "build": "webpack --mode=production",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build:sb": "storybook build",
     "test": "playwright test --reporter=list",
     "test:headed": "playwright test --headed --reporter=list",
     "test:ui": "playwright test --ui",
