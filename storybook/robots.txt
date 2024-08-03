@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /404
+Allow: /
+
+# Host
+Host: https://indiero.com/
+
+# Sitemaps
+Sitemap: https://indiero.com/sitemap.xml
