@@ -63,12 +63,12 @@ jobs:
       - name: Build App
         run: |
           pnpm build
-          cp ./Frontend/dist/index.html ./Frontend/dist/404.html
+          cp ./dist/index.html ./dist/404.html
 
       - name: Build Storybook
         run: |
           pnpm build:sb
-          mv ./Frontend/storybook-static ./Frontend/dist/storybook
+          mv ./storybook-static ./dist/storybook
 
       - name: Deploy To 'gh-pages' Branch
         uses: peaceiris/actions-gh-pages@v3
