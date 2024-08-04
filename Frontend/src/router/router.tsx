@@ -61,7 +61,4 @@ export const router = createBrowserRouter(
       errorElement: <div>error page</div>,
     },
   ],
-  {
-    basename: process.env.PUBLIC_URL,
-  },
 );
