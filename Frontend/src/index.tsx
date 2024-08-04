@@ -22,11 +22,7 @@ const enableMocking = async () => {
 
   const { worker } = await import('./mocks/browser');
 
-  return worker.start({
-    serviceWorker: {
-      url: '/INDIE-RO/mockServiceWorker.js',
-    },
-  });
+  return worker.start();
 };
 
 const queryClient = new QueryClient({
