@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CnameWebpackPlugin = require('cname-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -52,6 +53,9 @@ module.exports = {
         { from: 'public/assets', to: 'assets' },
         { from: 'public/mockServiceWorker.js', to: '.' },
       ],
+    }),
+    new CnameWebpackPlugin({
+      domain: 'indiero.com',
     }),
     new Dotenv(),
   ],
