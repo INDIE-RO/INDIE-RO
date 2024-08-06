@@ -8,6 +8,7 @@ import { Carousel } from '@/components/@common';
 import { PATH } from '@/constants/path';
 import { useEasyNavigate } from '@/hooks/@common';
 import theme from '@/styles/theme';
+import { getHeightFromRatio, isMobileSize } from '@/utils/@common';
 import { calculateLeftPosition } from '@/utils/style';
 
 import { useRecommendedPolicyQuery } from './RecommendedPolicy.query';
@@ -31,13 +32,31 @@ function RecommendedPolicy() {
     navigate(`${PATH.POLICY_LIST}/${policyId}`);
   };
 
+  const bannerWidth = isMobileSize ? window.innerWidth : 430;
+
   return (
     <div>
       <Carousel
         duration={5000}
         carouselList={recommendedPolicy.map((policy, index) => (
           <BannerContainer key={policy.id} onClick={() => goRecommendedPolicy(policy.id)}>
-            <img src={banners[index % banners.length].src} alt='정책 배너' />
+            {/** @todo webp, avif 관련 웹팩설정 필요 */}
+            {/* <picture>
+              <source type='image/avif' srcSet={banners[index % banners.length].src} />
+              <source type='image/webp' srcSet={banners[index % banners.length].src} /> 
+              <img
+                src={Banner3}
+                alt='정책 배너'
+                width={`${bannerWidth}px`}
+                height={getHeightFromRatio(bannerWidth)}
+              />
+            </picture> */}
+            <img
+              src={banners[index % banners.length].src}
+              alt='정책 배너'
+              width={`${bannerWidth}px`}
+              height={getHeightFromRatio(bannerWidth)}
+            />
             <TitleWrapper
               textLocation={banners[index % banners.length].textLocation}
               textColor={banners[index % banners.length].textColor}
