@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { ChipButton, Dialog, SvgIcon } from '@/components/@common';
 import theme from '@/styles/theme';
+import { isMobileDevice } from '@/utils/@common';
 
 import { ALL_REGION_ID, usePolicyFilterBottomSheet } from './PolicyFilterBottomSheet.hook';
 import PolicyFilterList from './PolicyFilterList/PolicyFilterList';
@@ -11,8 +12,6 @@ import PolicyFilterList from './PolicyFilterList/PolicyFilterList';
 interface PolicyFilterBottomSheetProps {
   categoryId: number;
 }
-
-const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
   const {
@@ -60,7 +59,7 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
             </CloseButton>
           </Dialog.Close>
           <FilterListContainer>
-            {isMobile && <div style={{ minHeight: '16px' }} />}
+            {isMobileDevice && <div style={{ minHeight: '16px' }} />}
             <PolicyFilterList
               metaDataList={openingStatusMeta}
               labelText='모집현황'
@@ -100,7 +99,7 @@ function PolicyFilterBottomSheet({ categoryId }: PolicyFilterBottomSheetProps) {
               <ChipButton width='100%'>필터적용</ChipButton>
             </Dialog.Close>
           </ButtonContainer>
-          {isMobile && <div style={{ minHeight: '100px' }} />}
+          {isMobileDevice && <div style={{ minHeight: '100px' }} />}
         </ContentWrapper>
       </Dialog.Content>
     </Dialog>

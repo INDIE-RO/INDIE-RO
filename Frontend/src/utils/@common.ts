@@ -11,3 +11,14 @@ export const getValidChild = <T>(children: ReactNode) => {
 
   return isValidElement<T>(child) ? child : null;
 };
+
+export const isMobileSize = window.matchMedia('(max-width: 768px)').matches;
+export const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+export const getHeightFromRatio = (
+  width: number,
+  widthRatio: number = 215,
+  heightRatio: number = 48,
+) => {
+  return (width * heightRatio) / widthRatio;
+};
