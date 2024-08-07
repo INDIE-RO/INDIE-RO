@@ -1,4 +1,4 @@
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
@@ -11,19 +11,18 @@ import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
 import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
-import { useEasyNavigate } from '@/hooks/@common';
+import { useEasyNavigate, useScrollRestoration } from '@/hooks/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import { generateQueryString } from '@/utils/route';
 
 function PolicyListPage() {
   const { navigate } = useEasyNavigate();
+  const { scrollRef } = useScrollRestoration();
   const { selectedTabMenu, handleTabMenuClick } = useTabMenu(CATEGORY_TYPE.JOB);
 
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
   const { search, changeSearchQuery } = usePolicySearch();
-
-  const scrollRef = useRef<HTMLDivElement>(null);
 
   const changeTab = (selectedMenu: TabVariant) => {
     handleTabMenuClick(selectedMenu);
