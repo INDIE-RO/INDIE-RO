@@ -13,7 +13,7 @@ const policyHandlers = [
   /* 정책 검색 결과 조회 */
   http.get(BASE_URL + '/api' + API_PATH.POLICY_SEARCH, async ({ request }) => {
     const url = new URL(request.url);
-    const sortBy = parseInt(url.searchParams.get('sortBy'));
+    const sortBy = parseInt(url.searchParams.get('sortBy') ?? 1);
     const searchQuery = url.searchParams.get('query') ?? '';
 
     const { policies, ...restResponse } = policiesResponse;
@@ -37,7 +37,7 @@ const policyHandlers = [
   /* 맞춤 정책목록 조회 */
   http.get(BASE_URL + '/api' + API_PATH.CUSTOM_INFO, async ({ request }) => {
     const url = new URL(request.url);
-    const sortBy = parseInt(url.searchParams.get('sortBy'));
+    const sortBy = parseInt(url.searchParams.get('sortBy') ?? 1);
     const categoryIds = url.searchParams.get('categoryIds')?.split(',').map(parseInt);
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
 
@@ -66,7 +66,7 @@ const policyHandlers = [
   /* 정책목록 조회 */
   http.get(BASE_URL + '/api' + API_PATH.POLICY_LIST, async ({ request }) => {
     const url = new URL(request.url);
-    const sortBy = parseInt(url.searchParams.get('sortBy'));
+    const sortBy = parseInt(url.searchParams.get('sortBy') ?? 1);
     const categoryId = parseInt(url.searchParams.get('categoryId') ?? 1);
     const openingStatusId = parseInt(url.searchParams.get('openingStatusId'));
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
