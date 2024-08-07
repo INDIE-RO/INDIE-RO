@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useNavigationType } from 'react-router-dom';
 
+import useThrottle from '@/hooks/@common/useThrottle';
+
 const NAVIGATION_TYPE = {
   POP: 'POP',
   PUSH: 'PUSH',
@@ -10,25 +12,26 @@ const NAVIGATION_TYPE = {
 const useScrollRestoration = () => {
   const navigationType = useNavigationType();
   const scrollRef = useRef<HTMLDivElement | null>(null);
+  const throttle = useThrottle();
 
   const SESSION_STORAGE_KEY = {
     SCROLL_Y: 'SCROLL_Y',
   } as const;
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScrollWithThrottle = throttle(() => {
       if (scrollRef.current) {
         sessionStorage.setItem(
           SESSION_STORAGE_KEY.SCROLL_Y,
           scrollRef.current.scrollTop.toString(),
         );
       }
-    };
+    });
 
-    scrollRef.current?.addEventListener('scroll', handleScroll);
+    scrollRef.current?.addEventListener('scroll', handleScrollWithThrottle);
 
     return () => {
-      scrollRef.current?.removeEventListener('scroll', handleScroll);
+      scrollRef.current?.removeEventListener('scroll', handleScrollWithThrottle);
     };
   }, [scrollRef]);
 
