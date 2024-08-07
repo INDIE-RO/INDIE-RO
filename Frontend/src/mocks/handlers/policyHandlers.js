@@ -67,7 +67,7 @@ const policyHandlers = [
   http.get(BASE_URL + '/api' + API_PATH.POLICY_LIST, async ({ request }) => {
     const url = new URL(request.url);
     const sortBy = parseInt(url.searchParams.get('sortBy'));
-    const categoryId = parseInt(url.searchParams.get('categoryId')) ?? 1;
+    const categoryId = parseInt(url.searchParams.get('categoryId') ?? 1);
     const openingStatusId = parseInt(url.searchParams.get('openingStatusId'));
     const regionIds = url.searchParams.get('regionIds')?.split(',').map(parseInt);
 
