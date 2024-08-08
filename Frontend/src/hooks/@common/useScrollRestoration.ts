@@ -9,14 +9,14 @@ const NAVIGATION_TYPE = {
   RELOAD: 'RELOAD',
 } as const;
 
+const SESSION_STORAGE_KEY = {
+  SCROLL_Y: 'SCROLL_Y',
+} as const;
+
 const useScrollRestoration = () => {
   const navigationType = useNavigationType();
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const throttle = useThrottle();
-
-  const SESSION_STORAGE_KEY = {
-    SCROLL_Y: 'SCROLL_Y',
-  } as const;
 
   useEffect(() => {
     const handleScrollWithThrottle = throttle(() => {
