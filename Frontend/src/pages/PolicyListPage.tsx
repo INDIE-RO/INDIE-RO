@@ -7,18 +7,20 @@ import { TOTAL_POLICY_TAB_MENUS } from '@/components/@common/TabMenu/constants';
 import { TabVariant } from '@/components/@common/TabMenu/type';
 import useTabMenu from '@/components/@common/TabMenu/useTabMenu';
 import { PolicyFilterBottomSheet, PolicyList, PolicyListContainer } from '@/components/Policy';
+import { KEYWORD_FOR_ALL, KeywordForAll } from '@/components/Policy/PolicyList/PolicyList.api';
 import { usePolicySort } from '@/components/Policy/PolicyList/PolicyList.hook';
 import { useSortMetaQuery } from '@/components/Policy/PolicyList/PolicyList.query';
-import { CATEGORY_TYPE, TAB_ID_BY_VARIANT } from '@/constants/common';
+import { CATEGORY_TYPE_BY_ID, TAB_ID_BY_VARIANT } from '@/constants/common';
 import { PATH } from '@/constants/path';
-import { useEasyNavigate, useScrollRestoration } from '@/hooks/@common';
+import { useEasyNavigate, useScrollRestoration, useValidQueryParams } from '@/hooks/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 import { generateQueryString } from '@/utils/route';
 
 function PolicyListPage() {
   const { navigate } = useEasyNavigate();
   const { scrollRef } = useScrollRestoration();
-  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(CATEGORY_TYPE.JOB);
+  const { categoryId } = useValidQueryParams<KeywordForAll>(KEYWORD_FOR_ALL);
+  const { selectedTabMenu, handleTabMenuClick } = useTabMenu(CATEGORY_TYPE_BY_ID[categoryId ?? 1]);
 
   const { sortMeta } = useSortMetaQuery();
   const { changeSortBy } = usePolicySort();
