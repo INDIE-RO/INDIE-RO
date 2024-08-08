@@ -1,13 +1,14 @@
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
 import { BasicLayout, ScrollButton } from '@/components/@common';
 import { CustomInfo, PolicyList } from '@/components/Policy';
+import { useScrollRestoration } from '@/hooks/@common';
 import theme from '@/styles/theme';
 
 function CustomInfoPage() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollRef } = useScrollRestoration();
 
   return (
     <BasicLayout>

@@ -1,10 +1,10 @@
-import { Suspense, useRef } from 'react';
+import { Suspense } from 'react';
 
 import styled from '@emotion/styled';
 
 import { BasicLayout, ScrollButton, SearchBar } from '@/components/@common';
 import { PolicyList } from '@/components/Policy';
-import { useValidQueryParams } from '@/hooks/@common';
+import { useScrollRestoration, useValidQueryParams } from '@/hooks/@common';
 import { usePolicySearch } from '@/pages/PolicySearchPage/PolicySearch.hook';
 
 import { SEARCH_KEYWORD_FOR_SEARCH, SearchKeywordForSearch } from './PolicySearch.api';
@@ -14,7 +14,7 @@ function PolicySearchPage() {
   const { search, changeSearchQuery } = usePolicySearch();
   const { query } = useValidQueryParams<SearchKeywordForSearch>(SEARCH_KEYWORD_FOR_SEARCH);
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollRef } = useScrollRestoration();
 
   return (
     <BasicLayout>
