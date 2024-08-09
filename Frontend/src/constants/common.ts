@@ -10,6 +10,15 @@ export const CATEGORY_TYPE = {
   WELFARE: 'welfare',
 } as const;
 
+type CategoryType = (typeof CATEGORY_TYPE)[keyof typeof CATEGORY_TYPE];
+
+export const CATEGORY_TYPE_BY_ID: Record<string, CategoryType> = {
+  1: CATEGORY_TYPE.JOB,
+  2: CATEGORY_TYPE.HOUSING,
+  3: CATEGORY_TYPE.EDUCATION,
+  4: CATEGORY_TYPE.WELFARE,
+};
+
 // description~otherInfo는 백엔드서버로부터 메타데이터를 조회하지 않으므로 id가 없으나 임의로 지정함
 export const TAB_ID_BY_VARIANT: Record<TabVariant, number> = {
   job: 1,
