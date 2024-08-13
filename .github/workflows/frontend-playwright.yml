@@ -48,6 +48,9 @@ jobs:
       - name: Install Playwright with dependencies
         run: pnpm exec playwright install --with-deps
 
+      - name: Run type checks
+        run: pnpm exec tsc -p ./__tests__/tsconfig.json --noEmit
+
       - name: Run Playwright tests
         run: pnpm exec playwright test
 
