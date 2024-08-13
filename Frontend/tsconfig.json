@@ -40,6 +40,6 @@
     /* Emit */
     "outDir": "dist"
   },
-  "include": ["src", "**/*.ts", "**/*.tsx"],
+  "include": ["src", "**/*.ts", "**/*.tsx", "__tests__/unit/.test.ts"],
   "exclude": ["node_modules", "dist"]
 }
