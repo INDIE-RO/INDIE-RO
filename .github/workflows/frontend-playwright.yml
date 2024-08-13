@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [main, develop]
     paths: Frontend/**
+
+  workflow_dispatch: # 수동 실행을 위한 설정
+
 jobs:
   test:
     runs-on: ubuntu-latest
