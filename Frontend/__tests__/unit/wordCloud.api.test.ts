@@ -6,8 +6,8 @@ jest.mock('@/apis/ClientApi');
 describe('getWordCloud', () => {
   it('should return words when API call is successful', async () => {
     const mockWords = [
-      { id: 1, text: 'hello' },
-      { id: 2, text: 'world' },
+      { text: '자립수당', value: 15 },
+      { text: '취업', value: 672 },
     ];
     (indieroClient.get as jest.Mock).mockResolvedValue({ words: mockWords });
 
