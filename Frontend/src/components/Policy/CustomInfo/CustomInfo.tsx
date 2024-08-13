@@ -27,7 +27,7 @@ function CustomInfo() {
         <>
           <FlexBox>
             <CloverImg src={CloverMagic} alt='' />
-            <CustomInfoDisplay>
+            <CustomInfoDisplay data-testid='custom-info-box'>
               {`${surveyResult?.age} •
           ${surveyResult?.category.join(', ')} •
           ${surveyResult?.region.length > 1 ? '지역전체' : surveyResult?.region}`}
