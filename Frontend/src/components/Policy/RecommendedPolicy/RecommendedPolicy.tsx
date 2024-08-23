@@ -116,7 +116,7 @@ const Title = styled.h2`
   text-overflow: ellipsis;
 
   @media (min-width: 431px) and (max-width: 767px) {
-    font-size: ${theme.fontSizes.xl};
+    font-size: ${theme.fontSizes.lg};
     max-width: 50rem;
   }
 `;
