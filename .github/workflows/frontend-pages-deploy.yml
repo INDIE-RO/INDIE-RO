@@ -65,6 +65,9 @@ jobs:
           pnpm build
           cp ./dist/index.html ./dist/404.html
 
+      - name: Add .nojekyll
+        run: touch ./dist/.nojekyll
+
       - name: Build Storybook
         run: |
           pnpm build:sb
