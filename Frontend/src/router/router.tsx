@@ -76,6 +76,6 @@ export const router = createBrowserRouter(
     },
   ],
   {
-    basename: '/INDIE-RO',
+    basename: process.env.NODE_ENV === 'production' ? '/INDIE-RO' : '',
   },
 );
