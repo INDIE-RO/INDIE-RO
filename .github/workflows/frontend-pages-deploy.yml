@@ -63,7 +63,7 @@ jobs:
       - name: Build App
         run: |
           pnpm build
-          sed 's/\/INDIE-RO\//.\/g' ./dist/index.html > ./dist/404.html
+          sed 's|/INDIE-RO/|./|g' ./dist/index.html > ./dist/404.html
 
       - name: Build Storybook
         run: |
