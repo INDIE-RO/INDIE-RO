@@ -1,5 +1,3 @@
-import ReactGA from 'react-ga4';
-
 import styled from '@emotion/styled';
 
 import { BasicLayout, ChipButton, SearchBarContainer, WordCloud } from '@/components/@common';
@@ -13,11 +11,11 @@ function Homepage() {
   const { search } = usePolicySearch();
 
   const handleTagClick = (tag: string) => {
-    ReactGA.event({
-      category: '버튼',
-      action: '핵심 키워드 클릭',
-      label: 'tag-keyword',
-    });
+    // ReactGA.event({
+    //   category: '버튼',
+    //   action: '핵심 키워드 클릭',
+    //   label: 'tag-keyword',
+    // });
 
     search(tag);
   };

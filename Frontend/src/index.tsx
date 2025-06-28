@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import ReactGA from 'react-ga4';
 import { RouterProvider } from 'react-router-dom';
 
 import { ThemeProvider } from '@emotion/react';
@@ -13,14 +12,14 @@ import { SvgSprite } from './components/@common';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 
-const gaId = process.env.GOOGLE_ANALYTICS_ID;
-if (gaId) {
-  try {
-    ReactGA.initialize(gaId);
-  } catch (e) {
-    console.warn('GA 초기화 실패:', e);
-  }
-}
+// const gaId = process.env.GOOGLE_ANALYTICS_ID;
+// if (gaId) {
+//   try {
+//     ReactGA.initialize(gaId);
+//   } catch (e) {
+//     console.warn('GA 초기화 실패:', e);
+//   }
+// }
 
 const enableMocking = async () => {
   const { worker } = await import('./mocks/browser');
