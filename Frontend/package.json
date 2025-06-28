@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --mode=development & open 'http://localhost:3000'",
-    "build": "webpack --mode=production",
+    "build": "webpack --mode=production --env production",
     "storybook": "storybook dev -p 6006",
     "build:sb": "storybook build",
     "test": "playwright test --reporter=list",
