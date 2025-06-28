@@ -17,12 +17,7 @@ const useEasyNavigate = () => {
 
   const normalizeBasePath = (path: string) => {
     const BASE_PATH = '/INDIE-RO';
-    const doubleBase = BASE_PATH + BASE_PATH;
-    console.log(path, '경로..');
-    if (path.startsWith(doubleBase)) {
-      return path.replace(doubleBase, BASE_PATH);
-    }
-    return path;
+    return path.startsWith(BASE_PATH) ? path.replace(BASE_PATH, '') : path;
   };
 
   const updateQueryParams = (
