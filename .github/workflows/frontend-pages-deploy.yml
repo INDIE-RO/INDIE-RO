@@ -63,10 +63,7 @@ jobs:
       - name: Build App
         run: |
           pnpm build
-          cp ./dist/index.html ./dist/404.html
-
-      - name: Add .nojekyll
-        run: touch ./dist/.nojekyll
+          sed 's/\/INDIE-RO\//.\/g' ./dist/index.html > ./dist/404.html
 
       - name: Build Storybook
         run: |
