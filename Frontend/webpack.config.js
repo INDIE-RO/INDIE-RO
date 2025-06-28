@@ -54,9 +54,6 @@ module.exports = {
         { from: 'public/mockServiceWorker.js', to: '.' },
       ],
     }),
-    new CnameWebpackPlugin({
-      domain: 'indiero.com',
-    }),
     new Dotenv(),
   ],
   devServer: {
