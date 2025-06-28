@@ -1,6 +1,6 @@
 ![title](docs/home/title.png)
 
-<a href="https://indiero.com" target="_blank">
+<a href="https://indie-ro.github.io/INDIE-RO/" target="_blank">
   <p align="center">
     <img src="docs/home/indie3.png" height="250px"/>
   </p>
@@ -42,6 +42,7 @@
 ![설문조사를 통한 맞춤정보 조회](docs/home/custom-info.gif)
 
 ## 서버 구성도
+
 ![서버구성도](docs/home/infra.png)
 
 ## 지원 플랫폼
@@ -96,4 +97,3 @@
 | :------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
 | <img src="https://avatars.githubusercontent.com/u/170625956?v=4" width=200px alt="김은서" /> | <img src="https://avatars.githubusercontent.com/u/80464961?v=4" width=200px alt="백솔비" /> | <img src="https://avatars.githubusercontent.com/u/24777828?v=4" width=200px alt="최혜령" /> | <img src="https://avatars.githubusercontent.com/u/107941880?v=4" width=200px alt="하승희" /> |
 |                                             Data                                             |                                          Frontend                                           |                                          Frontend                                           |                                           Backend                                            |
-
