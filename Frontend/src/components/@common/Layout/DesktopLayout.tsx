@@ -2,8 +2,6 @@ import { PropsWithChildren } from 'react';
 
 import { css } from '@emotion/react';
 
-import indieroBackground from '@/assets/indieroBackground.svg?url';
-
 function DesktopLayout({ children }: PropsWithChildren) {
   return <div css={DesktopLayoutStyle}>{children}</div>;
 }
@@ -19,7 +17,7 @@ const DesktopLayoutStyle = css`
 
     padding-left: 55%;
 
-    background: url(${indieroBackground}) no-repeat center;
+    background: url('/assets/indieroBackground.svg') no-repeat center;
     background-size: cover;
 
     overflow-y: auto;
