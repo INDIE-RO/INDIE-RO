@@ -1,5 +1,3 @@
-import ReactGA from 'react-ga4';
-
 import styled from '@emotion/styled';
 
 import Banner1 from '@/assets/banner-1.png';
@@ -23,11 +21,11 @@ function RecommendedPolicy() {
   ];
 
   const goRecommendedPolicy = (policyId: number) => {
-    ReactGA.event({
-      category: '버튼',
-      action: '추천 정책 배너 클릭',
-      label: 'recommended-policy-banner',
-    });
+    // ReactGA.event({
+    //   category: '버튼',
+    //   action: '추천 정책 배너 클릭',
+    //   label: 'recommended-policy-banner',
+    // });
 
     navigate(`${PATH.POLICY_LIST}/${policyId}`);
   };
