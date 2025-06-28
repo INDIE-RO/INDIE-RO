@@ -13,7 +13,14 @@ import { SvgSprite } from './components/@common';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/theme';
 
-ReactGA.initialize(process.env.GOOGLE_ANALYTICS_ID);
+const gaId = process.env.GOOGLE_ANALYTICS_ID;
+if (gaId) {
+  try {
+    ReactGA.initialize(gaId);
+  } catch (e) {
+    console.warn('GA 초기화 실패:', e);
+  }
+}
 
 const enableMocking = async () => {
   // if (process.env.NODE_ENV !== 'development') {
