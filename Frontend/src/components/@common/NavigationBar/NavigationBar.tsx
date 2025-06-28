@@ -28,6 +28,7 @@ function NavigationBar() {
     setIsActive(false);
   };
 
+  console.log(getCustomInfoQueryString(), '테스트용');
   return (
     <Container>
       <List>
