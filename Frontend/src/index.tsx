@@ -23,15 +23,14 @@ if (gaId) {
 }
 
 const enableMocking = async () => {
-  // if (process.env.NODE_ENV !== 'development') {
-  //   return;
-  // }
-
   const { worker } = await import('./mocks/browser');
 
   return worker.start({
     serviceWorker: {
       url: `${process.env.PUBLIC_URL}/mockServiceWorker.js`,
+      options: {
+        scope: `${process.env.PUBLIC_URL}/`,
+      },
     },
   });
 };
