@@ -17,7 +17,7 @@ const DesktopLayoutStyle = css`
 
     padding-left: 55%;
 
-    background: url('/assets/indieroBackground.svg') no-repeat center;
+    background: url('./assets/indieroBackground.svg') no-repeat center;
     background-size: cover;
 
     overflow-y: auto;
