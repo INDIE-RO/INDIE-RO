@@ -27,9 +27,7 @@ const enableMocking = async () => {
 
   return worker.start({
     serviceWorker: {
-      url: `${
-        process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : ''
-      }mockServiceWorker.js`,
+      url: `${process.env.NODE_ENV === 'production' ? '/INDIE-RO/' : ''}mockServiceWorker.js`,
     },
   });
 };
