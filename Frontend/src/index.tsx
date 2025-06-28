@@ -27,7 +27,7 @@ const enableMocking = async () => {
 
   return worker.start({
     serviceWorker: {
-      url: `${process.env.PUBLIC_URL}/mockServiceWorker.js`,
+      url: `${process.env.PUBLIC_URL}mockServiceWorker.js`,
     },
   });
 };

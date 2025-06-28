@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('should display input with correct placeholder after clicking keyword', async ({ page }) => {
-  await page.goto('https://www.indiero.com/home');
+  await page.goto('https://indie-ro.github.io/INDIE-RO/home');
 
   await page.getByText('자립', { exact: true }).click();
 
@@ -11,7 +11,7 @@ test('should display input with correct placeholder after clicking keyword', asy
 });
 
 test('should display custom information box after survey completion', async ({ page }) => {
-  await page.goto('https://www.indiero.com');
+  await page.goto('https://indie-ro.github.io/INDIE-RO');
 
   await page.getByRole('button', { name: '설문 시작하기' }).click();
   await page.locator('input[type="checkbox"][value="교육"]').check();
