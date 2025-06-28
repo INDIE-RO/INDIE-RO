@@ -28,49 +28,54 @@ const SurveyPage = lazy(
   () => import(/* webpackChunkName: "SurveyPage" */ '@/pages/SurveyPage/SurveyPage'),
 );
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <IntroPage />,
-      },
-      {
-        path: PATH.HOME,
-        element: <Homepage />,
-      },
-      {
-        path: PATH.SURVEY,
-        element: <SurveyPage />,
-      },
-      {
-        path: PATH.CUSTOM_INFO,
-        element: <CustomInfoPage />,
-      },
-      {
-        path: PATH.POLICY_LIST,
-        element: <PolicyListPage />,
-      },
-      {
-        path: PATH.POLICY_DETAIL,
-        element: <PolicyDetailPage />,
-      },
-      {
-        path: PATH.POLICY_SEARCH,
-        element: <PolicySearchPage />,
-      },
-      {
-        path: PATH.EXCEPTION,
-        element: <NotFoundPage />,
-      },
-      {
-        path: PATH.LOADING,
-        element: <LoadingPage />,
-      },
-    ],
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <App />,
+      children: [
+        {
+          index: true,
+          element: <IntroPage />,
+        },
+        {
+          path: PATH.HOME,
+          element: <Homepage />,
+        },
+        {
+          path: PATH.SURVEY,
+          element: <SurveyPage />,
+        },
+        {
+          path: PATH.CUSTOM_INFO,
+          element: <CustomInfoPage />,
+        },
+        {
+          path: PATH.POLICY_LIST,
+          element: <PolicyListPage />,
+        },
+        {
+          path: PATH.POLICY_DETAIL,
+          element: <PolicyDetailPage />,
+        },
+        {
+          path: PATH.POLICY_SEARCH,
+          element: <PolicySearchPage />,
+        },
+        {
+          path: PATH.EXCEPTION,
+          element: <NotFoundPage />,
+        },
+        {
+          path: PATH.LOADING,
+          element: <LoadingPage />,
+        },
+      ],
 
-    errorElement: <div>error page</div>,
+      errorElement: <div>error page</div>,
+    },
+  ],
+  {
+    basename: '/INDIE-RO',
   },
-]);
+);
