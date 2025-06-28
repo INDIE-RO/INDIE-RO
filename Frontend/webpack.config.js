@@ -3,9 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-require('dotenv').config();
-
-module.exports = {
+module.exports = env => ({
   module: {
     rules: [
       {
@@ -43,7 +41,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: process.env.NODE_ENV === 'production' ? '/INDIE-RO/' : '/',
+    publicPath: env.production ? '/INDIE-RO/' : '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -70,4 +68,4 @@ module.exports = {
       '@': path.resolve(__dirname, 'src'),
     },
   },
-};
+});
