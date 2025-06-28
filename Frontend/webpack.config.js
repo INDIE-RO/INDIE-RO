@@ -42,7 +42,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '/',
+    publicPath: '/INDIE-RO/',
   },
   plugins: [
     new HtmlWebpackPlugin({
